@@ -116,3 +116,29 @@ node scripts/social-card.mjs
 ## 当前产品边界
 
 仅承诺 Windows x64 与 macOS Apple Silicon 安装包。基础阅读可独立使用；AI 功能需相应账号或模型服务；MinerU 云解析会上传 PDF。当前安装包的签名状态和安装说明按现有发行配置撰写，未来启用正式签名/公证后应同步更新中英文 FAQ。
+
+## 首屏交互快照
+
+首屏嵌入 PaperEnjoyer 当前源码编译的真实界面。浅色模式展示本机的 Attention Is All You Need、已有段落精读和 Self-Attention 问答；发现页提供预填 transformer 的固定论文目录。浏览、翻页、精读展开、搜索和聊天输入可交互，发送及数据修改操作禁用。刷新恢复初始状态。
+
+界面文案沿用桌面版。主图右上角提供重置和独立打开两个图标按钮，底部不附加控制栏或演示说明。
+
+在本目录更新本地快照：
+
+```powershell
+npm run snapshot:product
+```
+
+默认使用相邻的 PaperEnjoyer 源码及软件配置指向的本机资料库。需要覆盖路径时：
+
+```powershell
+node scripts/snapshot-product.mjs --app-path E:/PaperEnjoyer --library-root E:/MyLibrary
+```
+
+需要 Node 22.19+、两个项目已安装的依赖及 Playwright Chromium。Windows PowerShell 传递 npm 参数可使用 npm.cmd。现有截图命令 capture:product 继续用于下方四张静态场景图。
+
+更新命令只生成并替换 public/demo；不提交、不推送、不部署，也不自动修改官网页面。发布由维护者手动触发。public/demo 应与官网一起提交，普通官网构建及 CI 只校验、使用这些产物，无需软件源码或个人数据库。
+
+演示入口为 /demo/index.html，首页嵌入 /demo/app/index.html（显式路径同时兼容开发服务器与 GitHub Pages）。无法加载或关闭 JavaScript 时保留同画面的 poster.webp。manifest.json 包含源码版本、生成时间、数据和资源哈希；npm test 校验快照完整性，浏览器测试覆盖首屏交互。
+
+详细维护说明见软件仓库 docs/interactive-demo.md。导出会校验素材完整性；失败时保留上一份可用快照，部分完成的精读保留真实进度。

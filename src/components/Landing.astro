@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from './Icon.astro';
+import ProductDemo from './ProductDemo.astro';
 import { copy, type Locale } from '../data/copy';
 import { buildRelease } from '../lib/build-release';
 import { formatSize, RELEASES_URL } from '../lib/release.mjs';
@@ -141,29 +142,11 @@ const schema = {
       </div>
       <div class="hero-product container">
         <div class="product-window hero-window">
-          <div class="window-toolbar" aria-hidden="true">
-            <span class="window-dots">
-              <i></i>
-              <i></i>
-              <i></i>
-            </span>
-            <span>
-              PaperEnjoyer <span class="window-separator">/</span> YOUR RESEARCH, TOGETHER
-            </span>
-            <Icon name="expand" size={13} />
-          </div>
-          <img
-            src="/images/reading.webp"
-            width="1680"
-            height="1011"
-            alt={t.scenes[0].alt}
-            fetchpriority="high"
-            decoding="async"
-          />
+          <ProductDemo locale={locale} />
         </div>
         <div class="hero-image-caption">
           <span>{t.heroCaption}</span>
-          <span>{t.demo}</span>
+          <span>{locale === 'zh' ? '真实软件界面' : 'Actual app interface'}</span>
         </div>
       </div>
     </section>

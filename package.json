@@ -8,12 +8,13 @@
     "check": "astro check",
     "build": "astro build",
     "preview": "astro preview --host 127.0.0.1",
-    "test": "node --test tests/release.test.mjs",
+    "test": "node --test tests/release.test.mjs tests/snapshot.test.mjs",
     "test:e2e": "playwright test",
     "capture:product": "node scripts/capture-product.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "snapshot:product": "node scripts/snapshot-product.mjs"
   },
   "dependencies": {
     "astro": "7.3.3"

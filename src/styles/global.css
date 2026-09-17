@@ -393,7 +393,7 @@
       0 3px 12px #28382a06;
   }
   .hero-window {
-    transform: perspective(2400px) rotateX(2deg);
+    transform: none;
     transform-origin: 50% 0;
   }
   .product-window > img {

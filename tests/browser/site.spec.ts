@@ -25,7 +25,8 @@ for (const [locale, url] of [
       expect(
         await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
       ).toBeTruthy();
-      for (const image of await page.locator('img:visible').all()) {
+      // The interactive hero hides its poster after loading; its fallback is tested separately.
+      for (const image of await page.locator('img:visible:not(.demo-poster)').all()) {
         await image.scrollIntoViewIfNeeded();
         await expect(image).toHaveJSProperty('complete', true);
         expect(await image.evaluate((el: HTMLImageElement) => el.naturalWidth)).toBeGreaterThan(0);

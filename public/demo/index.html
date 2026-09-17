@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src 'self'; object-src 'none'; base-uri 'self'"
+    />
+    <title>PaperEnjoyer</title>
+    <link rel="stylesheet" href="./viewer.css" />
+    <script src="./viewer.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <strong>PaperEnjoyer</strong>
+      <div>
+        <button id="size">原尺寸</button><button id="reset">重置</button><a href="../">返回官网</a>
+      </div>
+    </header>
+    <main id="viewer">
+      <div id="canvas">
+        <iframe
+          src="./app/index.html"
+          title="PaperEnjoyer"
+          width="1680"
+          height="1011"
+          sandbox="allow-scripts allow-same-origin"
+        ></iframe>
+      </div>
+    </main>
+    <noscript>
+      <style>
+        #viewer,
+        header button {
+          display: none;
+        }
+      </style>
+      <p>启用 JavaScript 后可以体验交互。</p>
+      <img
+        src="./poster.webp"
+        alt="PaperEnjoyer 浅色阅读界面、Attention Is All You Need 精读与问答"
+      />
+    </noscript>
+  </body>
+</html>
