@@ -114,7 +114,8 @@ test('reading, search, static assets, local menus and disabled sending', async (
     page.locator('.discovery-detail').getByRole('button', { name: '查找 PDF', exact: true }),
   ).toBeDisabled();
   await page.reload();
-  await expect(page.locator('html')).toHaveAttribute('data-demo-ready', 'true');
+  // Reloads initialize the PDF demo again, so use the same readiness budget as the first load.
+  await expect(page.locator('html')).toHaveAttribute('data-demo-ready', 'true', { timeout: 30000 });
   await expect(input).toHaveValue('');
   await expect(page.getByRole('spinbutton', { name: '页码', exact: true })).toHaveValue('1');
   expect(failures).toEqual([]);
@@ -142,7 +143,10 @@ test('toolbar icons open the standalone view, reset and retain the poster on fai
   });
   await input.fill('重置前的输入');
   await page.locator('[data-demo-reset]').click();
-  await expect(page.locator('[data-product-demo]')).toHaveAttribute('data-ready', 'true');
+  // Reset also reloads the demo; WebKit on CI can take longer than the default 5 seconds.
+  await expect(page.locator('[data-product-demo]')).toHaveAttribute('data-ready', 'true', {
+    timeout: 30000,
+  });
   await expect(input).toHaveValue('');
   await page.route('**/demo/app/data/snapshot.json', (route) =>
     route.fulfill({ status: 503, body: '' }),
