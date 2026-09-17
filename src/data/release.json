@@ -1,0 +1,17 @@
+{
+  "version": "0.1.1",
+  "publishedAt": "2026-09-15T17:24:32Z",
+  "pageUrl": "https://github.com/watericetangcw/PaperEnjoyer-Releases/releases/tag/v0.1.1",
+  "assets": {
+    "windows": {
+      "name": "PaperEnjoyer-0.1.1-Setup.exe",
+      "url": "https://github.com/watericetangcw/PaperEnjoyer-Releases/releases/download/v0.1.1/PaperEnjoyer-0.1.1-Setup.exe",
+      "size": 258782799
+    },
+    "mac": {
+      "name": "PaperEnjoyer-0.1.1-macOS-arm64.dmg",
+      "url": "https://github.com/watericetangcw/PaperEnjoyer-Releases/releases/download/v0.1.1/PaperEnjoyer-0.1.1-macOS-arm64.dmg",
+      "size": 320747282
+    }
+  }
+}

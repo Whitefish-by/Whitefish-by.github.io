@@ -1,0 +1,523 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from './Icon.astro';
+import { copy, type Locale } from '../data/copy';
+import { buildRelease } from '../lib/build-release';
+import { formatSize, RELEASES_URL } from '../lib/release.mjs';
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = copy[locale];
+const release = await buildRelease();
+const platforms = [
+  {
+    id: 'windows' as const,
+    name: 'Windows',
+    icon: 'windows',
+    description: t.windowsDescription,
+    label: t.windowsDownload,
+    format: `.exe · ${t.installer}`,
+    help: t.windowsHelp,
+  },
+  {
+    id: 'mac' as const,
+    name: 'macOS',
+    icon: 'apple',
+    description: t.macDescription,
+    label: t.macDownload,
+    format: `.dmg · ${t.diskImage}`,
+    help: t.macHelp,
+  },
+];
+const scriptData = {
+  release,
+  messages: {
+    checking: t.checking,
+    latest: t.latest,
+    unavailable: t.unavailable,
+    missing: t.missing,
+    published: t.published,
+    releasePage: t.releasePage,
+  },
+  locale,
+};
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'PaperEnjoyer',
+  applicationCategory: 'EducationalApplication',
+  operatingSystem: 'Windows x64, macOS Apple Silicon',
+  description: t.description,
+  url: 'https://paperenjoyer.com',
+  softwareVersion: release.version,
+};
+---
+
+<Base title={t.title} description={t.description} locale={locale}>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(schema).replace(/</g, '\\u003c')}
+  ></script>
+  <a class="skip-link" href="#main">
+    {t.skip}
+  </a>
+  <header class="site-header">
+    <nav class="nav container" aria-label={locale === 'zh' ? '主导航' : 'Main navigation'}>
+      <a class="brand" href={locale === 'zh' ? '/' : '/en/'} aria-label="PaperEnjoyer">
+        <img src="/favicon.svg" width="34" height="34" alt="" />
+        <span>PaperEnjoyer</span>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <a href="#features">{t.nav[0]}</a>
+        <a href="#workspace">{t.nav[1]}</a>
+        <a href="#faq">{t.nav[2]}</a>
+      </div>
+      <div class="nav-actions">
+        <a
+          class="language-link"
+          data-language
+          href={locale === 'zh' ? '/en/' : '/'}
+          lang={locale === 'zh' ? 'en' : 'zh-CN'}
+          aria-label={locale === 'zh' ? 'Switch to English' : '切换到中文'}
+        >
+          <Icon name="globe" size={16} />
+          <span>{locale === 'zh' ? 'EN' : '中文'}</span>
+        </a>
+        <a href="#download" class="button button-small">
+          {t.download}
+          <Icon name="down" size={14} />
+        </a>
+        <button
+          class="menu-toggle js-only"
+          aria-label={t.menu}
+          aria-controls="nav-links"
+          aria-expanded="false"
+        >
+          <Icon name="menu" />
+        </button>
+      </div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-copy container">
+        <p class="eyebrow hero-eyebrow">
+          <span class="status-dot" aria-hidden="true"></span>
+          {t.eyebrow}
+        </p>
+        <h1 id="hero-heading">
+          {t.heroStart}
+          <span>{t.heroAccent}</span>
+        </h1>
+        <p class="hero-description">{t.heroText}</p>
+        <div class="hero-actions">
+          {platforms.map((p, i) => (
+            <a
+              class:list={['button', 'download-link', i === 1 && 'button-secondary']}
+              data-download={p.id}
+              data-available={!!release.assets[p.id]}
+              href={release.assets[p.id]?.url ?? release.pageUrl}
+              aria-label={!release.assets[p.id] ? `${p.name} · ${t.missing}` : undefined}
+            >
+              <Icon name={p.icon} size={19} />
+              <span data-download-label data-ready-label={p.label}>
+                {release.assets[p.id] ? p.label : t.releasePage}
+              </span>
+              <Icon name="down" size={17} />
+            </a>
+          ))}
+        </div>
+        <p class="platform-note">
+          {t.platformLine}
+          <span class="note-divider" aria-hidden="true">
+            /
+          </span>
+          <span>
+            v<span data-version>{release.version}</span>
+          </span>
+        </p>
+      </div>
+      <div class="hero-product container">
+        <div class="product-window hero-window">
+          <div class="window-toolbar" aria-hidden="true">
+            <span class="window-dots">
+              <i></i>
+              <i></i>
+              <i></i>
+            </span>
+            <span>
+              PaperEnjoyer <span class="window-separator">/</span> YOUR RESEARCH, TOGETHER
+            </span>
+            <Icon name="expand" size={13} />
+          </div>
+          <img
+            src="/images/reading.webp"
+            width="1680"
+            height="1011"
+            alt={t.scenes[0].alt}
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+        <div class="hero-image-caption">
+          <span>{t.heroCaption}</span>
+          <span>{t.demo}</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="features section container" id="features" aria-labelledby="features-heading">
+      <div class="section-heading reveal">
+        <p class="eyebrow">{t.introEyebrow}</p>
+        <h2 id="features-heading">
+          {t.introStart}
+          <br />
+          <span class="text-muted-green">{t.introAccent}</span>
+        </h2>
+        <p>{t.introText}</p>
+      </div>
+      <div class="story-grid">
+        {t.story.map((item, index) => (
+          <article class:list={['story-card', `story-${index}`, 'reveal']}>
+            <div class="story-top">
+              <span class="story-label">
+                <Icon name={item.icon} size={18} />
+                {item.label}
+              </span>
+              <span class="story-number">{item.number}</span>
+            </div>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+            {index === 0 ? (
+              <div class="discovery-art" aria-hidden="true">
+                <div class="art-search">
+                  <Icon name="search" size={15} />
+                  <span>Neural rendering</span>
+                  <span class="art-key">↵</span>
+                </div>
+                <div class="art-paper">
+                  <span class="tiny-tag">COMPUTER VISION</span>
+                  <strong>
+                    New perspectives.
+                    <br />
+                    New possibilities.
+                  </strong>
+                  <div class="art-lines">
+                    <i></i>
+                    <i></i>
+                  </div>
+                  <span class="art-paper-footer">
+                    arXiv <span>↗</span>
+                  </span>
+                </div>
+                <div class="orbit-dot dot-a"></div>
+                <div class="orbit-dot dot-b"></div>
+              </div>
+            ) : index === 1 ? (
+              <div class="reading-art" aria-hidden="true">
+                <div class="art-sheet">
+                  <span class="art-heading">The original idea.</span>
+                  <div class="art-lines">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                  </div>
+                  <div class="art-highlight"></div>
+                  <div class="art-lines">
+                    <i></i>
+                    <i></i>
+                  </div>
+                </div>
+                <span class="art-connector">↔</span>
+                <div class="art-note">
+                  <Icon name="sparkles" size={18} />
+                  <strong>{locale === 'zh' ? '让理解发生。' : 'Make it click.'}</strong>
+                  <div class="art-lines">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div class="agent-art" aria-hidden="true">
+                <div class="art-question">
+                  {locale === 'zh' ? '这个方法的关键想法是什么？' : 'What makes this idea work?'}
+                </div>
+                <div class="art-response">
+                  <span class="art-avatar">
+                    <Icon name="sparkles" size={17} />
+                  </span>
+                  <div>
+                    <strong>
+                      {locale === 'zh' ? '从原文，找到思路。' : 'Think with the source.'}
+                    </strong>
+                    <div class="art-lines">
+                      <i></i>
+                      <i></i>
+                      <i></i>
+                    </div>
+                    <span class="art-citation">
+                      ↗ {locale === 'zh' ? '回到原文' : 'Back to the paper'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
+            <div class="feature-tags">
+              {item.tags.map((tag) => (
+                <span>{tag}</span>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="workspace section" id="workspace" aria-labelledby="workspace-heading">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <p class="eyebrow">{t.showcaseEyebrow}</p>
+          <h2 id="workspace-heading">{t.showcaseTitle}</h2>
+          <p>{t.showcaseText}</p>
+        </div>
+        <div class="workspace-tabs" role="tablist" aria-label={t.nav[1]}>
+          {t.scenes.map((scene, index) => (
+            <a
+              role="tab"
+              id={`tab-${scene.id}`}
+              href={`#scene-${scene.id}`}
+              aria-controls={`scene-${scene.id}`}
+              aria-selected={index === 0 ? 'true' : 'false'}
+              tabindex={index === 0 ? 0 : -1}
+              data-scene={scene.id}
+            >
+              {scene.label}
+            </a>
+          ))}
+        </div>
+        <div class="showcase-panels">
+          {t.scenes.map((scene) => (
+            <div
+              class="showcase-panel"
+              id={`scene-${scene.id}`}
+              role="tabpanel"
+              aria-labelledby={`tab-${scene.id}`}
+              tabindex="0"
+            >
+              <div class="product-window showcase-window">
+                <img
+                  src={`/images/${scene.id}.webp`}
+                  width="1680"
+                  height="1011"
+                  alt={scene.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <button
+                  class="expand-image js-only"
+                  data-expand={`/images/${scene.id}.webp`}
+                  data-alt={scene.alt}
+                  aria-label={t.expand}
+                >
+                  <Icon name="expand" size={17} />
+                  <span>{t.expand}</span>
+                </button>
+              </div>
+              <div class="scene-caption">
+                <div>
+                  <h3>{scene.title}</h3>
+                  <p>{scene.text}</p>
+                </div>
+                <span class="demo-label">{t.demo}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="library section container" aria-labelledby="library-heading">
+      <div class="section-heading reveal">
+        <p class="eyebrow">{t.libraryEyebrow}</p>
+        <h2 id="library-heading">{t.libraryTitle}</h2>
+        <p>{t.libraryText}</p>
+      </div>
+      <div class="utility-grid">
+        {t.utilities.map((item) => (
+          <article class="utility-card reveal">
+            <div class="utility-icon">
+              <Icon name={item.icon} size={25} />
+            </div>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+      <aside class="local-note reveal">
+        <span class="local-note-icon">
+          <Icon name="folder" size={24} />
+        </span>
+        <div>
+          <h3>{t.localTitle}</h3>
+          <p>{t.localText}</p>
+        </div>
+        <span class="local-label" aria-hidden="true">
+          LOCAL FIRST
+        </span>
+      </aside>
+    </section>
+
+    <section class="download-section section" id="download" aria-labelledby="download-heading">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <img
+            class="download-logo"
+            src="/favicon.svg"
+            width="64"
+            height="64"
+            alt=""
+            loading="lazy"
+          />
+          <p class="eyebrow">{t.downloadEyebrow}</p>
+          <h2 id="download-heading">{t.downloadTitle}</h2>
+          <p>{t.downloadText}</p>
+        </div>
+        <div class="release-status" role="status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span data-release-status>
+            {t.versionLabel} v{release.version}
+          </span>
+        </div>
+        <div class="download-grid">
+          {platforms.map((p) => (
+            <article class="download-card" data-platform-card={p.id}>
+              <div class="download-platform">
+                <Icon name={p.icon} size={32} />
+                <div>
+                  <h3>{p.name}</h3>
+                  <p>{p.description}</p>
+                </div>
+              </div>
+              <div class="download-meta">
+                <span>
+                  v<span data-version>{release.version}</span>
+                </span>
+                <span data-size={p.id}>
+                  {release.assets[p.id] ? formatSize(release.assets[p.id]!.size) : '—'}
+                </span>
+                <span>{p.format}</span>
+              </div>
+              <a
+                class="button download-link"
+                data-download={p.id}
+                data-available={!!release.assets[p.id]}
+                href={release.assets[p.id]?.url ?? release.pageUrl}
+                aria-label={!release.assets[p.id] ? `${p.name} · ${t.missing}` : undefined}
+              >
+                <span data-download-label data-ready-label={p.label}>
+                  {release.assets[p.id] ? p.label : t.releasePage}
+                </span>
+                <Icon name="down" size={18} />
+              </a>
+              <p class="asset-message" data-asset-message={p.id} hidden={!!release.assets[p.id]}>
+                {t.missing}
+              </p>
+              <details class="install-help">
+                <summary>
+                  {t.installHelp}
+                  <Icon name="chevron" size={15} />
+                </summary>
+                <p>{p.help}</p>
+              </details>
+            </article>
+          ))}
+        </div>
+        <div class="release-links">
+          <span data-published>
+            {t.published} {release.publishedAt.slice(0, 10)}
+          </span>
+          <a data-release-link href={RELEASES_URL} target="_blank" rel="noopener noreferrer">
+            {t.releaseNotes}
+            <Icon name="arrow" size={15} />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq section container" id="faq" aria-labelledby="faq-heading">
+      <div class="faq-heading">
+        <p class="eyebrow">Q & A</p>
+        <h2 id="faq-heading">{t.faqTitle}</h2>
+      </div>
+      <div class="faq-list">
+        {t.faqs.map(([question, answer]) => (
+          <details>
+            <summary>
+              {question}
+              <span class="faq-plus" aria-hidden="true"></span>
+            </summary>
+            <p>{answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+        <div>
+          <a class="brand" href={locale === 'zh' ? '/' : '/en/'}>
+            <img src="/favicon.svg" width="30" height="30" alt="" />
+            <span>PaperEnjoyer</span>
+          </a>
+          <p>{t.footerLine}</p>
+        </div>
+        <div class="footer-links">
+          <a href={RELEASES_URL} target="_blank" rel="noopener noreferrer">
+            {t.releases}
+            <Icon name="arrow" size={14} />
+          </a>
+          <a href="#main">
+            {t.backTop}
+            <span aria-hidden="true">↑</span>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© {new Date().getUTCFullYear()} PaperEnjoyer</span>
+        <span>Made for the joy of understanding.</span>
+      </div>
+    </div>
+  </footer>
+  <dialog class="image-dialog" id="image-dialog" aria-labelledby="image-dialog-title">
+    <div class="dialog-toolbar">
+      <span id="image-dialog-title">PaperEnjoyer</span>
+      <button data-close-dialog aria-label={t.close}>
+        <Icon name="close" size={24} />
+      </button>
+    </div>
+    <img width="1680" height="1011" alt="" />
+  </dialog>
+  <script
+    type="application/json"
+    id="site-data"
+    set:html={JSON.stringify(scriptData).replace(/</g, '\\u003c')}
+  ></script>
+  <script>
+    import '../scripts/site';
+  </script>
+  <noscript>
+    <style>
+      .showcase-panel[hidden] {
+        display: block !important;
+        margin-top: 3rem;
+      }
+      .workspace-tabs {
+        display: none;
+      }
+    </style>
+  </noscript>
+</Base>
