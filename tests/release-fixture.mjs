@@ -3,6 +3,8 @@ export function fixture(version = '1.2.3') {
   const names = [
     `PaperEnjoyer-${version}-Setup.exe`,
     `PaperEnjoyer-${version}-macOS-arm64.dmg`,
+    `PaperEnjoyer-${version}-Linux-amd64.deb`,
+    `PaperEnjoyer-${version}-Linux-arm64.deb`,
     `PaperEnjoyer-${version}-Setup.exe.blockmap`,
     'latest.yml',
   ];

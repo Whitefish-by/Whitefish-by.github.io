@@ -28,6 +28,15 @@ const platforms = [
     format: `.dmg · ${t.diskImage}`,
     help: t.macHelp,
   },
+  {
+    id: 'linux' as const,
+    name: 'Linux (Ubuntu)',
+    icon: 'ubuntu',
+    description: t.linuxDescription,
+    label: t.linuxDownload,
+    format: `.deb · ${t.installer}`,
+    help: t.linuxHelp,
+  },
 ];
 const scriptData = {
   messages: {
@@ -46,7 +55,7 @@ const schema = {
   '@type': 'SoftwareApplication',
   name: 'PaperEnjoyer',
   applicationCategory: 'EducationalApplication',
-  operatingSystem: 'Windows x64, macOS Apple Silicon',
+  operatingSystem: 'Windows x64, macOS Apple Silicon, Ubuntu 22.04 / 24.04 / 26.04 LTS x64',
   description: t.description,
   url: 'https://paperenjoyer.com',
 };
@@ -113,7 +122,7 @@ const schema = {
         <div class="hero-actions">
           {platforms.map((p, i) => (
             <a
-              class:list={['button', 'download-link', i === 1 && 'button-secondary']}
+              class:list={['button', 'download-link', i > 0 && 'button-secondary']}
               data-download={p.id}
               data-available="false"
               href={RELEASES_URL}

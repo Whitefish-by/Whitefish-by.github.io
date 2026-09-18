@@ -3,7 +3,7 @@ export const RELEASES_URL = `https://github.com/${REPOSITORY}/releases/latest`;
 export const RELEASE_API = `https://api.github.com/repos/${REPOSITORY}/releases/latest`;
 
 /** @typedef {{name: string, url: string, size: number}} DownloadAsset */
-/** @typedef {{version: string, publishedAt: string, pageUrl: string, assets: {windows: DownloadAsset | null, mac: DownloadAsset | null}}} ReleaseInfo */
+/** @typedef {{version: string, publishedAt: string, pageUrl: string, assets: {windows: DownloadAsset | null, mac: DownloadAsset | null, linux: DownloadAsset | null}}} ReleaseInfo */
 
 /** Only accept stable releases and actual installer assets from the official repository.
  * @param {unknown} input
@@ -47,6 +47,7 @@ export function parseRelease(input) {
     assets: {
       windows: asset(`PaperEnjoyer-${version}-Setup.exe`),
       mac: asset(`PaperEnjoyer-${version}-macOS-arm64.dmg`),
+      linux: asset(`PaperEnjoyer-${version}-Linux-amd64.deb`),
     },
   };
 }

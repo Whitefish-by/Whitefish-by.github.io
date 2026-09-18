@@ -140,7 +140,9 @@ const recommended = /Windows NT/i.test(platform)
   ? 'windows'
   : /Macintosh/i.test(platform) && navigator.maxTouchPoints < 2
     ? 'mac'
-    : null;
+    : /Linux (?:x86_64|amd64)/i.test(platform) && !/Android|CrOS/i.test(platform)
+      ? 'linux'
+      : null;
 if (recommended)
   document
     .querySelector(`[data-platform-card="${recommended}"]`)
@@ -156,7 +158,8 @@ function applyRelease(release: ReleaseInfo | null) {
       ? `${data.messages.published} ${release.publishedAt.slice(0, 10)}`
       : '';
   });
-  for (const platform of ['windows', 'mac'] as const) {
+  const platformNames = { windows: 'Windows', mac: 'macOS', linux: 'Linux (Ubuntu)' };
+  for (const platform of ['windows', 'mac', 'linux'] as const) {
     const asset = release?.assets[platform];
     for (const link of all<HTMLAnchorElement>(`[data-download="${platform}"]`)) {
       link.href = asset?.url ?? release?.pageUrl ?? RELEASES_URL;
@@ -166,11 +169,7 @@ function applyRelease(release: ReleaseInfo | null) {
         label.textContent =
           !release || asset ? label.dataset.readyLabel! : data.messages.releasePage;
       if (!release || asset) link.removeAttribute('aria-label');
-      else
-        link.setAttribute(
-          'aria-label',
-          `${platform === 'mac' ? 'macOS' : 'Windows'} · ${data.messages.missing}`,
-        );
+      else link.setAttribute('aria-label', `${platformNames[platform]} · ${data.messages.missing}`);
     }
     all(`[data-size="${platform}"]`).forEach(
       (el) => (el.textContent = asset ? formatSize(asset.size) : '—'),
@@ -220,7 +219,7 @@ for (const link of downloadLinks)
     downloadPending = true;
     try {
       const release = await refreshRelease();
-      const platform = link.dataset.download as 'windows' | 'mac';
+      const platform = link.dataset.download as keyof ReleaseInfo['assets'];
       window.location.assign(release?.assets[platform]?.url ?? release?.pageUrl ?? RELEASES_URL);
     } finally {
       downloadPending = false;

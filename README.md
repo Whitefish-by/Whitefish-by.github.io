@@ -87,7 +87,7 @@ git push -u origin main
 唯一发行源为 [watericetangcw/PaperEnjoyer-Releases](https://github.com/watericetangcw/PaperEnjoyer-Releases/releases/latest)。
 
 - 页面加载、从后台或浏览器历史恢复页面，以及每次普通点击下载时，访问公开 GitHub 最新正式版 API。请求禁用缓存并附带时间戳；同一时间的查询合并，重复点击不会重复下载。
-- 版本号、发布日期、文件大小和所有下载按钮来自同一次实时响应。按版本匹配 `PaperEnjoyer-<version>-Setup.exe` 与 `PaperEnjoyer-<version>-macOS-arm64.dmg`，仅接受已上传完成的非空附件，排除 `.blockmap` 和元数据。下载使用 API 返回且校验过的官方地址。
+- 版本号、发布日期、文件大小和所有下载按钮来自同一次实时响应。按版本匹配 `PaperEnjoyer-<version>-Setup.exe`、`PaperEnjoyer-<version>-macOS-arm64.dmg` 与 `PaperEnjoyer-<version>-Linux-amd64.deb`，仅接受已上传完成的非空附件，排除 `.blockmap` 和元数据。下载使用 API 返回且校验过的官方地址。
 - API 超时（6 秒）、限流或不可用时，清除过期的版本和附件信息，下载按钮转到官方 `/releases/latest` 页面；不再回退到固定的旧版安装包。未启用 JavaScript 时也使用最新发行页入口。
 - 新版本缺少某平台安装包时，该平台改为发行页入口并显示缺失提示，不猜测附件地址。
 - 下载发生在用户点击链接之后。页面没有 GitHub Token，也不会通过本站转发数百 MB 的安装包。
@@ -116,7 +116,7 @@ node scripts/social-card.mjs
 
 ## 当前产品边界
 
-仅承诺 Windows x64 与 macOS Apple Silicon 安装包。基础阅读可独立使用；AI 功能需相应账号或模型服务；MinerU 云解析会上传 PDF。当前安装包的签名状态和安装说明按现有发行配置撰写，未来启用正式签名/公证后应同步更新中英文 FAQ。
+提供 Windows x64、macOS Apple Silicon，以及 Ubuntu 22.04 / 24.04 / 26.04 LTS x64（amd64）安装包。Ubuntu 使用 DEB，通过 `sudo apt install ./PaperEnjoyer-<version>-Linux-amd64.deb` 安装或升级。基础阅读可独立使用；AI 功能需相应账号或模型服务；MinerU 云解析会上传 PDF。当前安装包的签名状态和安装说明按现有发行配置撰写，未来启用正式签名/公证后应同步更新中英文 FAQ。
 
 ## 首屏交互快照
 

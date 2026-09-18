@@ -8,18 +8,26 @@ test('selects actual platform installers, never updater metadata', () => {
   assert.equal(release.version, '1.2.3');
   assert.equal(release.assets.windows.name, 'PaperEnjoyer-1.2.3-Setup.exe');
   assert.equal(release.assets.mac.name, 'PaperEnjoyer-1.2.3-macOS-arm64.dmg');
+  assert.equal(release.assets.linux.name, 'PaperEnjoyer-1.2.3-Linux-amd64.deb');
   assert.equal(formatSize(release.assets.windows.size), '100.0 MB');
 });
-test('uses the current release tag instead of a hard-coded version', () =>
+test('uses the current release tag instead of a hard-coded version', () => {
   assert.match(
     parseRelease(fixture('2.5.1')).assets.mac.url,
     /v2\.5\.1\/PaperEnjoyer-2\.5\.1-macOS-arm64\.dmg$/,
-  ));
+  );
+  assert.match(
+    parseRelease(fixture('2.5.1')).assets.linux.url,
+    /v2\.5\.1\/PaperEnjoyer-2\.5\.1-Linux-amd64\.deb$/,
+  );
+});
 test('represents missing platforms explicitly without inventing links', () => {
   const input = fixture();
   input.assets = input.assets.filter((a) => !a.name.endsWith('.dmg'));
+  input.assets = input.assets.filter((a) => !a.name.endsWith('Linux-amd64.deb'));
   const value = parseRelease(input);
   assert.equal(value.assets.mac, null);
+  assert.equal(value.assets.linux, null);
   assert.ok(value.assets.windows);
 });
 
@@ -27,7 +35,9 @@ test('does not offer unfinished or empty installer uploads', () => {
   for (const patch of [{ state: 'starter' }, { size: 0 }, { size: -1 }]) {
     const input = fixture();
     Object.assign(input.assets[0], patch);
+    Object.assign(input.assets[2], patch);
     assert.equal(parseRelease(input).assets.windows, null);
+    assert.equal(parseRelease(input).assets.linux, null);
     assert.ok(parseRelease(input).assets.mac);
   }
 });
@@ -47,10 +57,14 @@ test('rejects unexpected repositories, URLs and ambiguous installers', () => {
   assert.throws(() => parseRelease({ ...fixture(), html_url: 'https://example.com' }));
   const input = fixture();
   input.assets[0].browser_download_url = 'https://example.com/install.exe';
+  input.assets[2].browser_download_url = 'https://example.com/install.deb';
   assert.equal(parseRelease(input).assets.windows, null);
+  assert.equal(parseRelease(input).assets.linux, null);
   const duplicate = fixture();
   duplicate.assets.push(duplicate.assets[0]);
+  duplicate.assets.push(duplicate.assets[2]);
   assert.equal(parseRelease(duplicate).assets.windows, null);
+  assert.equal(parseRelease(duplicate).assets.linux, null);
 });
 test('fetches anonymously and parses the response', async () => {
   const result = await fetchRelease({

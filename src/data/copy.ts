@@ -4,7 +4,7 @@ export const copy = {
     lang: 'zh-CN',
     title: 'PaperEnjoyer · 读懂每一个想法',
     description:
-      '从发现论文到深入理解。PaperEnjoyer 将论文资料库、PDF 阅读、段落精读和 AI 对话带到同一个桌面工作空间，支持 Windows 与 macOS。',
+      '从发现论文到深入理解。PaperEnjoyer 将论文资料库、PDF 阅读、段落精读和 AI 对话带到同一个桌面工作空间，支持 Windows、macOS 与 Linux（Ubuntu）。',
     skip: '跳到正文',
     nav: ['探索功能', '走进工作台', '常见问题'],
     download: '下载',
@@ -15,7 +15,8 @@ export const copy = {
     heroText: '从发现一篇好论文，到真正理解它。\n让原文、精读笔记与 AI，陪你一起思考。',
     windowsDownload: '下载 Windows 版',
     macDownload: '下载 macOS 版',
-    platformLine: 'Windows x64 · macOS Apple Silicon',
+    linuxDownload: '下载 Ubuntu 版',
+    platformLine: 'Windows x64 · macOS Apple Silicon · Ubuntu x64',
     versionLabel: '最新正式版',
     heroCaption: '你的论文、笔记与灵感，终于在同一个地方。',
     demo: '真实软件界面 · 内容为演示示例',
@@ -101,7 +102,7 @@ export const copy = {
       {
         icon: 'sync',
         title: '换台设备，接着读',
-        text: '通过专用 GitHub 私有仓库同步资料库与对话，在 macOS 和 Windows 之间衔接阅读。',
+        text: '通过专用 GitHub 私有仓库同步资料库与对话，在 Windows、macOS 和 Ubuntu 之间衔接阅读。',
       },
     ],
     localTitle: '从本地开始。由你掌握。',
@@ -112,6 +113,7 @@ export const copy = {
     downloadText: '下载 PaperEnjoyer，把下一次阅读变成一次发现。',
     windowsDescription: '适用于 Windows x64',
     macDescription: '适用于 Apple Silicon Mac',
+    linuxDescription: '适用于 Ubuntu LTS x64（amd64）',
     installer: '安装程序',
     diskImage: '磁盘映像',
     staticDownloadStatus: '下载按钮将前往最新正式版。',
@@ -127,11 +129,13 @@ export const copy = {
       '下载后运行 Setup.exe，按照向导安装。当前构建未使用商业代码签名，首次运行时系统可能显示提示；请确认文件来自本页链接的官方发行仓库。',
     macHelp:
       '打开 DMG，将 PaperEnjoyer 拖入“应用程序”。当前构建未进行 Apple 公证；如系统阻止打开，请在“系统设置 → 隐私与安全性”中核对并允许该应用，无需关闭系统的全局安全保护。',
+    linuxHelp:
+      '支持 Ubuntu 22.04 / 24.04 / 26.04 LTS x64。下载 DEB 后，退出应用，在下载目录运行 sudo apt install ./PaperEnjoyer-<版本号>-Linux-amd64.deb，将 <版本号> 替换为下载的版本号。安装或升级会保留已有资料库和设置。',
     faqTitle: '开始之前，你可能想知道。',
     faqs: [
       [
         '支持哪些系统和芯片？',
-        '当前提供 Windows x64 安装包和 macOS Apple Silicon（M 系列芯片）DMG。暂未提供 Intel Mac、Windows ARM 原生版或 Linux 安装包。',
+        '当前提供 Windows x64 安装包、macOS Apple Silicon（M 系列芯片）DMG，以及 Ubuntu 22.04 / 24.04 / 26.04 LTS x64（amd64）DEB。暂未提供 Intel Mac、Windows ARM 原生版或 Linux ARM 安装包。',
       ],
       [
         '一定要配置 AI 才能使用吗？',
@@ -147,7 +151,7 @@ export const copy = {
       ],
       [
         '如何更新软件？',
-        'Windows 可在软件“设置 → 关于与更新”中检查、下载并确认重启安装。macOS 下载新的 DMG，退出应用后替换“应用程序”中的旧版；也可以随时从本页下载最新正式版。',
+        'Windows 可在软件“设置 → 关于与更新”中检查、下载并确认重启安装。macOS 下载新的 DMG，退出应用后替换“应用程序”中的旧版。Ubuntu 下载新的 DEB，退出应用后使用 sudo apt install 安装升级。也可以随时从本页下载最新正式版。',
       ],
     ],
     footerLine: '让理解，比阅读多走一步。',
@@ -161,7 +165,7 @@ export const copy = {
     lang: 'en',
     title: 'PaperEnjoyer · Understand every idea',
     description:
-      'From finding papers to understanding them. PaperEnjoyer brings your library, PDF reader, close-reading notes and AI conversations into one desktop workspace for Windows and macOS.',
+      'From finding papers to understanding them. PaperEnjoyer brings your library, PDF reader, close-reading notes and AI conversations into one desktop workspace for Windows, macOS and Linux (Ubuntu).',
     skip: 'Skip to content',
     nav: ['Explore features', 'The workspace', 'Questions'],
     download: 'Download',
@@ -173,7 +177,8 @@ export const copy = {
       'From finding a good paper to making sense of it.\nBring the original, your notes and AI into the same conversation.',
     windowsDownload: 'Download for Windows',
     macDownload: 'Download for macOS',
-    platformLine: 'Windows x64 · macOS Apple Silicon',
+    linuxDownload: 'Download for Ubuntu',
+    platformLine: 'Windows x64 · macOS Apple Silicon · Ubuntu x64',
     versionLabel: 'Latest stable release',
     heroCaption: 'Your papers, notes and next ideas. Finally, together.',
     demo: 'Actual app interface · Illustrative demo content',
@@ -260,7 +265,7 @@ export const copy = {
       {
         icon: 'sync',
         title: 'Another device. The same thread.',
-        text: 'Sync your library and conversations through a dedicated private GitHub repository, across macOS and Windows.',
+        text: 'Sync your library and conversations through a dedicated private GitHub repository, across Windows, macOS and Ubuntu.',
       },
     ],
     localTitle: 'Start local. Stay in control.',
@@ -271,6 +276,7 @@ export const copy = {
     downloadText: 'Get PaperEnjoyer. Make your next reading a discovery.',
     windowsDescription: 'For Windows x64',
     macDescription: 'For Apple Silicon Macs',
+    linuxDescription: 'For Ubuntu LTS x64 (amd64)',
     installer: 'Installer',
     diskImage: 'Disk image',
     staticDownloadStatus: 'Download buttons open the latest stable release.',
@@ -287,11 +293,13 @@ export const copy = {
       'Run Setup.exe and follow the installer. Current builds do not carry a commercial code-signing certificate, so Windows may show a prompt. Verify that the file came from the official release linked here.',
     macHelp:
       'Open the DMG and drag PaperEnjoyer into Applications. Current builds are not notarized by Apple. If macOS blocks the app, review and allow it in System Settings → Privacy & Security, without disabling system-wide protection.',
+    linuxHelp:
+      'Supports Ubuntu 22.04 / 24.04 / 26.04 LTS x64. Download the DEB, quit the app and run sudo apt install ./PaperEnjoyer-<version>-Linux-amd64.deb from your download folder, replacing <version> with the downloaded version. Installing or upgrading preserves your library and settings.',
     faqTitle: 'A few things you might be wondering.',
     faqs: [
       [
         'Which systems and chips are supported?',
-        'Installers are available for Windows x64 and macOS Apple Silicon (M-series chips). Intel Mac, native Windows ARM and Linux builds are not currently available.',
+        'Installers are available for Windows x64, macOS Apple Silicon (M-series chips), and Ubuntu 22.04 / 24.04 / 26.04 LTS x64 (amd64). Intel Mac, native Windows ARM and Linux ARM builds are not currently available.',
       ],
       [
         'Do I need AI to use PaperEnjoyer?',
@@ -307,7 +315,7 @@ export const copy = {
       ],
       [
         'How do I update the app?',
-        'On Windows, check for updates in Settings → About & updates, then download and confirm a restart to install. On macOS, download the new DMG, quit the app and replace it in Applications. You can always get the latest stable release here.',
+        'On Windows, check for updates in Settings → About & updates, then download and confirm a restart to install. On macOS, download the new DMG, quit the app and replace it in Applications. On Ubuntu, download the new DEB, quit the app and upgrade with sudo apt install. You can always get the latest stable release here.',
       ],
     ],
     footerLine: 'Go beyond reading. Find understanding.',

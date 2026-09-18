@@ -31,6 +31,14 @@ for (const [locale, url] of [
       await page.goto(url);
       await expect(page.locator('h1')).toBeVisible();
       await expect(page.locator('[data-release-status]')).toContainText('2.0.0');
+      await expect(page.locator('[data-download="linux"]')).toHaveCount(2);
+      for (const link of await page.locator('[data-download="linux"]').all()) {
+        await expect(link).toBeVisible();
+        await expect(link).toHaveAttribute(
+          'href',
+          /v2\.0\.0\/PaperEnjoyer-2\.0\.0-Linux-amd64\.deb$/,
+        );
+      }
       expect(
         await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
       ).toBeTruthy();
@@ -76,6 +84,7 @@ test('all download buttons track the newest release and missing assets stay hone
 }) => {
   const input = fixture('3.1.0');
   input.assets = input.assets.filter((a) => !a.name.endsWith('.dmg'));
+  input.assets = input.assets.filter((a) => !a.name.endsWith('Linux-amd64.deb'));
   await page.route('https://api.github.com/**', (route) => route.fulfill({ json: input }));
   await page.goto('/');
   await expect(page.locator('[data-release-status]')).toContainText('3.1.0');
@@ -90,6 +99,12 @@ test('all download buttons track the newest release and missing assets stay hone
     input.html_url,
   );
   await expect(page.locator('[data-asset-message="mac"]')).toBeVisible();
+  for (const link of await page.locator('[data-download="linux"]').all()) {
+    await expect(link).toHaveAttribute('data-available', 'false');
+    await expect(link).toHaveAttribute('href', input.html_url);
+    await expect(link).toHaveAttribute('aria-label', /Linux \(Ubuntu\)/);
+  }
+  await expect(page.locator('[data-asset-message="linux"]')).toBeVisible();
 });
 
 for (const status of [403, 404, 429, 500])
@@ -103,6 +118,11 @@ for (const status of [403, 404, 429, 500])
     );
     await expect(page.locator('[data-version]').first()).toHaveText('最新正式版');
     await expect(page.locator('[data-size="windows"]')).toHaveText('—');
+    await expect(page.locator('[data-download="linux"]').first()).toHaveAttribute(
+      'href',
+      RELEASES_URL,
+    );
+    await expect(page.locator('[data-size="linux"]')).toHaveText('—');
     await expect(page.locator('[data-published]')).toBeHidden();
   });
 
@@ -114,29 +134,36 @@ test('network failure preserves release links', async ({ page }) => {
 });
 
 for (const url of ['/', '/en/'])
-  test(`${url} rechecks at download time when a newer release appears`, async ({ page }) => {
-    let current = fixture('0.1.1');
-    let requests = 0;
-    await page.route('https://api.github.com/**', (route) => {
-      requests++;
-      return route.fulfill({ json: current });
+  for (const platform of ['windows', 'linux'])
+    test(`${url} rechecks ${platform} at download time when a newer release appears`, async ({
+      page,
+    }) => {
+      let current = fixture('0.1.1');
+      let requests = 0;
+      await page.route('https://api.github.com/**', (route) => {
+        requests++;
+        return route.fulfill({ json: current });
+      });
+      await mockInstallerNavigation(page);
+      await page.goto(url);
+      await expect(page.locator('[data-release-status]')).toContainText('0.1.1');
+      current = fixture('0.1.2');
+      const downloadPromise = page.waitForRequest('https://github.com/**/releases/download/**');
+      await page.locator(`[data-download="${platform}"]`).first().click();
+      const download = await downloadPromise;
+      expect(download.url()).toBe(
+        current.assets[platform === 'windows' ? 0 : 2].browser_download_url,
+      );
+      expect(download.isNavigationRequest()).toBe(true);
+      await expect(page.locator('[data-release-status]')).toContainText('0.1.2');
+      for (const version of await page.locator('[data-version]').all())
+        await expect(version).toHaveText('v0.1.2');
+      for (const link of await page.locator('[data-download="mac"]').all())
+        await expect(link).toHaveAttribute('href', current.assets[1].browser_download_url);
+      for (const link of await page.locator('[data-download="linux"]').all())
+        await expect(link).toHaveAttribute('href', current.assets[2].browser_download_url);
+      expect(requests).toBe(2);
     });
-    await mockInstallerNavigation(page);
-    await page.goto(url);
-    await expect(page.locator('[data-release-status]')).toContainText('0.1.1');
-    current = fixture('0.1.2');
-    const downloadPromise = page.waitForRequest('https://github.com/**/releases/download/**');
-    await page.locator('[data-download="windows"]').first().click();
-    const download = await downloadPromise;
-    expect(download.url()).toBe(current.assets[0].browser_download_url);
-    expect(download.isNavigationRequest()).toBe(true);
-    await expect(page.locator('[data-release-status]')).toContainText('0.1.2');
-    for (const version of await page.locator('[data-version]').all())
-      await expect(version).toHaveText('v0.1.2');
-    for (const link of await page.locator('[data-download="mac"]').all())
-      await expect(link).toHaveAttribute('href', current.assets[1].browser_download_url);
-    expect(requests).toBe(2);
-  });
 
 test('early and repeated clicks wait for one lookup and download only once', async ({ page }) => {
   let finishLookup!: () => void;
@@ -179,18 +206,21 @@ test('a failed check at download time opens latest releases, never the previous 
   await expect(page).toHaveURL(RELEASES_URL);
 });
 
-test('a missing installer opens the current release page', async ({ page }) => {
-  const current = fixture('3.1.0');
-  current.assets = current.assets.filter((asset) => !asset.name.endsWith('.dmg'));
-  await page.route('https://api.github.com/**', (route) => route.fulfill({ json: current }));
-  await page.route(current.html_url, (route) =>
-    route.fulfill({ contentType: 'text/html', body: '<h1>Current release</h1>' }),
-  );
-  await page.goto('/');
-  await expect(page.locator('[data-release-status]')).toContainText('3.1.0');
-  await page.locator('[data-download="mac"]').last().click();
-  await expect(page).toHaveURL(current.html_url);
-});
+for (const platform of ['mac', 'linux'])
+  test(`a missing ${platform} installer opens the current release page`, async ({ page }) => {
+    const current = fixture('3.1.0');
+    current.assets = current.assets.filter(
+      (asset) => !asset.name.endsWith(platform === 'mac' ? '.dmg' : 'Linux-amd64.deb'),
+    );
+    await page.route('https://api.github.com/**', (route) => route.fulfill({ json: current }));
+    await page.route(current.html_url, (route) =>
+      route.fulfill({ contentType: 'text/html', body: '<h1>Current release</h1>' }),
+    );
+    await page.goto('/');
+    await expect(page.locator('[data-release-status]')).toContainText('3.1.0');
+    await page.locator(`[data-download="${platform}"]`).last().click();
+    await expect(page).toHaveURL(current.html_url);
+  });
 
 test('restoring a saved page refreshes its release and clears stale metadata on failure', async ({
   page,
@@ -260,6 +290,11 @@ test('without JavaScript the content, gallery and downloads remain available', a
     RELEASES_URL,
   );
   await expect(page.locator('[data-release-status]')).toContainText('最新正式版');
+  await expect(page.locator('[data-download="linux"]')).toHaveCount(2);
+  for (const link of await page.locator('[data-download="linux"]').all()) {
+    await expect(link).toBeVisible();
+    await expect(link).toHaveAttribute('href', RELEASES_URL);
+  }
   await expect(page.locator('.menu-toggle')).not.toBeVisible();
   await context.close();
 });

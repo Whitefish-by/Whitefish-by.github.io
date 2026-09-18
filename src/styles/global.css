@@ -921,8 +921,8 @@
   }
   .download-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    max-width: 830px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 1140px;
     margin: 33px auto 0;
     gap: 22px;
   }
@@ -930,7 +930,7 @@
     border: 1px solid #dce4d6;
     border-radius: 18px;
     background: #ffffffc4;
-    padding: 29px 31px 18px;
+    padding: 29px 24px 18px;
     box-shadow: 0 5px 22px #50604404;
     align-self: start;
   }
@@ -941,6 +941,7 @@
   }
   .download-platform > svg {
     color: #294433;
+    flex-shrink: 0;
   }
   .download-platform h3 {
     font-size: 24px;
@@ -1452,6 +1453,8 @@
       font-size: 9px;
     }
     .download-grid {
+      grid-template-columns: 1fr;
+      max-width: 420px;
       gap: 16px;
     }
     .download-card {
@@ -1569,6 +1572,8 @@
     .hero-actions {
       gap: 10px;
       margin-top: 26px;
+      flex-direction: column;
+      align-items: center;
       flex-wrap: nowrap;
     }
     .hero-actions .button {
@@ -1576,8 +1581,8 @@
       gap: 7px;
       padding: 12px 13px;
       min-height: 45px;
-      flex: 1;
-      max-width: 205px;
+      width: 100%;
+      max-width: 280px;
     }
     .hero-actions .button > svg:first-child {
       width: 16px;
@@ -1587,7 +1592,7 @@
       display: none;
     }
     html[lang='en'] .hero-actions .button {
-      font-size: 10px;
+      font-size: 12px;
       padding-inline: 9px;
     }
     .platform-note {
