@@ -86,12 +86,13 @@ git push -u origin main
 
 唯一发行源为 [watericetangcw/PaperEnjoyer-Releases](https://github.com/watericetangcw/PaperEnjoyer-Releases/releases/latest)。
 
-- 构建时访问公开 GitHub 最新正式版 API，生成静态下载链接；浏览器加载后再检查一次。
-- 按版本匹配 `PaperEnjoyer-<version>-Setup.exe` 与 `PaperEnjoyer-<version>-macOS-arm64.dmg`，排除 `.blockmap` 和元数据。下载使用 API 返回且校验过的官方地址。
-- API 超时（6 秒）、限流或不可用时，静态页面继续提供已确认版本；页面明确说明检查失败。构建时的离线后备版本保存在 `src/data/release.json`。
+- 页面加载、从后台或浏览器历史恢复页面，以及每次普通点击下载时，访问公开 GitHub 最新正式版 API。请求禁用缓存并附带时间戳；同一时间的查询合并，重复点击不会重复下载。
+- 版本号、发布日期、文件大小和所有下载按钮来自同一次实时响应。按版本匹配 `PaperEnjoyer-<version>-Setup.exe` 与 `PaperEnjoyer-<version>-macOS-arm64.dmg`，仅接受已上传完成的非空附件，排除 `.blockmap` 和元数据。下载使用 API 返回且校验过的官方地址。
+- API 超时（6 秒）、限流或不可用时，清除过期的版本和附件信息，下载按钮转到官方 `/releases/latest` 页面；不再回退到固定的旧版安装包。未启用 JavaScript 时也使用最新发行页入口。
 - 新版本缺少某平台安装包时，该平台改为发行页入口并显示缺失提示，不猜测附件地址。
 - 下载发生在用户点击链接之后。页面没有 GitHub Token，也不会通过本站转发数百 MB 的安装包。
-- 如需在断网环境构建，可设置 `RELEASE_API_MODE=offline`。后备快照应在维护时更新，但正常联网访问不依赖手动改版本号。
+- 构建不访问发行 API，也不保存版本快照。发布新软件版本后，无需修改版本号或重新部署官网。
+- 网页校验的是发行标签和附件信息，无法判断安装包内部的应用版本或功能。若发行附件本身打包错误，需要在软件发行流程中重新构建并发布正确的安装包。
 
 ## 内容与界面素材
 

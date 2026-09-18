@@ -3,14 +3,12 @@ import Base from '../layouts/Base.astro';
 import Icon from './Icon.astro';
 import ProductDemo from './ProductDemo.astro';
 import { copy, type Locale } from '../data/copy';
-import { buildRelease } from '../lib/build-release';
-import { formatSize, RELEASES_URL } from '../lib/release.mjs';
+import { RELEASES_URL } from '../lib/release.mjs';
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
 const t = copy[locale];
-const release = await buildRelease();
 const platforms = [
   {
     id: 'windows' as const,
@@ -32,8 +30,8 @@ const platforms = [
   },
 ];
 const scriptData = {
-  release,
   messages: {
+    versionLabel: t.versionLabel,
     checking: t.checking,
     latest: t.latest,
     unavailable: t.unavailable,
@@ -51,7 +49,6 @@ const schema = {
   operatingSystem: 'Windows x64, macOS Apple Silicon',
   description: t.description,
   url: 'https://paperenjoyer.com',
-  softwareVersion: release.version,
 };
 ---
 
@@ -118,13 +115,12 @@ const schema = {
             <a
               class:list={['button', 'download-link', i === 1 && 'button-secondary']}
               data-download={p.id}
-              data-available={!!release.assets[p.id]}
-              href={release.assets[p.id]?.url ?? release.pageUrl}
-              aria-label={!release.assets[p.id] ? `${p.name} · ${t.missing}` : undefined}
+              data-available="false"
+              href={RELEASES_URL}
             >
               <Icon name={p.icon} size={19} />
               <span data-download-label data-ready-label={p.label}>
-                {release.assets[p.id] ? p.label : t.releasePage}
+                {p.label}
               </span>
               <Icon name="down" size={17} />
             </a>
@@ -135,9 +131,7 @@ const schema = {
           <span class="note-divider" aria-hidden="true">
             /
           </span>
-          <span>
-            v<span data-version>{release.version}</span>
-          </span>
+          <span data-version>{t.versionLabel}</span>
         </p>
       </div>
       <div class="hero-product container">
@@ -370,9 +364,7 @@ const schema = {
         </div>
         <div class="release-status" role="status" aria-live="polite">
           <span class="status-dot" aria-hidden="true"></span>
-          <span data-release-status>
-            {t.versionLabel} v{release.version}
-          </span>
+          <span data-release-status>{t.staticDownloadStatus}</span>
         </div>
         <div class="download-grid">
           {platforms.map((p) => (
@@ -385,27 +377,22 @@ const schema = {
                 </div>
               </div>
               <div class="download-meta">
-                <span>
-                  v<span data-version>{release.version}</span>
-                </span>
-                <span data-size={p.id}>
-                  {release.assets[p.id] ? formatSize(release.assets[p.id]!.size) : '—'}
-                </span>
+                <span data-version>{t.versionLabel}</span>
+                <span data-size={p.id}>—</span>
                 <span>{p.format}</span>
               </div>
               <a
                 class="button download-link"
                 data-download={p.id}
-                data-available={!!release.assets[p.id]}
-                href={release.assets[p.id]?.url ?? release.pageUrl}
-                aria-label={!release.assets[p.id] ? `${p.name} · ${t.missing}` : undefined}
+                data-available="false"
+                href={RELEASES_URL}
               >
                 <span data-download-label data-ready-label={p.label}>
-                  {release.assets[p.id] ? p.label : t.releasePage}
+                  {p.label}
                 </span>
                 <Icon name="down" size={18} />
               </a>
-              <p class="asset-message" data-asset-message={p.id} hidden={!!release.assets[p.id]}>
+              <p class="asset-message" data-asset-message={p.id} hidden>
                 {t.missing}
               </p>
               <details class="install-help">
@@ -419,9 +406,7 @@ const schema = {
           ))}
         </div>
         <div class="release-links">
-          <span data-published>
-            {t.published} {release.publishedAt.slice(0, 10)}
-          </span>
+          <span data-published hidden></span>
           <a data-release-link href={RELEASES_URL} target="_blank" rel="noopener noreferrer">
             {t.releaseNotes}
             <Icon name="arrow" size={15} />

@@ -27,12 +27,13 @@ export function parseRelease(input) {
   if (data.html_url !== expectedPage) throw new Error('Unexpected release repository.');
   /** @param {string} name @returns {DownloadAsset | null} */
   const asset = (name) => {
-    const found = data.assets.filter((/** @type {any} */ a) => a.name === name);
+    const found = data.assets.filter((/** @type {any} */ a) => a?.name === name);
     if (found.length !== 1) return null;
     const value = found[0];
     const expectedUrl = `https://github.com/${REPOSITORY}/releases/download/${data.tag_name}/${name}`;
     if (
       value.browser_download_url !== expectedUrl ||
+      value.state !== 'uploaded' ||
       !Number.isSafeInteger(value.size) ||
       value.size <= 0
     )
@@ -52,8 +53,12 @@ export function parseRelease(input) {
 
 /** @param {{fetcher?: typeof fetch, timeout?: number}} options @returns {Promise<ReleaseInfo>} */
 export async function fetchRelease({ fetcher = fetch, timeout = 6000 } = {}) {
-  const response = await fetcher(RELEASE_API, {
+  // Bypass both browser and intermediary caches when a new release is published.
+  const url = new URL(RELEASE_API);
+  url.searchParams.set('t', String(Date.now()));
+  const response = await fetcher(url.href, {
     headers: { Accept: 'application/vnd.github+json' },
+    cache: 'no-store',
     signal: AbortSignal.timeout(timeout),
     credentials: 'omit',
   });

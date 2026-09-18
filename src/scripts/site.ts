@@ -1,10 +1,10 @@
-import { fetchRelease, formatSize, type ReleaseInfo } from '../lib/release.mjs';
+import { fetchRelease, formatSize, RELEASES_URL, type ReleaseInfo } from '../lib/release.mjs';
 
 document.documentElement.classList.add('is-enhanced');
 const data = JSON.parse(document.getElementById('site-data')!.textContent!) as {
-  release: ReleaseInfo;
   locale: 'zh' | 'en';
   messages: {
+    versionLabel: string;
     checking: string;
     latest: string;
     unavailable: string;
@@ -146,20 +146,26 @@ if (recommended)
     .querySelector(`[data-platform-card="${recommended}"]`)
     ?.setAttribute('data-recommended', 'true');
 
-function applyRelease(release: ReleaseInfo) {
-  data.release = release;
-  all('[data-version]').forEach((el) => (el.textContent = release.version));
-  all('[data-published]').forEach(
-    (el) => (el.textContent = `${data.messages.published} ${release.publishedAt.slice(0, 10)}`),
+function applyRelease(release: ReleaseInfo | null) {
+  all('[data-version]').forEach(
+    (el) => (el.textContent = release ? `v${release.version}` : data.messages.versionLabel),
   );
+  all('[data-published]').forEach((el) => {
+    el.hidden = !release;
+    el.textContent = release
+      ? `${data.messages.published} ${release.publishedAt.slice(0, 10)}`
+      : '';
+  });
   for (const platform of ['windows', 'mac'] as const) {
-    const asset = release.assets[platform];
+    const asset = release?.assets[platform];
     for (const link of all<HTMLAnchorElement>(`[data-download="${platform}"]`)) {
-      link.href = asset?.url ?? release.pageUrl;
+      link.href = asset?.url ?? release?.pageUrl ?? RELEASES_URL;
       link.dataset.available = String(!!asset);
       const label = link.querySelector<HTMLElement>('[data-download-label]');
-      if (label) label.textContent = asset ? label.dataset.readyLabel! : data.messages.releasePage;
-      if (asset) link.removeAttribute('aria-label');
+      if (label)
+        label.textContent =
+          !release || asset ? label.dataset.readyLabel! : data.messages.releasePage;
+      if (!release || asset) link.removeAttribute('aria-label');
       else
         link.setAttribute(
           'aria-label',
@@ -169,18 +175,62 @@ function applyRelease(release: ReleaseInfo) {
     all(`[data-size="${platform}"]`).forEach(
       (el) => (el.textContent = asset ? formatSize(asset.size) : '—'),
     );
-    all(`[data-asset-message="${platform}"]`).forEach((el) => (el.hidden = !!asset));
+    all(`[data-asset-message="${platform}"]`).forEach((el) => (el.hidden = !release || !!asset));
   }
 }
 const status = document.querySelector<HTMLElement>('[data-release-status]')!;
-status.textContent = data.messages.checking;
-void fetchRelease()
-  .then((release) => {
-    applyRelease(release);
-    status.textContent = `${data.messages.latest} · v${release.version}`;
-    status.parentElement!.dataset.state = 'ready';
-  })
-  .catch(() => {
-    status.textContent = data.messages.unavailable;
-    status.parentElement!.dataset.state = 'error';
+const downloadLinks = all<HTMLAnchorElement>('[data-download]');
+let pendingRelease: Promise<ReleaseInfo | null> | undefined;
+
+function refreshRelease(): Promise<ReleaseInfo | null> {
+  // Share an in-flight lookup, including clicks before the initial lookup finishes.
+  if (pendingRelease) return pendingRelease;
+  // Never leave a previously resolved installer available after a failed refresh.
+  applyRelease(null);
+  status.textContent = data.messages.checking;
+  status.parentElement!.dataset.state = 'checking';
+  downloadLinks.forEach((link) => link.setAttribute('aria-busy', 'true'));
+  pendingRelease = fetchRelease()
+    .then((release) => {
+      applyRelease(release);
+      status.textContent = `${data.messages.latest} · v${release.version}`;
+      status.parentElement!.dataset.state = 'ready';
+      return release;
+    })
+    .catch(() => {
+      status.textContent = data.messages.unavailable;
+      status.parentElement!.dataset.state = 'error';
+      return null;
+    })
+    .finally(() => {
+      pendingRelease = undefined;
+      downloadLinks.forEach((link) => link.removeAttribute('aria-busy'));
+    });
+  return pendingRelease;
+}
+
+let downloadPending = false;
+for (const link of downloadLinks)
+  link.addEventListener('click', async (event) => {
+    // Preserve native open-in-new-tab behavior for modified clicks.
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
+      return;
+    event.preventDefault();
+    if (downloadPending) return;
+    downloadPending = true;
+    try {
+      const release = await refreshRelease();
+      const platform = link.dataset.download as 'windows' | 'mac';
+      window.location.assign(release?.assets[platform]?.url ?? release?.pageUrl ?? RELEASES_URL);
+    } finally {
+      downloadPending = false;
+    }
   });
+
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') void refreshRelease();
+});
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) void refreshRelease();
+});
+void refreshRelease();

@@ -22,6 +22,15 @@ test('represents missing platforms explicitly without inventing links', () => {
   assert.equal(value.assets.mac, null);
   assert.ok(value.assets.windows);
 });
+
+test('does not offer unfinished or empty installer uploads', () => {
+  for (const patch of [{ state: 'starter' }, { size: 0 }, { size: -1 }]) {
+    const input = fixture();
+    Object.assign(input.assets[0], patch);
+    assert.equal(parseRelease(input).assets.windows, null);
+    assert.ok(parseRelease(input).assets.mac);
+  }
+});
 test('rejects drafts, prereleases, invalid versions and invalid dates', () => {
   for (const patch of [
     { draft: true },
@@ -46,13 +55,28 @@ test('rejects unexpected repositories, URLs and ambiguous installers', () => {
 test('fetches anonymously and parses the response', async () => {
   const result = await fetchRelease({
     fetcher: async (url, options) => {
-      assert.equal(url, RELEASE_API);
+      const requestUrl = new URL(url);
+      assert.match(requestUrl.searchParams.get('t'), /^\d+$/);
+      requestUrl.search = '';
+      assert.equal(requestUrl.href, RELEASE_API);
+      assert.equal(options.cache, 'no-store');
       assert.equal(options.credentials, 'omit');
       assert.ok(options.signal);
       return Response.json(fixture());
     },
   });
   assert.equal(result.version, '1.2.3');
+});
+
+test('a later lookup returns the newly published release and its own installer', async () => {
+  let version = '0.1.1';
+  const fetcher = async () => Response.json(fixture(version));
+  const previous = await fetchRelease({ fetcher });
+  version = '0.1.2';
+  const latest = await fetchRelease({ fetcher });
+  assert.equal(previous.version, '0.1.1');
+  assert.equal(latest.version, '0.1.2');
+  assert.equal(latest.assets.windows.url, fixture(version).assets[0].browser_download_url);
 });
 test('surfaces API failures and network timeouts for the UI fallback', async () => {
   for (const status of [403, 404, 429, 500])

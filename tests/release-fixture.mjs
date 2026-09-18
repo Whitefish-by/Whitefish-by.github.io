@@ -14,6 +14,7 @@ export function fixture(version = '1.2.3') {
     prerelease: false,
     assets: names.map((name) => ({
       name,
+      state: 'uploaded',
       size: 104857600,
       browser_download_url: `https://github.com/${REPOSITORY}/releases/download/v${version}/${name}`,
     })),
