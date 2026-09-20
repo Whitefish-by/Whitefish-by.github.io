@@ -1,6 +1,6 @@
 # 官网和安装包服务器维护
 
-服务器：`ubuntu@1.13.22.252`，Ubuntu 24.04，Nginx + Certbot。官网构建需要 Node 22.19+，服务器运行静态站点和系统 Python 3，不需要 Node 常驻进程。
+服务器：`ubuntu@43.160.220.8`（新加坡），Ubuntu 24.04，Nginx + Certbot。官网构建需要 Node 22.19+，服务器运行静态站点和系统 Python 3，不需要 Node 常驻进程。
 
 ## 初始化和部署
 
@@ -12,7 +12,7 @@
 
 ```sh
 tar -czf site.tar.gz -C dist .
-ssh -T -i /path/to/website_key -o StrictHostKeyChecking=yes paper-web@1.13.22.252 < site.tar.gz
+ssh -T -i /path/to/website_key -o StrictHostKeyChecking=yes paper-web@43.160.220.8 < site.tar.gz
 ```
 
 `/srv/paperenjoyer/site/releases` 保存最近三个站点构建，`current` 是原子切换的软链接。回滚时以管理员身份选择该目录中已验证的构建，创建临时软链接，再用 `mv -Tf` 替换 `current`；无需重新加载 Nginx。不要把构建缓存、源码或密钥上传到站点目录。

@@ -39,7 +39,7 @@ npm run test:e2e
 
 ## 发布到官方服务器
 
-官网由 `1.13.22.252` 上的 Nginx 提供静态文件，正式地址为 https://paperenjoyer.com；`www` 和 HTTP 自动跳转到主域名 HTTPS。Cloudflare 保留为域名入口，服务器复用现有 Certbot 证书及自动续期。
+官网由新加坡服务器 `43.160.220.8` 上的 Nginx 提供静态文件，正式地址为 https://paperenjoyer.com；`www` 和 HTTP 自动跳转到主域名 HTTPS。Cloudflare 保留为域名入口，服务器使用 Certbot 证书及自动续期。
 
 推送 `main` 或从 `main` 手动运行 **Check and publish website** 时，GitHub Actions 完成格式、类型、单元测试、构建和 Chromium/WebKit 验证，再通过专用受限 SSH 账号上传静态产物。PR 仅检查，不部署。官网不再通过 GitHub Pages 发布。
 
