@@ -37,62 +37,23 @@ npm run test:e2e
 
 检查中英文与三种宽度、真实图片、下载更新与失败回退、键盘导航、图片放大、减少动态效果及无 JavaScript 使用。截图与失败追踪位于 `test-results/`。
 
-## 发布到 GitHub Pages
+## 发布到官方服务器
 
-1. 将本目录内容提交并推送到 `Whitefish-by/Whitefish-by.github.io` 的 `main` 分支。
-2. 在仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。
-3. 打开 **Actions → Check and publish website**。若首次推送时 Pages 尚未启用，启用后重新运行工作流，或点击 **Run workflow**。
-4. 工作流会完成检查、构建、Chromium/WebKit 验收和部署。后续推送 `main` 自动发布；PR 只检查，不部署。
-5. 未绑定自定义域名时，访问 **https://whitefish-by.github.io**，其中 `-by` 是账号名的一部分。
+官网由 `1.13.22.252` 上的 Nginx 提供静态文件，正式地址为 https://paperenjoyer.com；`www` 和 HTTP 自动跳转到主域名 HTTPS。Cloudflare 保留为域名入口，服务器复用现有 Certbot 证书及自动续期。
 
-首次提交示例（先检查 `git status`，确保只包含官网文件）：
+推送 `main` 或从 `main` 手动运行 **Check and publish website** 时，GitHub Actions 完成格式、类型、单元测试、构建和 Chromium/WebKit 验证，再通过专用受限 SSH 账号上传静态产物。PR 仅检查，不部署。官网不再通过 GitHub Pages 发布。
 
-```powershell
-git add .
-git commit -m "Build PaperEnjoyer official website"
-git push -u origin main
-```
+仓库 Secrets：`WEBSITE_SSH_KEY` 与 `WEBSITE_SSH_KNOWN_HOSTS`。部署账号 `paper-web` 的密钥只允许运行静态站点接收脚本，不能执行任意 SSH 命令、端口转发或取得 sudo 权限。每次完整上传后原子切换，保留最近三个站点版本。
 
-若 Git 提示未设置作者，使用自己的姓名与邮箱配置作者信息。工作流仅发布 `dist/`；依赖、演示资料库和测试输出均在 `.gitignore` 中。
+## 安装包与自动同步
 
-## 接入 paperenjoyer.com
+唯一发行源是 [PaperEnjoyer-Releases](https://github.com/watericetangcw/PaperEnjoyer-Releases/releases/latest)。服务器的 systemd 定时任务每五分钟检查正式版，下载三平台安装包、Windows 更新文件及 SHA256SUMS，核对大小与 SHA-256 后一次性发布完整版本。失败保留上一个可用版本；保留最近三个完整版本。
 
-域名仍由阿里云管理，本次只接入 `.com`。按以下顺序配置：
+页面从 `/downloads/latest.json` 读取最新已同步版本及双源地址。普通点击时先对对应 GitHub 安装包执行最多五秒的 HEAD 连通性探测，网络失败或超时便自动使用服务器上的同版本文件。探测不传输安装包内容；GitHub 可用时用户安装包流量不经过本服务器。浏览器跨域规则使网页无法接管原生下载启动后的中途失败，已开始的下载由浏览器处理。
 
-1. 在 GitHub **个人 Settings → Pages → Add a domain** 中添加 `paperenjoyer.com`。将页面给出的 TXT 主机记录与值加入阿里云 DNS，回 GitHub 完成验证，保留这条 TXT。
-2. 在**官网仓库 Settings → Pages → Custom domain** 填入 `paperenjoyer.com` 并保存。
-3. 在阿里云域名解析中配置以下网站记录。检查并替换 `@`、`www` 原有的冲突网站记录，保留邮箱及其他用途记录。
+JavaScript 不可用或版本清单暂时读取失败时，`/download/windows`、`/download/mac`、`/download/linux` 直接提供服务器最新完整包。固定版本路径为 `/downloads/vX.Y.Z/<文件名>`，支持 Range；版本清单禁用缓存。新 Release 无需修改官网版本号或重新构建页面，通常在一次检查周期加下载校验时间后可用。同步时长受服务器到 GitHub 的带宽影响。
 
-| 类型  | 主机记录 | 记录值                 |
-| ----- | -------- | ---------------------- |
-| A     | @        | 185.199.108.153        |
-| A     | @        | 185.199.109.153        |
-| A     | @        | 185.199.110.153        |
-| A     | @        | 185.199.111.153        |
-| CNAME | www      | whitefish-by.github.io |
-
-记录值不包含 `https://` 或路径；TTL 使用默认值即可。若已有 `@` 的 AAAA 记录指向其他主机，应一并处理，避免 IPv6 访问到错误位置。
-
-4. 等待 GitHub 的 DNS 检查及证书签发生效，然后勾选 **Enforce HTTPS**。GitHub 提示证书尚在准备时，稍后检查。
-5. 验证 `https://paperenjoyer.com/`、`https://paperenjoyer.com/en/`、`https://www.paperenjoyer.com/` 及默认 GitHub 地址，确认访问与跳转、图片和下载链接正常。
-
-本项目使用 Actions 发布，自定义域名以 **Pages 设置** 为准，不依赖 `CNAME` 文件。绑定后，GitHub 默认地址及正确配置的 `www` 会指向主域名。
-
-`paperenjoyer.cn` 按本次约定暂不修改。日后接入时，需使用支持 **HTTPS 入口的 HTTP 301 跳转服务**；仅增加 DNS 记录不等于重定向。阿里云自带 URL 转发目前不支持 HTTPS 入口。
-
-参考：[GitHub 自定义域名](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)、[Actions 与 CNAME](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/troubleshooting-custom-domains-and-github-pages)、[阿里云 URL 转发](https://help.aliyun.com/zh/dns/pubz-explicit-url-implicit-url-forwarding-faq)。
-
-## 下载如何保持更新
-
-唯一发行源为 [watericetangcw/PaperEnjoyer-Releases](https://github.com/watericetangcw/PaperEnjoyer-Releases/releases/latest)。
-
-- 页面加载、从后台或浏览器历史恢复页面，以及每次普通点击下载时，访问公开 GitHub 最新正式版 API。请求禁用缓存并附带时间戳；同一时间的查询合并，重复点击不会重复下载。
-- 版本号、发布日期、文件大小和所有下载按钮来自同一次实时响应。按版本匹配 `PaperEnjoyer-<version>-Setup.exe`、`PaperEnjoyer-<version>-macOS-arm64.dmg` 与 `PaperEnjoyer-<version>-Linux-amd64.deb`，仅接受已上传完成的非空附件，排除 `.blockmap` 和元数据。下载使用 API 返回且校验过的官方地址。
-- API 超时（6 秒）、限流或不可用时，清除过期的版本和附件信息，下载按钮转到官方 `/releases/latest` 页面；不再回退到固定的旧版安装包。未启用 JavaScript 时也使用最新发行页入口。
-- 新版本缺少某平台安装包时，该平台改为发行页入口并显示缺失提示，不猜测附件地址。
-- 下载发生在用户点击链接之后。页面没有 GitHub Token，也不会通过本站转发数百 MB 的安装包。
-- 构建不访问发行 API，也不保存版本快照。发布新软件版本后，无需修改版本号或重新部署官网。
-- 网页校验的是发行标签和附件信息，无法判断安装包内部的应用版本或功能。若发行附件本身打包错误，需要在软件发行流程中重新构建并发布正确的安装包。
+服务器初始化、手动部署、回滚、日志和同步排错见 [服务器维护](ops/README.md)。服务器同步不需要 GitHub Token，浏览器和安装包不包含部署凭据。
 
 ## 内容与界面素材
 

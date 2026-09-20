@@ -1,105 +1,99 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { fetchRelease, parseRelease, formatSize, RELEASE_API } from '../src/lib/release.mjs';
+import {
+  fetchRelease,
+  parseRelease,
+  formatSize,
+  selectDownload,
+  SITE_ORIGIN,
+  RELEASE_API,
+} from '../src/lib/release.mjs';
 import { fixture } from './release-fixture.mjs';
 
-test('selects actual platform installers, never updater metadata', () => {
-  const release = parseRelease(fixture());
-  assert.equal(release.version, '1.2.3');
-  assert.equal(release.assets.windows.name, 'PaperEnjoyer-1.2.3-Setup.exe');
-  assert.equal(release.assets.mac.name, 'PaperEnjoyer-1.2.3-macOS-arm64.dmg');
-  assert.equal(release.assets.linux.name, 'PaperEnjoyer-1.2.3-Linux-amd64.deb');
+test('accepts only matched platform packages and preserves both sources', () => {
+  const input = fixture('2.5.1');
+  const release = parseRelease(input);
+  assert.equal(release.version, '2.5.1');
+  for (const platform of ['windows', 'mac', 'linux']) {
+    assert.equal(release.assets[platform].url, input.assets[platform].githubUrl);
+    assert.equal(release.assets[platform].mirrorUrl, input.assets[platform].url);
+  }
   assert.equal(formatSize(release.assets.windows.size), '100.0 MB');
 });
-test('uses the current release tag instead of a hard-coded version', () => {
-  assert.match(
-    parseRelease(fixture('2.5.1')).assets.mac.url,
-    /v2\.5\.1\/PaperEnjoyer-2\.5\.1-macOS-arm64\.dmg$/,
-  );
-  assert.match(
-    parseRelease(fixture('2.5.1')).assets.linux.url,
-    /v2\.5\.1\/PaperEnjoyer-2\.5\.1-Linux-amd64\.deb$/,
-  );
+test('rejects invalid version, date, schema and release repository', () => {
+  for (const patch of [
+    { schemaVersion: 2 },
+    { version: '01.2.3' },
+    { version: '1.2.3-beta' },
+    { publishedAt: 'bad' },
+    { pageUrl: 'https://example.com' },
+  ])
+    assert.throws(() => parseRelease({ ...fixture(), ...patch }));
 });
-test('represents missing platforms explicitly without inventing links', () => {
-  const input = fixture();
-  input.assets = input.assets.filter((a) => !a.name.endsWith('.dmg'));
-  input.assets = input.assets.filter((a) => !a.name.endsWith('Linux-amd64.deb'));
-  const value = parseRelease(input);
-  assert.equal(value.assets.mac, null);
-  assert.equal(value.assets.linux, null);
-  assert.ok(value.assets.windows);
-});
-
-test('does not offer unfinished or empty installer uploads', () => {
-  for (const patch of [{ state: 'starter' }, { size: 0 }, { size: -1 }]) {
+test('missing or unsafe assets are never used as download destinations', () => {
+  for (const patch of [
+    null,
+    { url: 'https://example.com/file' },
+    { githubUrl: 'https://evil.invalid/file' },
+    { name: 'wrong.exe' },
+    { size: 0 },
+    { sha256: 'bad' },
+  ]) {
     const input = fixture();
-    Object.assign(input.assets[0], patch);
-    Object.assign(input.assets[2], patch);
+    input.assets.windows = patch === null ? null : { ...input.assets.windows, ...patch };
     assert.equal(parseRelease(input).assets.windows, null);
-    assert.equal(parseRelease(input).assets.linux, null);
     assert.ok(parseRelease(input).assets.mac);
   }
 });
-test('rejects drafts, prereleases, invalid versions and invalid dates', () => {
-  for (const patch of [
-    { draft: true },
-    { prerelease: true },
-    { tag_name: 'v1.0.0-beta' },
-    { tag_name: 'v01.2.3' },
-    { published_at: 'invalid' },
-    { published_at: 2026 },
-  ])
-    assert.throws(() => parseRelease({ ...fixture(), ...patch }));
-  assert.throws(() => parseRelease(null));
-});
-test('rejects unexpected repositories, URLs and ambiguous installers', () => {
-  assert.throws(() => parseRelease({ ...fixture(), html_url: 'https://example.com' }));
-  const input = fixture();
-  input.assets[0].browser_download_url = 'https://example.com/install.exe';
-  input.assets[2].browser_download_url = 'https://example.com/install.deb';
-  assert.equal(parseRelease(input).assets.windows, null);
-  assert.equal(parseRelease(input).assets.linux, null);
-  const duplicate = fixture();
-  duplicate.assets.push(duplicate.assets[0]);
-  duplicate.assets.push(duplicate.assets[2]);
-  assert.equal(parseRelease(duplicate).assets.windows, null);
-  assert.equal(parseRelease(duplicate).assets.linux, null);
-});
-test('fetches anonymously and parses the response', async () => {
+test('fetches same-origin fresh metadata without credentials', async () => {
   const result = await fetchRelease({
     fetcher: async (url, options) => {
-      const requestUrl = new URL(url);
-      assert.match(requestUrl.searchParams.get('t'), /^\d+$/);
-      requestUrl.search = '';
-      assert.equal(requestUrl.href, RELEASE_API);
+      const parsed = new URL(url, SITE_ORIGIN);
+      assert.equal(parsed.pathname, RELEASE_API);
+      assert.match(parsed.searchParams.get('t'), /^\d+$/);
       assert.equal(options.cache, 'no-store');
       assert.equal(options.credentials, 'omit');
-      assert.ok(options.signal);
       return Response.json(fixture());
     },
   });
   assert.equal(result.version, '1.2.3');
+  await assert.rejects(fetchRelease({ fetcher: async () => new Response(null, { status: 503 }) }));
 });
-
-test('a later lookup returns the newly published release and its own installer', async () => {
-  let version = '0.1.1';
-  const fetcher = async () => Response.json(fixture(version));
-  const previous = await fetchRelease({ fetcher });
-  version = '0.1.2';
-  const latest = await fetchRelease({ fetcher });
-  assert.equal(previous.version, '0.1.1');
-  assert.equal(latest.version, '0.1.2');
-  assert.equal(latest.assets.windows.url, fixture(version).assets[0].browser_download_url);
+test('opaque HEAD reachability selects GitHub without transferring an installer', async () => {
+  const asset = parseRelease(fixture()).assets.windows;
+  const selected = await selectDownload(asset, {
+    fetcher: async (url, options) => {
+      assert.equal(url, asset.url);
+      assert.equal(options.method, 'HEAD');
+      assert.equal(options.mode, 'no-cors');
+      assert.equal(options.redirect, 'follow');
+      return Object.defineProperty(new Response(null), 'type', { value: 'opaque' });
+    },
+  });
+  assert.equal(selected, asset.url);
 });
-test('surfaces API failures and network timeouts for the UI fallback', async () => {
-  for (const status of [403, 404, 429, 500])
-    await assert.rejects(fetchRelease({ fetcher: async () => new Response('', { status }) }));
-  await assert.rejects(
-    fetchRelease({
-      fetcher: async () => {
-        throw new DOMException('Timed out', 'TimeoutError');
-      },
-    }),
-  );
+test('network errors, visible HTTP errors and timeouts switch to the same server version', async () => {
+  const asset = parseRelease(fixture()).assets.linux;
+  for (const fetcher of [
+    async () => {
+      throw new TypeError('Network failure');
+    },
+    async () => new Response(null, { status: 500 }),
+  ])
+    assert.equal(await selectDownload(asset, { fetcher }), asset.mirrorUrl);
+  const keepAlive = setTimeout(() => {}, 1000);
+  try {
+    assert.equal(
+      await selectDownload(asset, {
+        timeout: 5,
+        fetcher: (_url, options) =>
+          new Promise((_, reject) =>
+            options.signal.addEventListener('abort', () => reject(options.signal.reason)),
+          ),
+      }),
+      asset.mirrorUrl,
+    );
+  } finally {
+    clearTimeout(keepAlive);
+  }
 });

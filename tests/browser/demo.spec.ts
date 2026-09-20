@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { fixture } from '../release-fixture.mjs';
 
 test.beforeEach(async ({ page }) => {
-  await page.route('https://api.github.com/**', (route) =>
+  await page.route('**/downloads/latest.json*', (route) =>
     route.fulfill({ json: fixture('2.0.0') }),
   );
 });

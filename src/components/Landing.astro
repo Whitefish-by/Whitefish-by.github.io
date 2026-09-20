@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Icon from './Icon.astro';
 import ProductDemo from './ProductDemo.astro';
 import { copy, type Locale } from '../data/copy';
-import { RELEASES_URL } from '../lib/release.mjs';
+import { RELEASES_URL, downloadFallback } from '../lib/release.mjs';
 interface Props {
   locale: Locale;
 }
@@ -125,7 +125,7 @@ const schema = {
               class:list={['button', 'download-link', i > 0 && 'button-secondary']}
               data-download={p.id}
               data-available="false"
-              href={RELEASES_URL}
+              href={downloadFallback(p.id)}
             >
               <Icon name={p.icon} size={19} />
               <span data-download-label data-ready-label={p.label}>
@@ -394,7 +394,7 @@ const schema = {
                 class="button download-link"
                 data-download={p.id}
                 data-available="false"
-                href={RELEASES_URL}
+                href={downloadFallback(p.id)}
               >
                 <span data-download-label data-ready-label={p.label}>
                   {p.label}

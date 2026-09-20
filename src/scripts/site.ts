@@ -1,4 +1,10 @@
-import { fetchRelease, formatSize, RELEASES_URL, type ReleaseInfo } from '../lib/release.mjs';
+import {
+  fetchRelease,
+  formatSize,
+  downloadFallback,
+  selectDownload,
+  type ReleaseInfo,
+} from '../lib/release.mjs';
 
 document.documentElement.classList.add('is-enhanced');
 const data = JSON.parse(document.getElementById('site-data')!.textContent!) as {
@@ -162,12 +168,10 @@ function applyRelease(release: ReleaseInfo | null) {
   for (const platform of ['windows', 'mac', 'linux'] as const) {
     const asset = release?.assets[platform];
     for (const link of all<HTMLAnchorElement>(`[data-download="${platform}"]`)) {
-      link.href = asset?.url ?? release?.pageUrl ?? RELEASES_URL;
+      link.href = asset?.url ?? downloadFallback(platform);
       link.dataset.available = String(!!asset);
       const label = link.querySelector<HTMLElement>('[data-download-label]');
-      if (label)
-        label.textContent =
-          !release || asset ? label.dataset.readyLabel! : data.messages.releasePage;
+      if (label) label.textContent = label.dataset.readyLabel!;
       if (!release || asset) link.removeAttribute('aria-label');
       else link.setAttribute('aria-label', `${platformNames[platform]} · ${data.messages.missing}`);
     }
@@ -220,7 +224,8 @@ for (const link of downloadLinks)
     try {
       const release = await refreshRelease();
       const platform = link.dataset.download as keyof ReleaseInfo['assets'];
-      window.location.assign(release?.assets[platform]?.url ?? release?.pageUrl ?? RELEASES_URL);
+      const asset = release?.assets[platform];
+      window.location.assign(asset ? await selectDownload(asset) : downloadFallback(platform));
     } finally {
       downloadPending = false;
     }

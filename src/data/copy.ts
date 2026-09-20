@@ -116,17 +116,17 @@ export const copy = {
     linuxDescription: '适用于 Ubuntu LTS x64（amd64）',
     installer: '安装程序',
     diskImage: '磁盘映像',
-    staticDownloadStatus: '下载按钮将前往最新正式版。',
+    staticDownloadStatus: '下载最新正式版。优先连接 GitHub，连接失败时自动使用官方服务器。',
     latest: '最新正式版',
     checking: '正在检查更新…',
-    unavailable: '暂时无法检查更新，请通过下载按钮前往最新发行页。',
+    unavailable: '暂时无法检查更新，下载按钮仍可从官方服务器获取最新已同步版本。',
     missing: '此版本暂未提供该平台安装包',
     published: '发布于',
     releaseNotes: '更新记录与全部版本',
     releasePage: '查看发行页',
     installHelp: '安装帮助',
     windowsHelp:
-      '下载后运行 Setup.exe，按照向导安装。当前构建未使用商业代码签名，首次运行时系统可能显示提示；请确认文件来自本页链接的官方发行仓库。',
+      '下载后运行 Setup.exe，按照向导安装。当前构建未使用商业代码签名，首次运行时系统可能显示提示；请确认文件来自本页链接的 GitHub 发行仓库或 paperenjoyer.com。',
     macHelp:
       '打开 DMG，将 PaperEnjoyer 拖入“应用程序”。当前构建未进行 Apple 公证；如系统阻止打开，请在“系统设置 → 隐私与安全性”中核对并允许该应用，无需关闭系统的全局安全保护。',
     linuxHelp:
@@ -279,11 +279,12 @@ export const copy = {
     linuxDescription: 'For Ubuntu LTS x64 (amd64)',
     installer: 'Installer',
     diskImage: 'Disk image',
-    staticDownloadStatus: 'Download buttons open the latest stable release.',
+    staticDownloadStatus:
+      'Download the latest stable release. GitHub is preferred; connection failures automatically use our server.',
     latest: 'Latest stable release',
     checking: 'Checking for updates…',
     unavailable:
-      'Unable to check for updates. Use the download buttons to open the latest release.',
+      'Unable to check for updates. Download buttons still provide the latest mirrored release from our server.',
     missing: 'No installer for this platform in this release',
     published: 'Released',
     releaseNotes: 'Release notes & all versions',

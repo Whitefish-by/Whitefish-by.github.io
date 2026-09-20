@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: pages-${{ github.ref }}
+  group: website-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -37,26 +37,33 @@ jobs:
           name: browser-checks
           path: test-results/
           retention-days: 7
-      - name: Prepare Pages
-        if: github.event_name != 'pull_request'
-        uses: actions/configure-pages@v5
       - name: Upload website
-        if: github.event_name != 'pull_request'
-        uses: actions/upload-pages-artifact@v4
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
         with:
+          name: website
           path: dist
+          retention-days: 7
 
   deploy:
-    if: github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: website
+          path: dist
+      - name: Deploy verified static website
+        env:
+          WEBSITE_SSH_KEY: ${{ secrets.WEBSITE_SSH_KEY }}
+          WEBSITE_SSH_KNOWN_HOSTS: ${{ secrets.WEBSITE_SSH_KNOWN_HOSTS }}
+        run: |
+          set -eu
+          umask 077
+          printf '%s\n' "$WEBSITE_SSH_KEY" > "$RUNNER_TEMP/website_key"
+          printf '%s\n' "$WEBSITE_SSH_KNOWN_HOSTS" > "$RUNNER_TEMP/known_hosts"
+          tar -czf "$RUNNER_TEMP/site.tar.gz" -C dist .
+          ssh -T -i "$RUNNER_TEMP/website_key" -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$RUNNER_TEMP/known_hosts" paper-web@1.13.22.252 < "$RUNNER_TEMP/site.tar.gz"
+          curl --fail --silent --show-error --retry 3 --output /dev/null https://paperenjoyer.com/
+          curl --fail --silent --show-error --retry 3 --output /dev/null https://paperenjoyer.com/en/

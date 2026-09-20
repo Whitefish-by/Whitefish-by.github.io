@@ -1,24 +1,33 @@
-import { REPOSITORY } from '../src/lib/release.mjs';
+import { REPOSITORY, SITE_ORIGIN } from '../src/lib/release.mjs';
 export function fixture(version = '1.2.3') {
-  const names = [
-    `PaperEnjoyer-${version}-Setup.exe`,
-    `PaperEnjoyer-${version}-macOS-arm64.dmg`,
-    `PaperEnjoyer-${version}-Linux-amd64.deb`,
-    `PaperEnjoyer-${version}-Linux-arm64.deb`,
-    `PaperEnjoyer-${version}-Setup.exe.blockmap`,
-    'latest.yml',
-  ];
-  return {
-    tag_name: `v${version}`,
-    html_url: `https://github.com/${REPOSITORY}/releases/tag/v${version}`,
-    published_at: '2026-09-17T01:00:00Z',
-    draft: false,
-    prerelease: false,
-    assets: names.map((name) => ({
+  const names = {
+    windows: `PaperEnjoyer-${version}-Setup.exe`,
+    mac: `PaperEnjoyer-${version}-macOS-arm64.dmg`,
+    linux: `PaperEnjoyer-${version}-Linux-amd64.deb`,
+  };
+  const files = Object.fromEntries(
+    [
+      ...Object.values(names),
+      names.windows + '.blockmap',
+      'latest.yml',
+      ...Object.keys(names).map((p) => `SHA256SUMS-${p}.txt`),
+    ].map((name) => [
       name,
-      state: 'uploaded',
-      size: 104857600,
-      browser_download_url: `https://github.com/${REPOSITORY}/releases/download/v${version}/${name}`,
-    })),
+      {
+        name,
+        size: 104857600,
+        sha256: 'a'.repeat(64),
+        githubUrl: `https://github.com/${REPOSITORY}/releases/download/v${version}/${name}`,
+        url: `${SITE_ORIGIN}/downloads/v${version}/${name}`,
+      },
+    ]),
+  );
+  return {
+    schemaVersion: 1,
+    version,
+    publishedAt: '2026-09-17T01:00:00Z',
+    pageUrl: `https://github.com/${REPOSITORY}/releases/tag/v${version}`,
+    files,
+    assets: Object.fromEntries(Object.entries(names).map(([p, n]) => [p, files[n]])),
   };
 }
