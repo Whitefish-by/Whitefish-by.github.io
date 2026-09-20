@@ -44,3 +44,5 @@ curl -H 'Range: bytes=0-15' -I https://paperenjoyer.com/download/windows
 ```
 
 Nginx 日志：`/var/log/nginx/paperenjoyer-access.log` 和 `paperenjoyer-error.log`。公网 HTTPS 不通但服务器回环地址正常时，检查云防火墙的 443 入站规则和 Cloudflare 回源设置。
+
+若续期演练返回 `dnspod.qcloud.com/static/webblock.html`，表示验证请求到达了腾讯云的备案提示页，应检查域名备案与腾讯云接入状态。现有证书有效不等于自动续期已验证成功；修复后重新运行 `certbot renew --dry-run`。也可为证书配置 DNS 验证，但需要域名 DNS 管理权限，且不能代替网站备案或接入。
