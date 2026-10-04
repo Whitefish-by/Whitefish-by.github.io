@@ -921,7 +921,7 @@
   }
   .download-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     max-width: 1140px;
     margin: 33px auto 0;
     gap: 22px;

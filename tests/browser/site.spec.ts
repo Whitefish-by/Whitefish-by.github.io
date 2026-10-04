@@ -78,6 +78,29 @@ test('gallery supports keyboard navigation, deep links and an accessible lightbo
   await expect(page.locator('#scene-agent [data-expand]')).toBeFocused();
 });
 
+test('Android downloads appear only after a verified APK is present and use the same-version fallback', async ({
+  page,
+}) => {
+  const release = fixture('0.4.3');
+  delete release.assets.android;
+  await page.route('**/downloads/latest.json*', (route) => route.fulfill({ json: release }));
+  await page.goto('/');
+  await expect(page.locator('[data-platform-card="android"]')).toBeHidden();
+  await page.unroute('**/downloads/latest.json*');
+  await page.route('**/downloads/latest.json*', (route) =>
+    route.fulfill({ json: fixture('0.4.4') }),
+  );
+  await page.reload();
+  await expect(page.locator('[data-platform-card="android"]')).toBeVisible();
+  await page.route('https://github.com/**/releases/download/**', (route) => route.abort('failed'));
+  await page.route('**/downloads/v0.4.4/*.apk', (route) => route.fulfill({ status: 204 }));
+  const request = page.waitForRequest(
+    (r) => r.isNavigationRequest() && r.url().endsWith('/v0.4.4/PaperEnjoyer-0.4.4-Android.apk'),
+  );
+  await page.locator('[data-platform-card="android"] [data-download]').click();
+  expect((await request).url()).toBe(fixture('0.4.4').assets.android.url);
+});
+
 test('GitHub success uses no server installer bytes', async ({ page }) => {
   await mockInstallerNavigation(page);
   const installerRequests: string[] = [];

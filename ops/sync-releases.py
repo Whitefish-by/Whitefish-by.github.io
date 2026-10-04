@@ -9,6 +9,7 @@ import os
 from pathlib import Path
 import re
 import shutil
+import subprocess
 import tempfile
 import time
 import urllib.error
@@ -29,9 +30,12 @@ def version_tuple(tag):
 
 
 def names(version):
-    return {"windows": f"PaperEnjoyer-{version}-Setup.exe",
+    result = {"windows": f"PaperEnjoyer-{version}-Setup.exe",
             "mac": f"PaperEnjoyer-{version}-macOS-arm64.dmg",
             "linux": f"PaperEnjoyer-{version}-Linux-amd64.deb"}
+    if version_tuple('v' + version) >= (0, 4, 4):
+        result['android'] = f"PaperEnjoyer-{version}-Android.apk"
+    return result
 
 
 def validate_release(data):
@@ -45,6 +49,8 @@ def validate_release(data):
     platform_names = names(tag[1:])
     expected = [*platform_names.values(), platform_names["windows"] + ".blockmap", "latest.yml",
                 *[f"SHA256SUMS-{p}.txt" for p in platform_names]]
+    if 'android' in platform_names:
+        expected.append('android-build-proof.json')
     files = {}
     for name in expected:
         matches = [a for a in data["assets"] if a.get("name") == name]
@@ -155,6 +161,63 @@ def verify_sums(directory, manifest):
             found[match[2]] = match[1]
         if name not in found:
             raise ValueError("Missing installer checksum")
+        if platform == 'android' and 'android-build-proof.json' not in found:
+            raise ValueError('Missing Android build proof checksum')
+
+
+ANDROID_CHECKS = {'import-reading-pdf-return-marks-chat-citations', 'background-lock-network-exit-force-stop',
+                 'checkpoint-edits-usage-deduplication', 'offline-edit-sync-legacy-cross-device',
+                 'portrait-landscape-dark-font-keyboard-talkback', 'visible-copy-review'}
+
+
+def verify_android(directory, manifest, identity=None):
+    filename = names(manifest['version']).get('android')
+    if not filename:
+        return
+    if identity is None:
+        identity = json.loads(Path(__file__).with_name('android-release-identity.json').read_text())
+    certificate = identity.get('certificateSha256') or ''
+    if identity.get('applicationId') != 'com.paperenjoyer.android' or not re.fullmatch(r'[a-f0-9]{64}', certificate):
+        raise ValueError('The existing Android release certificate must be pinned before mirroring')
+    proof_file = directory / 'android-build-proof.json'
+    if proof_file.stat().st_size > 2 * 1024 * 1024:
+        raise ValueError('Android build proof exceeds limit')
+    proof = json.loads(proof_file.read_text())
+    apk = proof['apk']
+    major, minor, patch = version_tuple('v' + manifest['version'])
+    if (proof.get('platform') != 'android' or proof.get('version') != manifest['version']
+            or proof.get('dirty') is not False or not re.fullmatch(r'[a-f0-9]{40}', proof.get('sourceSha') or '')
+            or apk.get('applicationId') != identity['applicationId'] or apk.get('version') != manifest['version']
+            or apk.get('versionCode') != major * 1000000 + minor * 1000 + patch
+            or apk.get('minSdk') != 29 or apk.get('targetSdk') != 36 or apk.get('debuggable') is not False
+            or apk.get('certificateSha256') != certificate or not all(apk.get(s) is True for s in ['v1', 'v2', 'v3'])
+            or apk.get('sha256') != manifest['files'][filename]['sha256'] or apk.get('size') != manifest['files'][filename]['size']):
+        raise ValueError('Android build identity or provenance differs from the release')
+    for kind, api in [('emulator', 29), ('emulator', 36), ('physical', None)]:
+        report = next((r for r in proof.get('acceptance', []) if r.get('kind') == kind and (api is None or r.get('api') == api)), None)
+        if (not report or report.get('api', 0) < 29 or report.get('emulated') is not (kind == 'emulator')
+                or report.get('applicationId') != identity['applicationId'] or report.get('version') != manifest['version']
+                or report.get('apkSha256') != apk['sha256'] or report.get('certificateSha256') != certificate
+                or report.get('sourceSha') != proof['sourceSha'] or not re.fullmatch(r'[a-f0-9]{16}', report.get('deviceHash') or '')
+                or 'install-open-import-offline-force-stop-upgrade' not in report.get('checks', [])):
+            raise ValueError('Android installation acceptance is missing or belongs to another APK')
+        datetime.datetime.fromisoformat(report['completedAt'].replace('Z', '+00:00'))
+        if kind == 'physical' and (not (report.get('operator') or '').strip() or not ANDROID_CHECKS.issubset(report['checks'])):
+            raise ValueError('Android physical device acceptance is incomplete')
+    target = directory / filename
+    with target.open('rb') as stream:
+        if hashlib.file_digest(stream, 'sha256').hexdigest() != apk['sha256']:
+            raise ValueError('Mirrored Android APK checksum differs from its build proof')
+    signature = subprocess.run(['apksigner', 'verify', '--verbose', '--print-certs', '--min-sdk-version', '23',
+                                '--max-sdk-version', '36', str(target)], check=True, capture_output=True, text=True).stdout
+    certs = re.findall(r'Signer #\d+ certificate SHA-256 digest: ([a-f0-9]+)', signature, re.I)
+    if certs != [certificate] or not all(re.search(r'Verified using ' + s + r' scheme.*true', signature) for s in ['v1', 'v2', 'v3']):
+        raise ValueError('Mirrored Android APK signature differs from the pinned release key')
+    badging = subprocess.run(['aapt', 'dump', 'badging', str(target)], check=True, capture_output=True, text=True).stdout
+    expected = f"package: name='{identity['applicationId']}' versionCode='{apk['versionCode']}' versionName='{manifest['version']}'"
+    if (expected not in badging or not re.search(r"^(?:minSdkVersion|sdkVersion):'29'$", badging, re.M) or "targetSdkVersion:'36'" not in badging
+            or re.search(r'^application-debuggable', badging, re.M)):
+        raise ValueError('Mirrored Android APK manifest differs from the verified build')
 
 
 def atomic_json(path, value):
@@ -215,6 +278,7 @@ def sync(root, seed_dir=None):
                 else:
                     download(asset, temporary / asset["name"])
             verify_sums(temporary, manifest)
+            verify_android(temporary, manifest)
             atomic_json(temporary / "release.json", manifest)
             for platform, filename in names(manifest["version"]).items():
                 (temporary / platform).symlink_to(filename)
@@ -222,6 +286,7 @@ def sync(root, seed_dir=None):
         finally:
             if temporary.exists():
                 shutil.rmtree(temporary)
+    verify_android(destination, manifest)
     link = root / "current.next"
     link.unlink(missing_ok=True)
     link.symlink_to(Path("releases") / tag)

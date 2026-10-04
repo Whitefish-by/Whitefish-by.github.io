@@ -14,11 +14,20 @@ test('accepts only matched platform packages and preserves both sources', () => 
   const input = fixture('2.5.1');
   const release = parseRelease(input);
   assert.equal(release.version, '2.5.1');
-  for (const platform of ['windows', 'mac', 'linux']) {
+  for (const platform of ['windows', 'mac', 'linux', 'android']) {
     assert.equal(release.assets[platform].url, input.assets[platform].githubUrl);
     assert.equal(release.assets[platform].mirrorUrl, input.assets[platform].url);
   }
   assert.equal(formatSize(release.assets.windows.size), '100.0 MB');
+});
+
+test('older desktop releases keep Android unavailable and invalid APK metadata cannot create a link', () => {
+  const legacy = fixture('0.4.3');
+  delete legacy.assets.android;
+  assert.equal(parseRelease(legacy).assets.android, null);
+  const release = fixture('0.4.4');
+  release.assets.android.name = 'unverified.apk';
+  assert.equal(parseRelease(release).assets.android, null);
 });
 test('rejects invalid version, date, schema and release repository', () => {
   for (const patch of [

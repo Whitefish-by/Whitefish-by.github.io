@@ -4,6 +4,7 @@ dist/
 .cache/
 test-results/
 playwright-report/
+__pycache__/
 .env
 .env.*
 !.env.example

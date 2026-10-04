@@ -19,6 +19,8 @@ ssh -T -i /path/to/website_key -o StrictHostKeyChecking=yes paper-web@43.160.220
 
 ## 镜像管理
 
+v0.4.4 起还提供 `/download/android`。同步器要求正式 APK、安卓校验和及公开构建证明齐备，核对 `android-release-identity.json` 的固定证书、API 29/36 与实机报告，再通过系统 `apksigner` 和 `aapt` 检查 APK。部署升级前运行 `install.sh` 安装验证工具及公开证书配置。没有已验证 APK 时页面隐藏安卓入口，失败时保留原镜像。
+
 ```sh
 systemctl status paperenjoyer-sync.timer
 journalctl -u paperenjoyer-sync.service -n 80 --no-pager

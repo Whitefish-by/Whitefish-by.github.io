@@ -16,6 +16,10 @@ export const copy = {
     windowsDownload: '下载 Windows 版',
     macDownload: '下载 macOS 版',
     linuxDownload: '下载 Ubuntu 版',
+    androidDownload: '下载 Android 版',
+    androidDescription: '适用于 Android 10 及以上',
+    androidHelp:
+      '下载 APK，允许当前浏览器安装后打开文件。更新时直接覆盖安装，保留文库与设置。请使用官方发行包，并保持 Android System WebView 为最新版本。',
     platformLine: 'Windows x64 · macOS Apple Silicon · Ubuntu x64',
     versionLabel: '最新正式版',
     heroCaption: '你的论文、笔记与灵感，终于在同一个地方。',
@@ -178,6 +182,10 @@ export const copy = {
     windowsDownload: 'Download for Windows',
     macDownload: 'Download for macOS',
     linuxDownload: 'Download for Ubuntu',
+    androidDownload: 'Download for Android',
+    androidDescription: 'For Android 10 or later',
+    androidHelp:
+      'Download the APK, allow installation from this browser and open the file. Install updates over the existing app to keep your library and settings. Use official releases and keep Android System WebView up to date.',
     platformLine: 'Windows x64 · macOS Apple Silicon · Ubuntu x64',
     versionLabel: 'Latest stable release',
     heroCaption: 'Your papers, notes and next ideas. Finally, together.',
