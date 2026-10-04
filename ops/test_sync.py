@@ -122,9 +122,10 @@ class MirrorTests(unittest.TestCase):
             root=Path(temp)
             for name,value in payloads.items(): (root/name).write_bytes(value)
             mirror.verify_sums(root,manifest)
-            with patch.object(mirror.subprocess,'run',side_effect=[type('Result',(),{'stdout':signature})(),type('Result',(),{'stdout':badging})()]) as commands:
-                mirror.verify_android(root,manifest,identity)
-                self.assertEqual(commands.call_args_list[0].args[0][0],'apksigner')
+            for minimum in ["sdkVersion:'29'", "minSdkVersion:'29'"]:
+                with self.subTest(minimum=minimum), patch.object(mirror.subprocess,'run',side_effect=[type('Result',(),{'stdout':signature})(),type('Result',(),{'stdout':badging.replace("sdkVersion:'29'",minimum)})()]) as commands:
+                    mirror.verify_android(root,manifest,identity)
+                    self.assertEqual(commands.call_args_list[0].args[0][0],'apksigner')
             with self.assertRaises(ValueError): mirror.verify_android(root,manifest,{**identity,'certificateSha256':'e'*64})
             proof=json.loads(payloads['android-build-proof.json'])
             proof['acceptance']=[r for r in proof['acceptance'] if r['kind'] != 'physical']

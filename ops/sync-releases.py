@@ -215,7 +215,7 @@ def verify_android(directory, manifest, identity=None):
         raise ValueError('Mirrored Android APK signature differs from the pinned release key')
     badging = subprocess.run(['aapt', 'dump', 'badging', str(target)], check=True, capture_output=True, text=True).stdout
     expected = f"package: name='{identity['applicationId']}' versionCode='{apk['versionCode']}' versionName='{manifest['version']}'"
-    if (expected not in badging or "sdkVersion:'29'" not in badging or "targetSdkVersion:'36'" not in badging
+    if (expected not in badging or not re.search(r"^(?:minSdkVersion|sdkVersion):'29'$", badging, re.M) or "targetSdkVersion:'36'" not in badging
             or re.search(r'^application-debuggable', badging, re.M)):
         raise ValueError('Mirrored Android APK manifest differs from the verified build')
 
