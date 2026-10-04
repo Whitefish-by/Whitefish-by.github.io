@@ -4,6 +4,7 @@ export function fixture(version = '1.2.3') {
     windows: `PaperEnjoyer-${version}-Setup.exe`,
     mac: `PaperEnjoyer-${version}-macOS-arm64.dmg`,
     linux: `PaperEnjoyer-${version}-Linux-amd64.deb`,
+    android: `PaperEnjoyer-${version}-Android.apk`,
   };
   const files = Object.fromEntries(
     [

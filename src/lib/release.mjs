@@ -5,7 +5,7 @@ export const RELEASE_API = '/downloads/latest.json';
 export const downloadFallback = (platform) => `/download/${platform}`;
 
 /** @typedef {{name: string, url: string, mirrorUrl: string, size: number, sha256: string}} DownloadAsset */
-/** @typedef {{version: string, publishedAt: string, pageUrl: string, assets: {windows: DownloadAsset | null, mac: DownloadAsset | null, linux: DownloadAsset | null}}} ReleaseInfo */
+/** @typedef {{version: string, publishedAt: string, pageUrl: string, assets: {windows: DownloadAsset | null, mac: DownloadAsset | null, linux: DownloadAsset | null, android: DownloadAsset | null}}} ReleaseInfo */
 
 /** Only accept verified mirror manifests and exact official download URLs.
  * @param {unknown} input
@@ -51,6 +51,7 @@ export function parseRelease(input) {
       windows: asset('windows', `PaperEnjoyer-${version}-Setup.exe`),
       mac: asset('mac', `PaperEnjoyer-${version}-macOS-arm64.dmg`),
       linux: asset('linux', `PaperEnjoyer-${version}-Linux-amd64.deb`),
+      android: asset('android', `PaperEnjoyer-${version}-Android.apk`),
     },
   };
 }

@@ -142,13 +142,15 @@ if (!reducedMotion.matches && 'IntersectionObserver' in window) {
 
 // OS detection recommends a platform, but never guesses Mac CPU architecture.
 const platform = navigator.userAgent;
-const recommended = /Windows NT/i.test(platform)
-  ? 'windows'
-  : /Macintosh/i.test(platform) && navigator.maxTouchPoints < 2
-    ? 'mac'
-    : /Linux (?:x86_64|amd64)/i.test(platform) && !/Android|CrOS/i.test(platform)
-      ? 'linux'
-      : null;
+const recommended = /Android/i.test(platform)
+  ? 'android'
+  : /Windows NT/i.test(platform)
+    ? 'windows'
+    : /Macintosh/i.test(platform) && navigator.maxTouchPoints < 2
+      ? 'mac'
+      : /Linux (?:x86_64|amd64)/i.test(platform) && !/Android|CrOS/i.test(platform)
+        ? 'linux'
+        : null;
 if (recommended)
   document
     .querySelector(`[data-platform-card="${recommended}"]`)
@@ -164,8 +166,13 @@ function applyRelease(release: ReleaseInfo | null) {
       ? `${data.messages.published} ${release.publishedAt.slice(0, 10)}`
       : '';
   });
-  const platformNames = { windows: 'Windows', mac: 'macOS', linux: 'Linux (Ubuntu)' };
-  for (const platform of ['windows', 'mac', 'linux'] as const) {
+  const platformNames = {
+    windows: 'Windows',
+    mac: 'macOS',
+    linux: 'Linux (Ubuntu)',
+    android: 'Android',
+  };
+  for (const platform of ['windows', 'mac', 'linux', 'android'] as const) {
     const asset = release?.assets[platform];
     for (const link of all<HTMLAnchorElement>(`[data-download="${platform}"]`)) {
       link.href = asset?.url ?? downloadFallback(platform);
@@ -180,6 +187,7 @@ function applyRelease(release: ReleaseInfo | null) {
     );
     all(`[data-asset-message="${platform}"]`).forEach((el) => (el.hidden = !release || !!asset));
   }
+  all('[data-android-release]').forEach((el) => (el.hidden = !release?.assets.android));
 }
 const status = document.querySelector<HTMLElement>('[data-release-status]')!;
 const downloadLinks = all<HTMLAnchorElement>('[data-download]');

@@ -37,6 +37,15 @@ const platforms = [
     format: `.deb · ${t.installer}`,
     help: t.linuxHelp,
   },
+  {
+    id: 'android' as const,
+    name: 'Android',
+    icon: 'phone',
+    description: t.androidDescription,
+    label: t.androidDownload,
+    format: `.apk · ${t.installer}`,
+    help: t.androidHelp,
+  },
 ];
 const scriptData = {
   messages: {
@@ -124,6 +133,8 @@ const schema = {
             <a
               class:list={['button', 'download-link', i > 0 && 'button-secondary']}
               data-download={p.id}
+              data-android-release={p.id === 'android' ? '' : undefined}
+              hidden={p.id === 'android'}
               data-available="false"
               href={downloadFallback(p.id)}
             >
@@ -137,6 +148,10 @@ const schema = {
         </div>
         <p class="platform-note">
           {t.platformLine}
+          <span data-android-release hidden>
+            {' '}
+            · Android 10+
+          </span>
           <span class="note-divider" aria-hidden="true">
             /
           </span>
@@ -377,7 +392,12 @@ const schema = {
         </div>
         <div class="download-grid">
           {platforms.map((p) => (
-            <article class="download-card" data-platform-card={p.id}>
+            <article
+              class="download-card"
+              data-platform-card={p.id}
+              data-android-release={p.id === 'android' ? '' : undefined}
+              hidden={p.id === 'android'}
+            >
               <div class="download-platform">
                 <Icon name={p.icon} size={32} />
                 <div>
