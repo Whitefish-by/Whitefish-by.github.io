@@ -1,0 +1,177 @@
+{
+  "lang": "fr",
+  "title": "PaperEnjoyer · Comprendre chaque idée",
+  "description": "De la découverte des articles à leur compréhension. PaperEnjoyer réunit bibliothèque, lecture PDF, notes de lecture approfondie et conversations avec l’IA dans un espace de travail pour Windows, macOS et Linux (Ubuntu).",
+  "skip": "Aller au contenu",
+  "nav": ["Fonctionnalités", "Espace de travail", "Questions"],
+  "download": "Télécharger",
+  "menu": "Ouvrir la navigation",
+  "eyebrow": "Un espace calme pour les esprits curieux",
+  "heroStart": "Comprendre ",
+  "heroAccent": "chaque idée.",
+  "heroText": "De la découverte d’un bon article à sa compréhension.\nRéunissez le texte, vos notes et l’IA dans la même conversation.",
+  "windowsDownload": "Télécharger pour Windows",
+  "macDownload": "Télécharger pour macOS",
+  "linuxDownload": "Télécharger pour Ubuntu",
+  "androidDownload": "Télécharger pour Android",
+  "androidDescription": "Pour Android 10 et versions ultérieures",
+  "androidHelp": "Téléchargez l’APK, autorisez l’installation depuis ce navigateur et ouvrez le fichier. Installez les mises à jour par-dessus l’application pour conserver bibliothèque et paramètres. Utilisez les versions officielles et gardez Android System WebView à jour.",
+  "platformLine": "Windows x64 · macOS Apple Silicon · Ubuntu x64",
+  "versionLabel": "Dernière version stable",
+  "heroCaption": "Vos articles, vos notes et vos prochaines idées. Enfin réunis.",
+  "demo": "Interface réelle de l’application · Contenu de démonstration",
+  "introEyebrow": "Suivez votre curiosité",
+  "introStart": "Moins d’allers-retours.",
+  "introAccent": "Plus de compréhension.",
+  "introText": "Découvrir, lire, questionner, organiser. Tout ce qu’il faut pour réfléchir à un article, à portée de main.",
+  "story": [
+    {
+      "number": "01",
+      "icon": "search",
+      "label": "Découvrir",
+      "title": "Votre prochain article\ncommence ici.",
+      "text": "Explorez arXiv et OpenAlex par domaine, auteur, revue ou conférence. Suivez vos sujets de recherche et trouvez des articles qui méritent votre attention.",
+      "tags": ["Recommandations", "Exploration par domaine", "Suivi et favoris"]
+    },
+    {
+      "number": "02",
+      "icon": "book",
+      "label": "Comprendre",
+      "title": "Le texte original.\nEt ce qu’il révèle.",
+      "text": "Lisez le PDF à côté des traductions de paragraphes et des notes approfondies. Passez de l’explication à la source à votre rythme.",
+      "tags": ["Lecture approfondie", "Retour à la source", "Mode concentration"]
+    },
+    {
+      "number": "03",
+      "icon": "sparkles",
+      "label": "Approfondir",
+      "title": "Gardez l’article\ndans la conversation.",
+      "text": "Confiez l’article en cours ou plusieurs références à votre Agent. Explorez les méthodes, clarifiez les idées et suivez les citations jusqu’au texte original.",
+      "tags": ["Contexte de l’article", "Références multiples", "Citations vérifiables"]
+    }
+  ],
+  "showcaseEyebrow": "Un espace de travail. De la place pour penser.",
+  "showcaseTitle": "Là où les idées prennent forme.",
+  "showcaseText": "D’une vue d’ensemble à un moment de calme avec votre article et vos notes.",
+  "scenes": [
+    {
+      "id": "reading",
+      "label": "Lire et comprendre",
+      "title": "La source, éclairée par vos notes.",
+      "text": "Bibliothèque, PDF, notes et Agent travaillent ensemble pour préserver le fil de votre lecture.",
+      "alt": "Interface réelle de PaperEnjoyer à quatre panneaux : bibliothèque, PDF NeRF, notes en chinois et exemple de conversation avec l’Agent"
+    },
+    {
+      "id": "discovery",
+      "label": "Découvrir des articles",
+      "title": "Laissez-vous guider par la curiosité.",
+      "text": "Explorez recommandations et domaines de recherche, puis ajoutez les articles intéressants à votre bibliothèque.",
+      "alt": "Page de découverte PaperEnjoyer avec recommandations d’articles, résumés et favoris"
+    },
+    {
+      "id": "agent",
+      "label": "Interroger l’Agent",
+      "title": "Les bonnes questions méritent du temps.",
+      "text": "Gardez les articles en contexte pour poser d’autres questions, clarifier vos idées et aller plus loin.",
+      "alt": "Panneau Agent de PaperEnjoyer montrant un exemple de discussion sur un article"
+    },
+    {
+      "id": "immersive",
+      "label": "Mode concentration",
+      "title": "Juste vous et l’article.",
+      "text": "Masquez les panneaux inutiles et concentrez-vous sur le texte et vos notes de lecture.",
+      "alt": "Mode concentration de PaperEnjoyer avec PDF et notes approfondies côte à côte"
+    }
+  ],
+  "expand": "Agrandir la capture",
+  "close": "Fermer l’image",
+  "libraryEyebrow": "Construisez sur ce que vous comprenez",
+  "libraryTitle": "Faites compter chaque lecture.",
+  "libraryText": "Conservez vos découvertes dans votre bibliothèque et reprenez le fil à votre retour.",
+  "utilities": [
+    {
+      "icon": "folder",
+      "title": "Des connaissances bien organisées",
+      "text": "Classez les articles selon vos recherches. Dossiers, recherche et archivage vous aident à garder votre bibliothèque en ordre."
+    },
+    {
+      "icon": "file",
+      "title": "Emportez vos notes",
+      "text": "Exportez vos notes en Markdown, vos articles et les ressources associées. Transformez votre compréhension en matériaux réutilisables."
+    },
+    {
+      "icon": "sync",
+      "title": "Un autre appareil, le même fil",
+      "text": "Utilisez votre compte PaperEnjoyer pour synchroniser bibliothèque, notes et conversations prises en charge entre vos appareils."
+    }
+  ],
+  "localTitle": "Commencez en local. Gardez le choix.",
+  "localText": "Votre bibliothèque conserve une copie locale. La synchronisation du compte, lorsqu’elle est activée, envoie automatiquement les contenus pris en charge ; l’analyse dans le cloud et la lecture par IA transmettent aussi les documents nécessaires. Vérifiez vos choix de synchronisation dans les paramètres.",
+  "downloadEyebrow": "Votre prochain article commence ici",
+  "downloadTitle": "Un nouvel espace pour votre curiosité.",
+  "downloadText": "Téléchargez PaperEnjoyer. Faites de votre prochaine lecture une découverte.",
+  "windowsDescription": "Pour Windows x64",
+  "macDescription": "Pour Mac avec Apple Silicon",
+  "linuxDescription": "Pour Ubuntu LTS x64 (amd64)",
+  "installer": "Programme d’installation",
+  "diskImage": "Image disque",
+  "staticDownloadStatus": "Téléchargez la dernière version stable. GitHub est utilisé en priorité ; en cas d’échec de connexion, notre serveur prend automatiquement le relais.",
+  "latest": "Dernière version stable",
+  "checking": "Recherche de mises à jour…",
+  "unavailable": "Impossible de rechercher les mises à jour. Les boutons proposent toujours la dernière version synchronisée sur notre serveur.",
+  "missing": "Aucun programme d’installation pour cette plateforme dans cette version",
+  "published": "Publication",
+  "releaseNotes": "Notes de version et toutes les versions",
+  "releasePage": "Voir la version",
+  "installHelp": "Aide à l’installation",
+  "windowsHelp": "Exécutez Setup.exe et suivez les instructions. Les versions actuelles n’ont pas de certificat commercial de signature de code ; Windows peut donc afficher un avertissement. Vérifiez que le fichier provient de la publication officielle liée sur cette page.",
+  "macHelp": "Ouvrez le DMG et glissez PaperEnjoyer dans Applications. Les versions actuelles ne sont pas notariées par Apple. Si macOS bloque l’application, vérifiez-la et autorisez-la dans Réglages Système → Confidentialité et sécurité, sans désactiver la protection de l’ensemble du système.",
+  "linuxHelp": "Compatible avec Ubuntu 22.04 / 24.04 / 26.04 LTS x64. Téléchargez le DEB, quittez l’application et lancez sudo apt install ./PaperEnjoyer-<version>-Linux-amd64.deb dans le dossier de téléchargement, en remplaçant <version> par la version obtenue. L’installation et la mise à jour conservent bibliothèque et paramètres.",
+  "faqTitle": "Quelques questions avant de commencer.",
+  "faqs": [
+    [
+      "Quels systèmes et processeurs sont compatibles ?",
+      "Les programmes d’installation sont disponibles pour Windows x64, macOS Apple Silicon (puces de la série M) et Ubuntu 22.04 / 24.04 / 26.04 LTS x64 (amd64). Aucune version pour Mac Intel, Windows ARM natif ou Linux ARM n’est actuellement proposée."
+    ],
+    [
+      "Faut-il configurer une IA pour utiliser PaperEnjoyer ?",
+      "La lecture PDF de base, la gestion de la bibliothèque et les notes existantes ne nécessitent pas de génération par IA. PaperCore Free propose une IA intégrée ; modèles et limites disponibles sont indiqués dans l’application. Vous pouvez aussi connecter votre propre service de modèles ou compte Agent, dont le fournisseur peut facturer des frais distincts."
+    ],
+    [
+      "Où mes articles et notes sont-ils stockés ?",
+      "L’application conserve une bibliothèque locale et, si la synchronisation du compte est activée, une copie dans le cloud. L’analyse MinerU et la lecture par IA dans le cloud envoient les documents nécessaires même si la synchronisation de la bibliothèque est désactivée. Les anciennes versions peuvent activer la synchronisation par défaut : vérifiez les paramètres. La politique de confidentialité en bas de page décrit ces traitements."
+    ],
+    [
+      "Puis-je synchroniser plusieurs ordinateurs ?",
+      "Oui. Votre compte PaperEnjoyer synchronise les contenus de bibliothèque et les préférences pris en charge. Les tâches de lecture approfondie avec PaperCore ou un modèle HTTP personnalisé s’exécutent sur le serveur et peuvent continuer après la fermeture de l’application. La lecture par les agents Codex et DeepSeek/DSH s’exécute sur votre appareil."
+    ],
+    [
+      "Comment mettre l’application à jour ?",
+      "Sous Windows, recherchez et téléchargez la mise à jour dans Paramètres → À propos et mises à jour, puis confirmez le redémarrage pour l’installer. Sous macOS, téléchargez le nouveau DMG, quittez l’application et remplacez-la dans Applications. Sous Ubuntu, téléchargez le nouveau DEB, quittez l’application et utilisez sudo apt install. La dernière version stable reste disponible ici."
+    ]
+  ],
+  "footerLine": "Au-delà de la lecture, la compréhension.",
+  "releases": "Versions",
+  "backTop": "Retour en haut",
+  "notFoundTitle": "Cette page reste à écrire.",
+  "notFoundText": "Retournez à l’accueil. Votre prochaine découverte vous attend.",
+  "home": "Retour à l’accueil",
+  "mainNavigation": "Navigation principale",
+  "pricing": "Tarifs",
+  "language": "Langue",
+  "policyNavigation": "Tarifs et politiques",
+  "policyEnglish": "en anglais",
+  "terms": "Conditions d’utilisation",
+  "privacy": "Confidentialité",
+  "refund": "Remboursements",
+  "actualInterface": "Interface réelle de l’application",
+  "makeItClick": "Quand tout devient clair.",
+  "ideaQuestion": "Quelle est l’idée clé de cette méthode ?",
+  "thinkWithSource": "Réfléchir à partir de la source.",
+  "backToPaper": "Retour à l’article",
+  "footerMotto": "Pour le plaisir de comprendre.",
+  "demoReset": "Réinitialiser / réessayer",
+  "demoOpen": "Ouvrir dans un nouvel onglet",
+  "demoAlt": "Attention Is All You Need : PDF, notes approfondies et discussion sur Self-Attention",
+  "demoTagline": "VOTRE RECHERCHE, ENSEMBLE"
+}

@@ -7,7 +7,7 @@ test.beforeEach(async ({ page }) => {
   );
 });
 
-for (const url of ['/', '/en/'])
+for (const url of ['/', '/zh-hans/'])
   for (const width of [390, 768, 1440]) {
     test('interactive hero ' + url + ' at ' + width, async ({ page }, info) => {
       const errors: string[] = [],
@@ -131,7 +131,7 @@ test('toolbar icons open the standalone view, reset and retain the poster on fai
     timeout: 30000,
   });
   const opened = page.waitForEvent('popup');
-  await page.getByRole('link', { name: '独立打开', exact: true }).click();
+  await page.getByRole('link', { name: 'Open in a new tab', exact: true }).click();
   const standalone = await opened;
   await expect(standalone).toHaveURL(/\/demo\/index\.html$/);
   await expect(standalone).toHaveTitle('PaperEnjoyer');
@@ -210,7 +210,7 @@ test('the hero keeps its poster and standalone link when JavaScript is disabled'
   await expect(page.locator('.demo-poster')).toBeVisible();
   await expect(page.locator('.demo-poster')).toHaveJSProperty('complete', true);
   await expect(page.locator('[data-demo-frame]')).not.toBeVisible();
-  await expect(page.getByRole('link', { name: '独立打开', exact: true })).toHaveAttribute(
+  await expect(page.getByRole('link', { name: 'Open in a new tab', exact: true })).toHaveAttribute(
     'href',
     '/demo/index.html',
   );

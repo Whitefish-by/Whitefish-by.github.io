@@ -1,0 +1,76 @@
+{
+  "title": "订阅价格",
+  "description": "了解 PaperEnjoyer 即将推出的 Free、Lite、Pro 套餐、积分包及月度订阅规则。",
+  "heroStart": "为下一个想法，",
+  "heroAccent": "留出更多空间。",
+  "intro": "阅读、理解，并从论文中继续探索。\n选择适合你研究节奏的空间与 AI 额度。",
+  "statusTitle": "订阅套餐即将推出。",
+  "statusText": "以下额度、优惠和功能描述的是计划推出的订阅服务，并非当前免费应用的现有权益。付费套餐与积分包暂未开放购买。",
+  "plansLabel": "即将推出的月度套餐",
+  "month": "/ 月",
+  "monthlyCredits": "每月 {credits} 积分",
+  "storage": "{storage} GB 云存储",
+  "credits": "{credits} 积分",
+  "plans": {
+    "Free": {
+      "kicker": "从这里开始",
+      "description": "适合偶尔阅读与探索。",
+      "billing": "计划中的免费套餐",
+      "rollover": "月度积分在每个周期结束时到期，不结转。",
+      "features": ["可另购积分包"]
+    },
+    "Lite": {
+      "kicker": "保持日常阅读节奏",
+      "description": "适合日常研究与阅读。",
+      "billing": "按月计费 · 符合条件的首月 {firstMonthPrice}",
+      "rollover": "积分最多结转 {rolloverMonths} 个月，余额上限 {rolloverCap} 积分。",
+      "features": ["基础 AI 功能", "论文导出", "可另购积分包"]
+    },
+    "Pro": {
+      "kicker": "为深入研究留出空间",
+      "description": "适合更高强度的研究工作。",
+      "billing": "按月计费",
+      "rollover": "积分最多结转 {rolloverMonths} 个月，余额上限 {rolloverCap} 积分。",
+      "features": ["高级模型与更快的任务队列", "研究 Agent", "高级知识库", "可另购积分包"]
+    }
+  },
+  "freeAllowance": "计划中的免费额度",
+  "comingSoon": "暂未开放购买",
+  "taxes": "价格以美元（USD）计价。开放购买后，适用税费与最终总额将在付款前显示。",
+  "packsEyebrow": "额外一点空间",
+  "packsTitle": "需要时，再补充积分。",
+  "packsText": "所有套餐均可一次性购买积分包。购买的积分不会到期，也不会按月清零。",
+  "oneTime": "暂未开放购买 · 一次性付款",
+  "rulesEyebrow": "规则，提前说明",
+  "rulesTitle": "计划中的套餐如何运作。",
+  "details": {
+    "welcome": {
+      "title": "给新读者的一份欢迎礼",
+      "first": "计划中的注册赠礼为 {welcomeCredits} 积分，自注册起 {welcomeDays} 天有效，不可转让或兑换现金。与购买的积分包不同，赠送积分会到期。",
+      "second": "符合条件的新账户可在注册后 {introDays} 天内以 {firstMonthPrice} 购买首月 Lite，每个账户限一次。之后按每月 {litePrice} 续费，除非提前取消。"
+    },
+    "spending": {
+      "title": "先使用月度积分，再使用购买的积分",
+      "first": "优先消耗订阅积分，额度用尽后再使用购买的积分。Lite 和 Pro 的结转同时受到上述有效期和余额上限约束，超出部分不会继续累积。",
+      "second": "积分用于计量 PaperEnjoyer 功能的使用量，不是货币、投资或可转让的余额。自行连接的第三方服务可能另行收费。"
+    },
+    "renewal": {
+      "title": "续费与取消",
+      "first": "付费订阅按照购买时显示的账期按月续费。月度额度在每个订阅周期开始时刷新，不一定是自然月的第一天。",
+      "second": "在续费前取消可阻止下一次扣款。当前付费权益保留至周期结束，之后停止发放新的付费套餐额度。已购买的积分保留。退款申请见下方政策。"
+    },
+    "downgrade": {
+      "title": "降级后的资料库",
+      "first": "如果存储量超过新套餐上限，现有数据会保留。在释放足够空间或升级之前，新的上传会受到限制。",
+      "second": "更改订阅不会使已购买的积分到期。账户删除及已退款的购买项目分别按下方服务条款和隐私政策处理。"
+    }
+  },
+  "usageTitle": "了解 AI 用量的大致范围。",
+  "usageText": "以下为规划估算，并非固定报价或保证可处理的论文数量。实际消耗取决于页数、Token、图片、模型选择及任务复杂度。",
+  "usageLabels": ["标准论文精读", "复杂论文精读", "论文问答", "论文摘要", "多论文分析"],
+  "startTitle": "今天就开始阅读。",
+  "startText": "当前免费应用已经可以使用。可用模型和用量限制以应用内显示为准，上述计划中的额度尚未上线。",
+  "download": "下载当前免费应用",
+  "questions": "有疑问？",
+  "contact": "联系我们"
+}

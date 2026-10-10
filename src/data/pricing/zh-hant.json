@@ -1,0 +1,76 @@
+{
+  "title": "訂閱價格",
+  "description": "瞭解 PaperEnjoyer 即將推出的 Free、Lite、Pro 方案、點數包與月度訂閱規則。",
+  "heroStart": "為下一個想法，",
+  "heroAccent": "留出更多空間。",
+  "intro": "閱讀、理解，並從論文中繼續探索。\n選擇適合研究步調的空間與 AI 額度。",
+  "statusTitle": "訂閱方案即將推出。",
+  "statusText": "以下額度、優惠與功能描述的是預計推出的訂閱服務，並非目前免費應用程式的現有權益。付費方案與點數包尚未開放購買。",
+  "plansLabel": "即將推出的月度方案",
+  "month": "/ 月",
+  "monthlyCredits": "每月 {credits} 點數",
+  "storage": "{storage} GB 雲端儲存空間",
+  "credits": "{credits} 點數",
+  "plans": {
+    "Free": {
+      "kicker": "從這裡開始",
+      "description": "適合偶爾閱讀與探索。",
+      "billing": "規劃中的免費方案",
+      "rollover": "每月點數於該週期結束時到期，不遞延。",
+      "features": ["可另購點數包"]
+    },
+    "Lite": {
+      "kicker": "維持日常閱讀步調",
+      "description": "適合日常研究與閱讀。",
+      "billing": "按月計費 · 符合資格的首月 {firstMonthPrice}",
+      "rollover": "點數最多遞延 {rolloverMonths} 個月，餘額上限為 {rolloverCap} 點。",
+      "features": ["基本 AI 功能", "論文匯出", "可另購點數包"]
+    },
+    "Pro": {
+      "kicker": "為深入研究留出空間",
+      "description": "適合更高強度的研究工作。",
+      "billing": "按月計費",
+      "rollover": "點數最多遞延 {rolloverMonths} 個月，餘額上限為 {rolloverCap} 點。",
+      "features": ["進階模型與更快的工作佇列", "研究 Agent", "進階知識庫", "可另購點數包"]
+    }
+  },
+  "freeAllowance": "規劃中的免費額度",
+  "comingSoon": "尚未開放購買",
+  "taxes": "價格以美元（USD）計價。開放購買後，適用稅費與最終總額會在付款前顯示。",
+  "packsEyebrow": "額外一點空間",
+  "packsTitle": "需要時，再補充點數。",
+  "packsText": "所有方案均可單次購買點數包。購買的點數不會到期，也不會每月歸零。",
+  "oneTime": "尚未開放購買 · 單次付款",
+  "rulesEyebrow": "規則，提前說明",
+  "rulesTitle": "規劃中的方案如何運作。",
+  "details": {
+    "welcome": {
+      "title": "給新讀者的一份歡迎禮",
+      "first": "規劃中的註冊贈禮為 {welcomeCredits} 點數，自註冊起 {welcomeDays} 天有效，不可轉讓或兌換現金。與購買的點數包不同，贈送點數會到期。",
+      "second": "符合資格的新帳戶可在註冊後 {introDays} 天內以 {firstMonthPrice} 購買首月 Lite，每個帳戶限一次。之後以每月 {litePrice} 續訂，除非提前取消。"
+    },
+    "spending": {
+      "title": "先使用月度點數，再使用購買的點數",
+      "first": "優先扣除訂閱點數，額度用盡後再使用購買的點數。Lite 與 Pro 的遞延同時受到上述有效期限和餘額上限約束，超出部分不會繼續累積。",
+      "second": "點數用於計量 PaperEnjoyer 功能的使用量，不是貨幣、投資或可轉讓的餘額。自行連接的第三方服務可能另行收費。"
+    },
+    "renewal": {
+      "title": "續訂與取消",
+      "first": "付費訂閱依購買時顯示的帳期按月續訂。每月額度於各訂閱週期開始時更新，不一定是每個曆月的第一天。",
+      "second": "在續訂前取消可避免下一次扣款。目前的付費權益保留至週期結束，之後停止發放新的付費方案額度。已購買的點數保留。退款申請請見下方政策。"
+    },
+    "downgrade": {
+      "title": "降級後的資料庫",
+      "first": "如果儲存量超過新方案上限，現有資料會保留。在釋出足夠空間或升級前，新的上傳會受到限制。",
+      "second": "變更訂閱不會使已購買的點數到期。帳戶刪除及已退款的購買項目分別依下方服務條款與隱私政策處理。"
+    }
+  },
+  "usageTitle": "瞭解 AI 用量的大致範圍。",
+  "usageText": "以下為規劃估算，並非固定報價或保證可處理的論文數量。實際用量取決於頁數、Token、圖片、模型選擇與工作複雜度。",
+  "usageLabels": ["標準論文精讀", "複雜論文精讀", "論文問答", "論文摘要", "多篇論文分析"],
+  "startTitle": "今天就開始閱讀。",
+  "startText": "目前的免費應用程式已可使用。可用模型與用量限制以應用程式內顯示為準，上述規劃中的額度尚未推出。",
+  "download": "下載目前的免費應用程式",
+  "questions": "有疑問？",
+  "contact": "聯絡我們"
+}

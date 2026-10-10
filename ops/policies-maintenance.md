@@ -2,15 +2,19 @@
 
 Published content lives in `src/pages/{pricing,terms,privacy,refund}.astro`. Shared contact
 details and the explicit policy date live in `src/data/policies.ts`. Do not use build time as
-the policy revision date. All four pages are English; the existing home pages retain their
-Chinese and English versions.
+the policy revision date. Pricing and the home page support English, Simplified Chinese,
+Traditional Chinese, Japanese, Korean, Russian, French and German. The three policy bodies
+remain English; links from other languages explicitly label this. English is the root default.
+Commercial facts are shared in `src/data/pricing.ts`; translated copy uses placeholders so
+prices, allowances and validity periods stay consistent. Translation does not enable checkout.
 
 ## Evidence used for the 11 October 2026 version
 
-- Operator supplied by the owner: 白宇, individual, Wuhan, China; correspondence location
-  Huazhong University of Science and Technology; whitefisher873@gmail.com. The university
-  is not described as the business or sponsor. No street address or registration number
-  was invented.
+- Public operator name requested by the owner: PaperEnjoyer. The service is operated by an
+  individual in Wuhan, China; correspondence location Huazhong University of Science and
+  Technology; whitefisher873@gmail.com. The public name does not assert company registration.
+  The university is not described as the business or sponsor. No street address or registration
+  number was invented.
 - Subscription specification: `Whitefish-by/PaperEnjoyer`,
   `docs/订阅规则文档/订阅规则规范v1.md`, baseline commit `3f2d144`.
   Planned credits are not the current PaperCore Free usage ledger. There is no active
@@ -67,19 +71,21 @@ These are maintenance items, not claims of completed legal review or Paddle appr
 
 ## Deployment and verification
 
-Builds include `site-build.json` with the source SHA and a dirty-worktree flag. A manual
-deployment before the final commit intentionally reports `dirty: true`; the subsequent
-clean GitHub Actions build records the final commit. Do not relabel an uncommitted build
-as clean. Confirm the deployed SHA after the main-branch workflow completes.
+Builds include `site-build.json` with the source SHA and a dirty-worktree flag. A build
+before committing intentionally reports `dirty: true`. A fresh build after a local commit
+or from GitHub Actions records the committed source. Do not relabel an uncommitted build
+as clean. Confirm the deployed SHA after either manual or automated publication.
 
-The receiver rejects builds missing any of the four pages or build metadata. Install the
+The receiver rejects builds missing a home or pricing page in any supported language,
+the English policies, compatibility page, sitemap or build metadata. Install the
 updated `ops/receive-site.py` with the same owner/mode as the existing receiver. Apply the
-four exact Nginx routes and slash/index redirects, preserving download aliases. Save the
+English and localized Nginx routes and slash/index redirects, preserving download aliases. Save the
 existing config outside the Nginx include directory, run `nginx -t`, then reload. A reload
 returns before every old worker exits: retry the origin route checks briefly before
 declaring failure or rolling back. Retain the previous release target for atomic rollback.
 
-Run format, Astro, unit, sync-script, build and Chromium/WebKit checks. After deployment,
+Run format, Astro, unit, receiver, sync-script, build and Chromium/WebKit checks. After deployment,
 check direct 200 responses, HTML content types, canonical links, slash/index redirects,
-both homepage link sets and installer range requests. Check GitHub Actions and the final
-live build metadata after pushing. Do not commit deployment keys or generated artifacts.
+all language link sets and installer range requests. Verify the final live build metadata;
+check GitHub Actions as well when publishing through a push. Do not commit deployment keys
+or generated artifacts.

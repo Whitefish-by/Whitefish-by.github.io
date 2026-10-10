@@ -1,0 +1,91 @@
+{
+  "title": "Preise",
+  "description": "Entdecken Sie die geplanten PaperEnjoyer-Tarife Free, Lite und Pro, Credit-Pakete und die Regeln für monatliche Abonnements.",
+  "heroStart": "Mehr Raum für",
+  "heroAccent": "Ihre nächste Idee.",
+  "intro": "Lesen, verstehen und auf Ihren Artikeln aufbauen.\nWählen Sie Speicher und KI-Kontingent passend zu Ihrer Forschung.",
+  "statusTitle": "Abonnements sind in Vorbereitung.",
+  "statusText": "Die folgenden Kontingente, Angebote und Funktionen beschreiben unser geplantes Abonnementangebot. Sie sind nicht die Leistungen der derzeitigen kostenlosen App. Kostenpflichtige Tarife und Credit-Pakete können noch nicht gekauft werden.",
+  "plansLabel": "Geplante monatliche Tarife",
+  "month": "/ Monat",
+  "monthlyCredits": "{credits} Credits pro Monat",
+  "storage": "{storage} GB Cloud-Speicher",
+  "credits": "{credits} Credits",
+  "plans": {
+    "Free": {
+      "kicker": "Ein guter Anfang",
+      "description": "Für gelegentliches Lesen und Entdecken.",
+      "billing": "Geplanter kostenloser Tarif",
+      "rollover": "Monatliche Credits verfallen am Ende des jeweiligen Zeitraums und werden nicht übertragen.",
+      "features": ["Credit-Pakete separat erhältlich"]
+    },
+    "Lite": {
+      "kicker": "Regelmäßig lesen",
+      "description": "Für Ihren Forschungsalltag.",
+      "billing": "Monatliche Abrechnung · erster Monat bei Berechtigung {firstMonthPrice}",
+      "rollover": "Übertrag bis zu {rolloverMonths} Monate, maximaler Bestand {rolloverCap} Credits.",
+      "features": [
+        "Grundlegende KI-Funktionen",
+        "Artikelexport",
+        "Credit-Pakete separat erhältlich"
+      ]
+    },
+    "Pro": {
+      "kicker": "Raum für tiefere Forschung",
+      "description": "Für anspruchsvollere Forschungsaufgaben.",
+      "billing": "Monatliche Abrechnung",
+      "rollover": "Übertrag bis zu {rolloverMonths} Monate, maximaler Bestand {rolloverCap} Credits.",
+      "features": [
+        "Fortgeschrittene Modelle und schnellere Aufgabenwarteschlange",
+        "Forschungsagent",
+        "Erweiterte Wissensbasis",
+        "Credit-Pakete separat erhältlich"
+      ]
+    }
+  },
+  "freeAllowance": "Geplantes kostenloses Kontingent",
+  "comingSoon": "Demnächst verfügbar",
+  "taxes": "Preise in US-Dollar (USD). Sobald Käufe möglich sind, werden anfallende Steuern und der Gesamtbetrag vor der Zahlung angezeigt.",
+  "packsEyebrow": "ETWAS MEHR KAPAZITÄT",
+  "packsTitle": "Credits, wenn Sie sie brauchen.",
+  "packsText": "Einmalig kaufbare Pakete für jeden Tarif. Gekaufte Credits verfallen nicht und werden nicht monatlich zurückgesetzt.",
+  "oneTime": "Demnächst verfügbar · einmaliger Kauf",
+  "rulesEyebrow": "DIE REGELN VORAB",
+  "rulesTitle": "So funktionieren die geplanten Tarife.",
+  "details": {
+    "welcome": {
+      "title": "Ein Willkommen für neue Leser",
+      "first": "Geplant sind {welcomeCredits} geschenkte Credits zur Registrierung, gültig für {welcomeDays} Tage ab Anmeldung. Sie sind weder übertragbar noch gegen Geld einlösbar. Anders als gekaufte Credit-Pakete verfällt dieses Geschenk.",
+      "second": "Berechtigte neue Konten können innerhalb von {introDays} Tagen nach Registrierung den ersten Monat Lite für {firstMonthPrice} kaufen, einmal pro Konto. Danach verlängert sich das Abonnement für {litePrice} pro Monat, sofern es nicht gekündigt wird."
+    },
+    "spending": {
+      "title": "Erst monatliche, dann gekaufte Credits",
+      "first": "Credits aus dem Abonnement werden zuerst verbraucht. Danach werden gekaufte Credits genutzt. Der Übertrag bei Lite und Pro wird sowohl durch die oben genannte Gültigkeitsdauer als auch durch den Höchstbestand begrenzt; Überschüsse sammeln sich nicht an.",
+      "second": "Credits messen die Nutzung von PaperEnjoyer-Funktionen. Sie sind kein Geld, keine Geldanlage und kein übertragbares Guthaben. Selbst verbundene externe Dienste können separate Gebühren berechnen."
+    },
+    "renewal": {
+      "title": "Verlängerung und Kündigung",
+      "first": "Kostenpflichtige Abonnements verlängern sich monatlich nach dem beim Kauf angezeigten Abrechnungsplan. Das monatliche Kontingent wird zu Beginn jedes Abonnementzeitraums erneuert, nicht unbedingt am ersten Tag eines Kalendermonats.",
+      "second": "Kündigen Sie vor der Verlängerung, um die nächste Abbuchung zu verhindern. Ihre bezahlten Leistungen bleiben bis zum Ende des Zeitraums erhalten; danach werden keine neuen Kontingente des kostenpflichtigen Tarifs mehr zugeteilt. Gekaufte Credits bleiben bestehen. Erstattungsanfragen werden in der unten verlinkten Richtlinie behandelt."
+    },
+    "downgrade": {
+      "title": "Ihre Bibliothek nach einem Tarifwechsel",
+      "first": "Übersteigt der gespeicherte Datenumfang das Limit Ihres neuen Tarifs, bleiben vorhandene Daten erhalten. Neue Uploads werden eingeschränkt, bis Sie ausreichend Platz schaffen oder den Tarif erhöhen.",
+      "second": "Ein Abonnementwechsel lässt gekaufte Credits nicht verfallen. Kontolöschung und erstattete Käufe werden gesondert nach den unten verlinkten Nutzungsbedingungen und der Datenschutzerklärung behandelt."
+    }
+  },
+  "usageTitle": "Eine Orientierung zur KI-Nutzung.",
+  "usageText": "Planungswerte, keine festen Preise oder garantierte Artikelanzahl. Der Verbrauch hängt von Seitenzahl, Tokens, Bildern, Modellwahl und Komplexität der Aufgabe ab.",
+  "usageLabels": [
+    "Vertiefte Lektüre eines Standardartikels",
+    "Vertiefte Lektüre eines komplexen Artikels",
+    "Fragen zum Artikel",
+    "Artikelzusammenfassung",
+    "Analyse mehrerer Artikel"
+  ],
+  "startTitle": "Fangen Sie heute an zu lesen.",
+  "startText": "Die aktuelle kostenlose App ist bereits verfügbar. Modelle und Nutzungslimits werden in der App angezeigt; die oben geplanten Kontingente sind noch nicht eingeführt.",
+  "download": "Aktuelle kostenlose App herunterladen",
+  "questions": "Fragen?",
+  "contact": "Kontakt aufnehmen"
+}

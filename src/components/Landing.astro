@@ -3,6 +3,8 @@ import Base from '../layouts/Base.astro';
 import Icon from './Icon.astro';
 import ProductDemo from './ProductDemo.astro';
 import PolicyLinks from './PolicyLinks.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { localizedPath } from '../data/locales';
 import { copy, type Locale } from '../data/copy';
 import { RELEASES_URL, downloadFallback } from '../lib/release.mjs';
 interface Props {
@@ -80,8 +82,8 @@ const schema = {
     {t.skip}
   </a>
   <header class="site-header">
-    <nav class="nav container" aria-label={locale === 'zh' ? '主导航' : 'Main navigation'}>
-      <a class="brand" href={locale === 'zh' ? '/' : '/en/'} aria-label="PaperEnjoyer">
+    <nav class="nav container" aria-label={t.mainNavigation}>
+      <a class="brand" href={localizedPath(locale)} aria-label="PaperEnjoyer">
         <img src="/favicon.svg" width="34" height="34" alt="" />
         <span>PaperEnjoyer</span>
       </a>
@@ -89,19 +91,10 @@ const schema = {
         <a href="#features">{t.nav[0]}</a>
         <a href="#workspace">{t.nav[1]}</a>
         <a href="#faq">{t.nav[2]}</a>
-        <a href="/pricing">{locale === 'zh' ? '订阅价格' : 'Pricing'}</a>
+        <a href={localizedPath(locale, 'pricing')}>{t.pricing}</a>
       </div>
       <div class="nav-actions">
-        <a
-          class="language-link"
-          data-language
-          href={locale === 'zh' ? '/en/' : '/'}
-          lang={locale === 'zh' ? 'en' : 'zh-CN'}
-          aria-label={locale === 'zh' ? 'Switch to English' : '切换到中文'}
-        >
-          <Icon name="globe" size={16} />
-          <span>{locale === 'zh' ? 'EN' : '中文'}</span>
-        </a>
+        <LanguageSwitcher locale={locale} page="home" />
         <a href="#download" class="button button-small">
           {t.download}
           <Icon name="down" size={14} />
@@ -166,7 +159,7 @@ const schema = {
         </div>
         <div class="hero-image-caption">
           <span>{t.heroCaption}</span>
-          <span>{locale === 'zh' ? '真实软件界面' : 'Actual app interface'}</span>
+          <span>{t.actualInterface}</span>
         </div>
       </div>
     </section>
@@ -236,7 +229,7 @@ const schema = {
                 <span class="art-connector">↔</span>
                 <div class="art-note">
                   <Icon name="sparkles" size={18} />
-                  <strong>{locale === 'zh' ? '让理解发生。' : 'Make it click.'}</strong>
+                  <strong>{t.makeItClick}</strong>
                   <div class="art-lines">
                     <i></i>
                     <i></i>
@@ -246,25 +239,19 @@ const schema = {
               </div>
             ) : (
               <div class="agent-art" aria-hidden="true">
-                <div class="art-question">
-                  {locale === 'zh' ? '这个方法的关键想法是什么？' : 'What makes this idea work?'}
-                </div>
+                <div class="art-question">{t.ideaQuestion}</div>
                 <div class="art-response">
                   <span class="art-avatar">
                     <Icon name="sparkles" size={17} />
                   </span>
                   <div>
-                    <strong>
-                      {locale === 'zh' ? '从原文，找到思路。' : 'Think with the source.'}
-                    </strong>
+                    <strong>{t.thinkWithSource}</strong>
                     <div class="art-lines">
                       <i></i>
                       <i></i>
                       <i></i>
                     </div>
-                    <span class="art-citation">
-                      ↗ {locale === 'zh' ? '回到原文' : 'Back to the paper'}
-                    </span>
+                    <span class="art-citation">↗ {t.backToPaper}</span>
                   </div>
                 </div>
               </div>
@@ -468,7 +455,7 @@ const schema = {
     <div class="container">
       <div class="footer-main">
         <div>
-          <a class="brand" href={locale === 'zh' ? '/' : '/en/'}>
+          <a class="brand" href={localizedPath(locale)}>
             <img src="/favicon.svg" width="30" height="30" alt="" />
             <span>PaperEnjoyer</span>
           </a>
@@ -488,7 +475,7 @@ const schema = {
       <PolicyLinks locale={locale} />
       <div class="footer-bottom">
         <span>© {new Date().getUTCFullYear()} PaperEnjoyer</span>
-        <span>Made for the joy of understanding.</span>
+        <span>{t.footerMotto}</span>
       </div>
     </div>
   </footer>

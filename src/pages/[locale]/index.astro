@@ -1,0 +1,15 @@
+---
+import Landing from '../../components/Landing.astro';
+import { locales, translatedLocales, type Locale } from '../../data/locales';
+export function getStaticPaths() {
+  return translatedLocales.map((locale) => ({
+    params: { locale: locales[locale].prefix.slice(1) },
+    props: { locale },
+  }));
+}
+interface Props {
+  locale: Locale;
+}
+---
+
+<Landing locale={Astro.props.locale} />

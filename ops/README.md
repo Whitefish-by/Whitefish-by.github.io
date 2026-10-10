@@ -10,6 +10,12 @@
 
 正常发布：推送官网 `main`，等待 **Check and publish website** 成功。手工发布时先执行官网检查、测试和构建，然后：
 
+官网默认英文：首页 `/`、价格页 `/pricing`。其他语言前缀为 `/zh-hans`、`/zh-hant`、`/ja`、`/ko`、`/ru`、`/fr`、`/de`，首页带尾斜杠，价格页为 `/<语言>/pricing`。旧 `/en`、`/en/`、`/en/index.html` 通过 Nginx 301 转到根首页，保留查询参数；浏览器继承锚点。静态预览另保留跳转页。语言完全由 URL 决定，不按浏览器偏好重定向。
+
+所有首页和价格页共用语言菜单；三份政策正文只提供英文。站点地图由语言配置生成，语言与套餐文案完整性包含在 `npm test` 中。新增语言时必须一起更新路由、部署接收器的必需文件清单及 CI 公网检查。安装接收器或 Nginx 配置前备份当前文件，并先执行 `nginx -t`。
+
+若只需本地提交而不推送，检查完成后先 commit，再构建并手动发布；公网 `/site-build.json` 应与本地提交 SHA 一致且 `dirty` 为 `false`。这不会触发 GitHub Actions。上线检查使用正常浏览器请求，避免站点防护拒绝通用脚本客户端；Cloudflare 可能对邮箱 HTML 做保护性改写，应核验浏览器呈现的邮箱和链接。
+
 定价和政策页面使用 `/pricing`、`/terms`、`/privacy`、`/refund`，由本目录 Nginx 配置提供无尾斜杠规范地址。更新配置时先保存备份并执行 `nginx -t`。内容依据、待核实的运营事项和发布检查见 [policies-maintenance.md](policies-maintenance.md)。`/site-build.json` 标识当前构建的源码提交及工作区是否包含未提交修改。
 
 ```sh

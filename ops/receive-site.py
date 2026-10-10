@@ -25,7 +25,12 @@ try:
                 raise ValueError("Website exceeds 1 GiB")
             archive.extract(member, release, filter="data")
     required = ("index.html", "en/index.html", "pricing/index.html", "terms/index.html",
-                "privacy/index.html", "refund/index.html", "site-build.json")
+                "privacy/index.html", "refund/index.html", "site-build.json", "sitemap.xml")
+    required += tuple(
+        f"{locale}/{page}index.html"
+        for locale in ("zh-hans", "zh-hant", "ja", "ko", "ru", "fr", "de")
+        for page in ("", "pricing/")
+    )
     if not all((release / name).is_file() for name in required):
         raise ValueError("Incomplete website build")
     link = root / ("current-" + uuid.uuid4().hex)

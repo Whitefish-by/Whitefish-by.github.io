@@ -1,0 +1,160 @@
+---
+import Information from '../layouts/Information.astro';
+import { operator } from '../data/policies';
+import { copy } from '../data/copy';
+import { localizedPath, type Locale } from '../data/locales';
+import { pricingCopy, plans, packs, usage, detailKeys, formatPricing } from '../data/pricing';
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = pricingCopy[locale];
+const common = copy[locale];
+const f = (text: string, values: Record<string, string | number> = {}) =>
+  formatPricing(text, locale, values);
+const policyLabel = (key: 'refund' | 'terms' | 'privacy') =>
+  common[key] + (locale === 'en' ? '' : ` (${common.policyEnglish})`);
+---
+
+<Information
+  title={t.title}
+  description={t.description}
+  path={localizedPath(locale, 'pricing')}
+  locale={locale}
+  translated
+>
+  <div class="container">
+    <header class="information-intro pricing-intro">
+      <p class="eyebrow">PAPERENJOYER / {t.title}</p>
+      <h1>
+        {t.heroStart}
+        <br />
+        <span class="text-muted-green">{t.heroAccent}</span>
+      </h1>
+      <p class="information-description" style="white-space: pre-line">
+        {t.intro}
+      </p>
+    </header>
+    <p class="pricing-note" id="plan-status">
+      <strong>{t.statusTitle}</strong> {t.statusText}
+    </p>
+    <div class="pricing-grid" aria-label={t.plansLabel} aria-describedby="plan-status">
+      {plans.map((plan) => {
+        const text = t.plans[plan.name];
+        return (
+          <article
+            class:list={['plan-card', plan.name === 'Lite' && 'featured']}
+            data-plan={plan.name}
+            data-price={plan.price}
+            data-credits={plan.credits}
+            data-storage={plan.storage}
+          >
+            <p class="plan-kicker">{text.kicker}</p>
+            <h2>{plan.name}</h2>
+            <p class="plan-description">{text.description}</p>
+            <p class="plan-price">
+              ${plan.price}
+              <span> {t.month}</span>
+            </p>
+            <p class="plan-billing">{f(text.billing)}</p>
+            <ul class="plan-features">
+              <li>
+                <strong>{f(t.monthlyCredits, { credits: plan.credits })}</strong>
+              </li>
+              <li>
+                <strong>{f(t.storage, { storage: plan.storage })}</strong>
+              </li>
+              <li>
+                {f(text.rollover, {
+                  rolloverMonths: plan.rolloverMonths,
+                  rolloverCap: plan.rolloverCap,
+                })}
+              </li>
+              {text.features.map((feature) => (
+                <li>{feature}</li>
+              ))}
+            </ul>
+            <p class="plan-availability">{plan.name === 'Free' ? t.freeAllowance : t.comingSoon}</p>
+          </article>
+        );
+      })}
+    </div>
+    <p class="pricing-note" style="margin-top: 20px">
+      {t.taxes}
+    </p>
+    <section class="pricing-section" aria-labelledby="packs-heading">
+      <p class="eyebrow">{t.packsEyebrow}</p>
+      <h2 id="packs-heading">{t.packsTitle}</h2>
+      <p>{t.packsText}</p>
+      <div class="pack-grid">
+        {packs.map((pack) => (
+          <article
+            class="pack-card"
+            data-pack={pack.name}
+            data-price={pack.price}
+            data-credits={pack.credits}
+          >
+            <h3>{pack.name}</h3>
+            <p>
+              <strong>${pack.price}</strong> · {f(t.credits, { credits: pack.credits })}
+            </p>
+            <small>{t.oneTime}</small>
+          </article>
+        ))}
+      </div>
+    </section>
+    <section class="pricing-section" aria-labelledby="rules-heading">
+      <p class="eyebrow">{t.rulesEyebrow}</p>
+      <h2 id="rules-heading">{t.rulesTitle}</h2>
+      <div class="pricing-details" style="margin-top: 26px">
+        {detailKeys.map((key) => (
+          <article class="pricing-detail">
+            <h3>{t.details[key].title}</h3>
+            <p>{f(t.details[key].first)}</p>
+            <p>{f(t.details[key].second)}</p>
+            {key === 'renewal' && (
+              <p>
+                <a href="/refund" hreflang="en">
+                  {policyLabel('refund')}
+                </a>
+              </p>
+            )}
+            {key === 'downgrade' && (
+              <p>
+                <a href="/terms" hreflang="en">
+                  {policyLabel('terms')}
+                </a>{' '}
+                ·{' '}
+                <a href="/privacy" hreflang="en">
+                  {policyLabel('privacy')}
+                </a>
+              </p>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+    <section class="pricing-section" aria-labelledby="usage-heading">
+      <h2 id="usage-heading">{t.usageTitle}</h2>
+      <p>{t.usageText}</p>
+      <dl class="usage-list">
+        {t.usageLabels.map((label, index) => (
+          <div>
+            <dt>{label}</dt>
+            <dd>{f(t.credits, { credits: usage[index] })}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+    <section class="pricing-section pricing-bottom" aria-labelledby="start-heading">
+      <h2 id="start-heading">{t.startTitle}</h2>
+      <p>{t.startText}</p>
+      <a class="button" href={`${localizedPath(locale)}#download`}>
+        {t.download}
+      </a>
+      <p style="margin-top: 22px">
+        {t.questions} <a href={`mailto:${operator.email}`}>{t.contact}</a>
+      </p>
+    </section>
+  </div>
+</Information>

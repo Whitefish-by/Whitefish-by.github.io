@@ -1,0 +1,177 @@
+{
+  "lang": "en",
+  "title": "PaperEnjoyer · Understand every idea",
+  "description": "From finding papers to understanding them. PaperEnjoyer brings your library, PDF reader, close-reading notes and AI conversations into one desktop workspace for Windows, macOS and Linux (Ubuntu).",
+  "skip": "Skip to content",
+  "nav": ["Explore features", "The workspace", "Questions"],
+  "download": "Download",
+  "menu": "Open navigation",
+  "eyebrow": "A quieter space for curious minds",
+  "heroStart": "Understand ",
+  "heroAccent": "every idea.",
+  "heroText": "From finding a good paper to making sense of it.\nBring the original, your notes and AI into the same conversation.",
+  "windowsDownload": "Download for Windows",
+  "macDownload": "Download for macOS",
+  "linuxDownload": "Download for Ubuntu",
+  "androidDownload": "Download for Android",
+  "androidDescription": "For Android 10 or later",
+  "androidHelp": "Download the APK, allow installation from this browser and open the file. Install updates over the existing app to keep your library and settings. Use official releases and keep Android System WebView up to date.",
+  "platformLine": "Windows x64 · macOS Apple Silicon · Ubuntu x64",
+  "versionLabel": "Latest stable release",
+  "heroCaption": "Your papers, notes and next ideas. Finally, together.",
+  "demo": "Actual app interface · Illustrative demo content",
+  "introEyebrow": "Follow your curiosity further",
+  "introStart": "Less switching.",
+  "introAccent": "More understanding.",
+  "introText": "Discover, read, ask and organize. Everything you need to think about a paper, right where you need it.",
+  "story": [
+    {
+      "number": "01",
+      "icon": "search",
+      "label": "Discover",
+      "title": "Meet your next\ngreat paper.",
+      "text": "Explore arXiv and OpenAlex by field, author, journal or conference. Follow your research interests and find something worth reading.",
+      "tags": ["Recommendations", "Explore by field", "Follow & save"]
+    },
+    {
+      "number": "02",
+      "icon": "book",
+      "label": "Understand",
+      "title": "The original.\nAnd the insight.",
+      "text": "Read the PDF alongside paragraph translations and close-reading notes. Move between the explanation and the source, at your own pace.",
+      "tags": ["Close reading", "Source navigation", "Focus mode"]
+    },
+    {
+      "number": "03",
+      "icon": "sparkles",
+      "label": "Go deeper",
+      "title": "Keep the paper\nin the conversation.",
+      "text": "Give your Agent the current paper or a set of references. Explore methods, untangle ideas and follow citations back to the original.",
+      "tags": ["Paper context", "Multiple references", "Traceable citations"]
+    }
+  ],
+  "showcaseEyebrow": "One workspace. Room to think.",
+  "showcaseTitle": "See where ideas take shape.",
+  "showcaseText": "From the whole picture to a quiet moment with just the paper and your notes.",
+  "scenes": [
+    {
+      "id": "reading",
+      "label": "Read & understand",
+      "title": "The source, with insight beside it.",
+      "text": "Your library, PDF, notes and Agent work together, keeping the thread of your reading intact.",
+      "alt": "Actual PaperEnjoyer four-panel workspace with a paper library, NeRF PDF, Chinese notes and an example Agent conversation"
+    },
+    {
+      "id": "discovery",
+      "label": "Discover papers",
+      "title": "Let curiosity lead the way.",
+      "text": "Explore recommendations and research fields, then bring interesting papers into your library.",
+      "alt": "Actual PaperEnjoyer discovery page with research paper recommendations, abstracts and bookmarks"
+    },
+    {
+      "id": "agent",
+      "label": "Ask your Agent",
+      "title": "Good questions deserve more room.",
+      "text": "Keep papers in context as you ask follow-up questions, clarify ideas and explore further.",
+      "alt": "Actual PaperEnjoyer Agent panel showing an illustrative conversation about a paper"
+    },
+    {
+      "id": "immersive",
+      "label": "Focus mode",
+      "title": "Just you and the paper.",
+      "text": "Set other panels aside and give the original and your reading notes your full attention.",
+      "alt": "Actual PaperEnjoyer focus mode with the PDF and close-reading notes side by side"
+    }
+  ],
+  "expand": "View larger screenshot",
+  "close": "Close screenshot",
+  "libraryEyebrow": "Build on what you understand",
+  "libraryTitle": "Make every reading count.",
+  "libraryText": "Keep each insight in your own library. Pick up the thread when you return.",
+  "utilities": [
+    {
+      "icon": "folder",
+      "title": "A growing body of knowledge",
+      "text": "Organize papers around your research, with folders, search and archiving that keep your library in order."
+    },
+    {
+      "icon": "file",
+      "title": "Take your notes with you",
+      "text": "Export Markdown notes, papers and related resources. Turn what you understand into material you can use again."
+    },
+    {
+      "icon": "sync",
+      "title": "Another device. The same thread.",
+      "text": "Use your PaperEnjoyer account to sync your library, notes and supported conversations between devices."
+    }
+  ],
+  "localTitle": "Start local. Stay in control.",
+  "localText": "Your library keeps a local copy. Enabled account sync automatically uploads supported content; cloud parsing and AI reading also send relevant materials. Review your sync choices in settings.",
+  "downloadEyebrow": "Your next paper starts here",
+  "downloadTitle": "A new home for your curiosity.",
+  "downloadText": "Get PaperEnjoyer. Make your next reading a discovery.",
+  "windowsDescription": "For Windows x64",
+  "macDescription": "For Apple Silicon Macs",
+  "linuxDescription": "For Ubuntu LTS x64 (amd64)",
+  "installer": "Installer",
+  "diskImage": "Disk image",
+  "staticDownloadStatus": "Download the latest stable release. GitHub is preferred; connection failures automatically use our server.",
+  "latest": "Latest stable release",
+  "checking": "Checking for updates…",
+  "unavailable": "Unable to check for updates. Download buttons still provide the latest mirrored release from our server.",
+  "missing": "No installer for this platform in this release",
+  "published": "Released",
+  "releaseNotes": "Release notes & all versions",
+  "releasePage": "View release",
+  "installHelp": "Installation help",
+  "windowsHelp": "Run Setup.exe and follow the installer. Current builds do not carry a commercial code-signing certificate, so Windows may show a prompt. Verify that the file came from the official release linked here.",
+  "macHelp": "Open the DMG and drag PaperEnjoyer into Applications. Current builds are not notarized by Apple. If macOS blocks the app, review and allow it in System Settings → Privacy & Security, without disabling system-wide protection.",
+  "linuxHelp": "Supports Ubuntu 22.04 / 24.04 / 26.04 LTS x64. Download the DEB, quit the app and run sudo apt install ./PaperEnjoyer-<version>-Linux-amd64.deb from your download folder, replacing <version> with the downloaded version. Installing or upgrading preserves your library and settings.",
+  "faqTitle": "A few things you might be wondering.",
+  "faqs": [
+    [
+      "Which systems and chips are supported?",
+      "Installers are available for Windows x64, macOS Apple Silicon (M-series chips), and Ubuntu 22.04 / 24.04 / 26.04 LTS x64 (amd64). Intel Mac, native Windows ARM and Linux ARM builds are not currently available."
+    ],
+    [
+      "Do I need AI to use PaperEnjoyer?",
+      "Basic PDF reading, library management and existing notes do not depend on AI generation. PaperCore Free provides built-in AI; available models and limits are shown in the app. You can also connect your own model service or Agent account, which may carry separate provider charges."
+    ],
+    [
+      "Where are my papers and notes stored?",
+      "The app keeps a local library and, with account sync enabled, a cloud copy. MinerU parsing and cloud AI reading upload required materials even when library sync is off. Earlier versions may enable sync by default, so review settings. The Privacy Policy linked below explains the data flows."
+    ],
+    [
+      "Can I sync between computers?",
+      "Yes. Your PaperEnjoyer account syncs supported library content and preferences. PaperCore and custom HTTP-model reading tasks run on the server and can continue after the app closes. Codex and DeepSeek/DSH Agent reading is managed on your local device."
+    ],
+    [
+      "How do I update the app?",
+      "On Windows, check for updates in Settings → About & updates, then download and confirm a restart to install. On macOS, download the new DMG, quit the app and replace it in Applications. On Ubuntu, download the new DEB, quit the app and upgrade with sudo apt install. You can always get the latest stable release here."
+    ]
+  ],
+  "footerLine": "Go beyond reading. Find understanding.",
+  "releases": "Releases",
+  "backTop": "Back to top",
+  "notFoundTitle": "This page is still unwritten.",
+  "notFoundText": "Head back home. Your next discovery is waiting.",
+  "home": "Back to home",
+  "mainNavigation": "Main navigation",
+  "pricing": "Pricing",
+  "language": "Language",
+  "policyNavigation": "Pricing and policies",
+  "policyEnglish": "English",
+  "terms": "Terms of Service",
+  "privacy": "Privacy Policy",
+  "refund": "Refund Policy",
+  "actualInterface": "Actual app interface",
+  "makeItClick": "Make it click.",
+  "ideaQuestion": "What makes this idea work?",
+  "thinkWithSource": "Think with the source.",
+  "backToPaper": "Back to the paper",
+  "footerMotto": "Made for the joy of understanding.",
+  "demoReset": "Reset / retry",
+  "demoOpen": "Open in a new tab",
+  "demoAlt": "Attention Is All You Need: PDF, close reading notes and a Self-Attention conversation",
+  "demoTagline": "YOUR RESEARCH, TOGETHER"
+}

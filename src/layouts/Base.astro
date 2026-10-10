@@ -1,13 +1,20 @@
 ---
 import '../styles/global.css';
-import type { Locale } from '../data/copy';
+import '../styles/localization.css';
+import {
+  locales,
+  localeKeys,
+  localizedPath,
+  type Locale,
+  type TranslatedPage,
+} from '../data/locales';
 interface Props {
   title: string;
   description: string;
   locale: Locale;
   noindex?: boolean;
   canonicalPath?: string;
-  translatedHome?: boolean;
+  translatedPage?: TranslatedPage | false;
 }
 const {
   title,
@@ -15,13 +22,13 @@ const {
   locale,
   noindex = false,
   canonicalPath,
-  translatedHome = true,
+  translatedPage = 'home',
 } = Astro.props;
-const canonical = new URL(canonicalPath ?? (locale === 'en' ? '/en/' : '/'), Astro.site);
+const canonical = new URL(canonicalPath ?? localizedPath(locale), Astro.site);
 ---
 
 <!doctype html>
-<html lang={locale === 'zh' ? 'zh-CN' : 'en'}>
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -32,11 +39,20 @@ const canonical = new URL(canonicalPath ?? (locale === 'en' ? '/en/' : '/'), Ast
     ) : (
       <>
         <link rel="canonical" href={canonical} />
-        {translatedHome && (
+        {translatedPage && (
           <>
-            <link rel="alternate" hreflang="zh-CN" href="https://paperenjoyer.com/" />
-            <link rel="alternate" hreflang="en" href="https://paperenjoyer.com/en/" />
-            <link rel="alternate" hreflang="x-default" href="https://paperenjoyer.com/" />
+            {localeKeys.map((key) => (
+              <link
+                rel="alternate"
+                hreflang={key}
+                href={new URL(localizedPath(key, translatedPage), Astro.site)}
+              />
+            ))}
+            <link
+              rel="alternate"
+              hreflang="x-default"
+              href={new URL(localizedPath('en', translatedPage), Astro.site)}
+            />
           </>
         )}
       </>
@@ -48,7 +64,7 @@ const canonical = new URL(canonicalPath ?? (locale === 'en' ? '/en/' : '/'), Ast
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content={locale === 'zh' ? 'zh_CN' : 'en_US'} />
+    <meta property="og:locale" content={locales[locale].og} />
     <meta property="og:image" content="https://paperenjoyer.com/social-card.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />

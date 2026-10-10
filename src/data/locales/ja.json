@@ -1,0 +1,177 @@
+{
+  "lang": "ja",
+  "title": "PaperEnjoyer · 一つひとつのアイデアを理解する",
+  "description": "論文との出会いから深い理解へ。PaperEnjoyer は文献ライブラリ、PDF リーダー、精読ノート、AI 対話を一つのデスクトップ作業環境にまとめます。Windows、macOS、Linux（Ubuntu）に対応。",
+  "skip": "本文へスキップ",
+  "nav": ["機能を見る", "ワークスペース", "よくある質問"],
+  "download": "ダウンロード",
+  "menu": "ナビゲーションを開く",
+  "eyebrow": "好奇心を、静かに深める場所",
+  "heroStart": "理解しよう。",
+  "heroAccent": "一つひとつのアイデアを。",
+  "heroText": "良い論文を見つけることから、その意味をつかむことへ。\n原文、ノート、AI とともに考えましょう。",
+  "windowsDownload": "Windows 版をダウンロード",
+  "macDownload": "macOS 版をダウンロード",
+  "linuxDownload": "Ubuntu 版をダウンロード",
+  "androidDownload": "Android 版をダウンロード",
+  "androidDescription": "Android 10 以降に対応",
+  "androidHelp": "APK をダウンロードし、このブラウザーからのインストールを許可してファイルを開いてください。更新は上書きで行い、ライブラリと設定を引き継げます。公式配布版を使用し、Android System WebView を最新に保ってください。",
+  "platformLine": "Windows x64 · macOS Apple Silicon · Ubuntu x64",
+  "versionLabel": "最新の安定版",
+  "heroCaption": "論文も、ノートも、次のひらめきも。一つの場所に。",
+  "demo": "実際のアプリ画面 · 内容はデモ用の例です",
+  "introEyebrow": "好奇心の、その先へ",
+  "introStart": "切り替える時間を減らし、",
+  "introAccent": "理解する時間を増やす。",
+  "introText": "見つける、読む、質問する、整理する。論文を考えるために必要なものを、手の届く場所に。",
+  "story": [
+    {
+      "number": "01",
+      "icon": "search",
+      "label": "発見する",
+      "title": "次に読みたい論文に、\nここで出会う。",
+      "text": "arXiv と OpenAlex を分野、著者、学術誌、学会から探索。研究テーマをフォローして、読む価値のある論文を見つけましょう。",
+      "tags": ["論文のおすすめ", "分野から探す", "フォローと保存"]
+    },
+    {
+      "number": "02",
+      "icon": "book",
+      "label": "理解する",
+      "title": "原文の隣に、\n理解の手がかり。",
+      "text": "PDF と段落ごとの翻訳、精読ノートを並べて表示。解説と原文を行き来しながら、自分のペースで読み進められます。",
+      "tags": ["精読ノート", "原文への移動", "集中モード"]
+    },
+    {
+      "number": "03",
+      "icon": "sparkles",
+      "label": "掘り下げる",
+      "title": "論文をもとに、\n対話を続ける。",
+      "text": "現在の論文や複数の参考文献を Agent に渡し、手法や考え方を深く検討。回答の引用から原文に戻って確認できます。",
+      "tags": ["論文の文脈", "複数文献で対話", "引用元を確認"]
+    }
+  ],
+  "showcaseEyebrow": "一つの作業空間。広がる思考。",
+  "showcaseTitle": "アイデアが形になる場所。",
+  "showcaseText": "全体を見渡す画面から、論文とノートだけに向き合う静かな時間まで。",
+  "scenes": [
+    {
+      "id": "reading",
+      "label": "読む・理解する",
+      "title": "原文と理解を、隣り合わせに。",
+      "text": "ライブラリ、PDF、ノート、Agent が連携し、読書の流れをつなぎます。",
+      "alt": "論文ライブラリ、NeRF の PDF、中国語ノート、Agent の対話例を表示した PaperEnjoyer の実際の4ペイン画面"
+    },
+    {
+      "id": "discovery",
+      "label": "論文を探す",
+      "title": "好奇心の向かう先へ。",
+      "text": "おすすめや研究分野から論文を探し、気になる文献をライブラリに保存しましょう。",
+      "alt": "論文のおすすめ、要旨、ブックマークを表示した PaperEnjoyer の論文探索画面"
+    },
+    {
+      "id": "agent",
+      "label": "Agent に質問",
+      "title": "良い問いを、さらに深く。",
+      "text": "論文の文脈を保ちながら質問を重ね、考えを整理し、理解を広げます。",
+      "alt": "論文についての対話例を表示した PaperEnjoyer の Agent パネル"
+    },
+    {
+      "id": "immersive",
+      "label": "集中モード",
+      "title": "今は、論文だけに集中。",
+      "text": "使わないパネルを閉じ、原文と精読ノートに向き合えます。",
+      "alt": "PDF と精読ノートを並べた PaperEnjoyer の集中モード"
+    }
+  ],
+  "expand": "画面を拡大する",
+  "close": "拡大画像を閉じる",
+  "libraryEyebrow": "理解を、次の知識へ",
+  "libraryTitle": "読んだ経験を、積み重ねる。",
+  "libraryText": "得た気づきを自分のライブラリに残し、次に開いたときも思考の続きを。",
+  "utilities": [
+    {
+      "icon": "folder",
+      "title": "知識を整理して蓄える",
+      "text": "研究テーマごとに論文を整理。フォルダー、検索、アーカイブで増えていく文献を管理できます。"
+    },
+    {
+      "icon": "file",
+      "title": "ノートを持ち出す",
+      "text": "Markdown の精読ノート、論文、関連資料をエクスポートし、理解した内容を再利用できる形に。"
+    },
+    {
+      "icon": "sync",
+      "title": "別の端末でも、続きから",
+      "text": "PaperEnjoyer アカウントでライブラリ、ノート、対応する対話を端末間で同期できます。"
+    }
+  ],
+  "localTitle": "ローカルから始める。自分で選ぶ。",
+  "localText": "ライブラリのコピーは端末に保存されます。アカウント同期を有効にすると対応する内容が自動でアップロードされ、クラウド解析や AI 読解でも関連資料が送信されます。設定で同期の選択を確認してください。",
+  "downloadEyebrow": "次の論文は、ここから",
+  "downloadTitle": "好奇心に、新しい居場所を。",
+  "downloadText": "PaperEnjoyer で、次の読書を新たな発見に。",
+  "windowsDescription": "Windows x64 向け",
+  "macDescription": "Apple Silicon Mac 向け",
+  "linuxDescription": "Ubuntu LTS x64（amd64）向け",
+  "installer": "インストーラー",
+  "diskImage": "ディスクイメージ",
+  "staticDownloadStatus": "最新の安定版をダウンロード。GitHub に優先して接続し、接続できない場合は公式サーバーに切り替えます。",
+  "latest": "最新の安定版",
+  "checking": "更新を確認中…",
+  "unavailable": "更新を確認できません。ダウンロードボタンから、公式サーバーに同期済みの最新バージョンを取得できます。",
+  "missing": "このバージョンには、このプラットフォーム向けのインストーラーがありません",
+  "published": "公開日",
+  "releaseNotes": "変更履歴とすべてのバージョン",
+  "releasePage": "リリースを見る",
+  "installHelp": "インストール方法",
+  "windowsHelp": "Setup.exe を実行し、案内に従ってください。現在のビルドには商用コード署名証明書がないため、Windows が警告を表示する場合があります。このページからリンクした公式配布元のファイルであることを確認してください。",
+  "macHelp": "DMG を開き、PaperEnjoyer を「アプリケーション」にドラッグします。現在のビルドは Apple の公証を受けていません。起動がブロックされた場合は「システム設定 → プライバシーとセキュリティ」で確認して許可してください。システム全体の保護を無効にする必要はありません。",
+  "linuxHelp": "Ubuntu 22.04 / 24.04 / 26.04 LTS x64 に対応。DEB をダウンロードしてアプリを終了し、ダウンロード先で sudo apt install ./PaperEnjoyer-<version>-Linux-amd64.deb を実行してください。<version> は取得したバージョンに置き換えます。インストールや更新でライブラリと設定は保持されます。",
+  "faqTitle": "よくある質問。",
+  "faqs": [
+    [
+      "対応する OS とチップは？",
+      "Windows x64、macOS Apple Silicon（M シリーズ）、Ubuntu 22.04 / 24.04 / 26.04 LTS x64（amd64）向けに配布しています。Intel Mac、ネイティブの Windows ARM、Linux ARM 向けビルドは現在ありません。"
+    ],
+    [
+      "AI の設定は必須ですか？",
+      "基本的な PDF 閲覧、文献管理、保存済みノートの利用に AI 生成は不要です。PaperCore Free の内蔵 AI で利用できるモデルや上限はアプリ内で確認できます。自分のモデルサービスや Agent アカウントを接続することもでき、その提供元の料金が別途かかる場合があります。"
+    ],
+    [
+      "論文やノートはどこに保存されますか？",
+      "端末にライブラリを保持し、アカウント同期を有効にするとクラウドにもコピーを保存します。MinerU 解析やクラウド AI 読解は、ライブラリ同期が無効でも必要な資料をアップロードします。旧バージョンでは同期が初期状態で有効な場合があるため設定を確認してください。詳しくはページ下部のプライバシーポリシーをご覧ください。"
+    ],
+    [
+      "複数のパソコンで同期できますか？",
+      "はい。PaperEnjoyer アカウントで対応する文献データや設定を同期できます。PaperCore とカスタム HTTP モデルの精読タスクはサーバーで動き、アプリを閉じても継続できます。Codex や DeepSeek/DSH などの Agent 精読はローカル端末で実行されます。"
+    ],
+    [
+      "アプリを更新するには？",
+      "Windows はアプリの「設定 → バージョン情報と更新」で確認・ダウンロードし、再起動を承認してインストールします。macOS は新しい DMG を取得し、アプリを終了して「アプリケーション」の旧版を置き換えます。Ubuntu は新しい DEB を取得し、アプリを終了して sudo apt install で更新します。このページからも最新の安定版を取得できます。"
+    ]
+  ],
+  "footerLine": "読む、その先の理解へ。",
+  "releases": "リリース",
+  "backTop": "ページの先頭へ",
+  "notFoundTitle": "このページは、まだ白紙です。",
+  "notFoundText": "ホームに戻って、次の発見を。",
+  "home": "ホームへ戻る",
+  "mainNavigation": "メインナビゲーション",
+  "pricing": "料金",
+  "language": "言語",
+  "policyNavigation": "料金とポリシー",
+  "policyEnglish": "英語",
+  "terms": "利用規約",
+  "privacy": "プライバシーポリシー",
+  "refund": "返金ポリシー",
+  "actualInterface": "実際のアプリ画面",
+  "makeItClick": "理解につながる。",
+  "ideaQuestion": "この手法の重要なアイデアは何ですか？",
+  "thinkWithSource": "原文とともに考える。",
+  "backToPaper": "原文へ戻る",
+  "footerMotto": "理解する喜びのために。",
+  "demoReset": "リセット / 再試行",
+  "demoOpen": "新しいタブで開く",
+  "demoAlt": "Attention Is All You Need：PDF、精読ノート、Self-Attention についての対話",
+  "demoTagline": "研究を、一つの場所に"
+}

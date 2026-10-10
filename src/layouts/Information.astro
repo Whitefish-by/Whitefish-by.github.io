@@ -1,37 +1,48 @@
 ---
 import Base from './Base.astro';
 import PolicyLinks from '../components/PolicyLinks.astro';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import { copy } from '../data/copy';
+import { localizedPath, type Locale } from '../data/locales';
 import '../styles/information.css';
 interface Props {
   title: string;
   description: string;
   path: string;
+  locale?: Locale;
+  translated?: boolean;
 }
-const { title, description, path } = Astro.props;
+const { title, description, path, locale = 'en', translated = false } = Astro.props;
+const t = copy[locale];
 ---
 
 <Base
   title={`${title} · PaperEnjoyer`}
   description={description}
-  locale="en"
+  locale={locale}
   canonicalPath={path}
-  translatedHome={false}
+  translatedPage={translated ? 'pricing' : false}
 >
   <a class="skip-link" href="#main">
-    Skip to content
+    {t.skip}
   </a>
   <header class="site-header information-header">
-    <nav class="container information-nav" aria-label="Main navigation">
-      <a class="brand" href="/en/" aria-label="PaperEnjoyer home">
+    <nav class="container information-nav" aria-label={t.mainNavigation}>
+      <a class="brand" href={localizedPath(locale)} aria-label="PaperEnjoyer">
         <img src="/favicon.svg" width="34" height="34" alt="" />
         <span>PaperEnjoyer</span>
       </a>
       <div class="information-actions">
-        <a href="/pricing" aria-current={path === '/pricing' ? 'page' : undefined}>
-          Pricing
+        <a
+          class="information-pricing-link"
+          href={localizedPath(locale, 'pricing')}
+          aria-current={translated ? 'page' : undefined}
+        >
+          {t.pricing}
         </a>
-        <a class="button button-small" href="/en/#download">
-          Download
+        {translated && <LanguageSwitcher locale={locale} page="pricing" />}
+        <a class="button button-small" href={`${localizedPath(locale)}#download`}>
+          {t.download}
         </a>
       </div>
     </nav>
@@ -41,13 +52,13 @@ const { title, description, path } = Astro.props;
   </main>
   <footer class="site-footer">
     <div class="container">
-      <a class="brand" href="/en/">
+      <a class="brand" href={localizedPath(locale)}>
         PaperEnjoyer
       </a>
-      <PolicyLinks current={path} />
+      <PolicyLinks locale={locale} current={path} />
       <div class="footer-bottom">
         <span>© {new Date().getUTCFullYear()} PaperEnjoyer</span>
-        <a href="#main">Back to top ↑</a>
+        <a href="#main">{t.backTop} ↑</a>
       </div>
     </div>
   </footer>

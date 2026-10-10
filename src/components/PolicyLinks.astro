@@ -1,22 +1,29 @@
 ---
 import { policyLinks } from '../data/policies';
-import type { Locale } from '../data/copy';
+import { copy, type Locale } from '../data/copy';
+import { localizedPath } from '../data/locales';
 interface Props {
   locale?: Locale;
   current?: string;
 }
 const { locale = 'en', current } = Astro.props;
+const t = copy[locale];
 ---
 
-<nav
-  class="policy-links"
-  aria-label={locale === 'zh' ? '价格与政策（英文）' : 'Pricing and policies'}
->
-  {policyLinks.map((link) => (
-    <a href={link.href} aria-current={current === link.href ? 'page' : undefined}>
-      {link[locale]}
-    </a>
-  ))}
+<nav class="policy-links" aria-label={t.policyNavigation}>
+  {policyLinks.map((link) => {
+    const href = link.key === 'pricing' ? localizedPath(locale, 'pricing') : link.href;
+    return (
+      <a
+        href={href}
+        hreflang={link.key === 'pricing' ? locale : 'en'}
+        aria-current={current === href ? 'page' : undefined}
+      >
+        {t[link.key]}
+        {locale !== 'en' && link.key !== 'pricing' ? ` (${t.policyEnglish})` : ''}
+      </a>
+    );
+  })}
 </nav>
 <style>
   .policy-links {

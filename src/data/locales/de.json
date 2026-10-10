@@ -1,0 +1,177 @@
+{
+  "lang": "de",
+  "title": "PaperEnjoyer · Jede Idee verstehen",
+  "description": "Von der Suche nach Fachartikeln zum Verstehen. PaperEnjoyer vereint Bibliothek, PDF-Lektüre, vertiefende Notizen und KI-Gespräche in einem Arbeitsbereich für Windows, macOS und Linux (Ubuntu).",
+  "skip": "Zum Inhalt springen",
+  "nav": ["Funktionen", "Arbeitsbereich", "Fragen"],
+  "download": "Herunterladen",
+  "menu": "Navigation öffnen",
+  "eyebrow": "Ein ruhiger Ort für neugierige Gedanken",
+  "heroStart": "Jede Idee ",
+  "heroAccent": "verstehen.",
+  "heroText": "Vom Entdecken eines guten Artikels zum wirklichen Verstehen.\nOriginal, Notizen und KI in einem gemeinsamen Gespräch.",
+  "windowsDownload": "Für Windows herunterladen",
+  "macDownload": "Für macOS herunterladen",
+  "linuxDownload": "Für Ubuntu herunterladen",
+  "androidDownload": "Für Android herunterladen",
+  "androidDescription": "Für Android 10 oder neuer",
+  "androidHelp": "Laden Sie die APK herunter, erlauben Sie die Installation aus diesem Browser und öffnen Sie die Datei. Installieren Sie Updates über die vorhandene App, um Bibliothek und Einstellungen zu behalten. Verwenden Sie offizielle Versionen und halten Sie Android System WebView aktuell.",
+  "platformLine": "Windows x64 · macOS Apple Silicon · Ubuntu x64",
+  "versionLabel": "Aktuelle stabile Version",
+  "heroCaption": "Ihre Artikel, Notizen und nächsten Ideen. Endlich zusammen.",
+  "demo": "Echte App-Oberfläche · Beispielinhalte zur Demonstration",
+  "introEyebrow": "Der Neugier weiter folgen",
+  "introStart": "Weniger wechseln.",
+  "introAccent": "Mehr verstehen.",
+  "introText": "Entdecken, lesen, fragen und ordnen. Alles, was Sie zum Nachdenken über einen Artikel brauchen, direkt zur Hand.",
+  "story": [
+    {
+      "number": "01",
+      "icon": "search",
+      "label": "Entdecken",
+      "title": "Ihr nächster guter Artikel\nwartet hier.",
+      "text": "Erkunden Sie arXiv und OpenAlex nach Fachgebiet, Autor, Zeitschrift oder Konferenz. Folgen Sie Ihren Forschungsthemen und finden Sie lesenswerte Arbeiten.",
+      "tags": ["Empfehlungen", "Fachgebiete erkunden", "Folgen und speichern"]
+    },
+    {
+      "number": "02",
+      "icon": "book",
+      "label": "Verstehen",
+      "title": "Das Original.\nUnd die Erkenntnis.",
+      "text": "Lesen Sie das PDF neben Absatzübersetzungen und vertiefenden Notizen. Wechseln Sie in Ihrem Tempo zwischen Erklärung und Quelle.",
+      "tags": ["Vertiefte Lektüre", "Zur Quelle springen", "Fokusmodus"]
+    },
+    {
+      "number": "03",
+      "icon": "sparkles",
+      "label": "Vertiefen",
+      "title": "Den Artikel\nim Gespräch behalten.",
+      "text": "Geben Sie Ihrem Agenten den aktuellen Artikel oder mehrere Quellen mit. Untersuchen Sie Methoden, klären Sie Ideen und folgen Sie Zitaten zurück zum Original.",
+      "tags": ["Artikelkontext", "Mehrere Quellen", "Nachvollziehbare Zitate"]
+    }
+  ],
+  "showcaseEyebrow": "Ein Arbeitsbereich. Raum zum Denken.",
+  "showcaseTitle": "Hier nehmen Ideen Gestalt an.",
+  "showcaseText": "Vom großen Überblick bis zum ruhigen Moment mit dem Artikel und Ihren Notizen.",
+  "scenes": [
+    {
+      "id": "reading",
+      "label": "Lesen und verstehen",
+      "title": "Die Quelle und Ihre Erkenntnisse nebeneinander.",
+      "text": "Bibliothek, PDF, Notizen und Agent arbeiten zusammen, damit der Lesefaden erhalten bleibt.",
+      "alt": "Echte PaperEnjoyer-Oberfläche mit vier Bereichen: Bibliothek, NeRF-PDF, chinesische Notizen und ein Beispielgespräch mit dem Agenten"
+    },
+    {
+      "id": "discovery",
+      "label": "Artikel entdecken",
+      "title": "Lassen Sie sich von Neugier leiten.",
+      "text": "Erkunden Sie Empfehlungen und Forschungsgebiete und nehmen Sie interessante Artikel in Ihre Bibliothek auf.",
+      "alt": "PaperEnjoyer-Entdeckungsseite mit Artikelempfehlungen, Zusammenfassungen und Lesezeichen"
+    },
+    {
+      "id": "agent",
+      "label": "Den Agenten fragen",
+      "title": "Gute Fragen verdienen mehr Raum.",
+      "text": "Stellen Sie weitere Fragen, klären Sie Gedanken und gehen Sie tiefer, während die Artikel im Kontext bleiben.",
+      "alt": "Agent-Bereich von PaperEnjoyer mit einem Beispielgespräch zu einem Artikel"
+    },
+    {
+      "id": "immersive",
+      "label": "Fokusmodus",
+      "title": "Nur Sie und der Artikel.",
+      "text": "Blenden Sie ungenutzte Bereiche aus und konzentrieren Sie sich auf das Original und Ihre Notizen.",
+      "alt": "Fokusmodus von PaperEnjoyer mit PDF und vertiefenden Notizen nebeneinander"
+    }
+  ],
+  "expand": "Bildschirmaufnahme vergrößern",
+  "close": "Bild schließen",
+  "libraryEyebrow": "Auf dem Verstandenen aufbauen",
+  "libraryTitle": "Jede Lektüre zählt.",
+  "libraryText": "Bewahren Sie jede Erkenntnis in Ihrer Bibliothek auf und greifen Sie den Gedanken später wieder auf.",
+  "utilities": [
+    {
+      "icon": "folder",
+      "title": "Wissen geordnet sammeln",
+      "text": "Ordnen Sie Artikel nach Ihren Forschungsthemen. Ordner, Suche und Archivierung halten Ihre wachsende Bibliothek übersichtlich."
+    },
+    {
+      "icon": "file",
+      "title": "Notizen mitnehmen",
+      "text": "Exportieren Sie Markdown-Notizen, Artikel und zugehörige Ressourcen. Machen Sie aus Ihrem Verständnis wiederverwendbares Material."
+    },
+    {
+      "icon": "sync",
+      "title": "Anderes Gerät, gleicher Gedankengang",
+      "text": "Synchronisieren Sie Bibliothek, Notizen und unterstützte Gespräche über Ihr PaperEnjoyer-Konto zwischen Geräten."
+    }
+  ],
+  "localTitle": "Lokal beginnen. Selbst entscheiden.",
+  "localText": "Ihre Bibliothek behält eine lokale Kopie. Bei aktivierter Kontosynchronisierung werden unterstützte Inhalte automatisch hochgeladen; auch Cloud-Analyse und KI-Lektüre übertragen benötigtes Material. Prüfen Sie Ihre Synchronisierungsauswahl in den Einstellungen.",
+  "downloadEyebrow": "Ihr nächster Artikel beginnt hier",
+  "downloadTitle": "Ein neues Zuhause für Ihre Neugier.",
+  "downloadText": "Holen Sie sich PaperEnjoyer. Machen Sie Ihre nächste Lektüre zu einer Entdeckung.",
+  "windowsDescription": "Für Windows x64",
+  "macDescription": "Für Macs mit Apple Silicon",
+  "linuxDescription": "Für Ubuntu LTS x64 (amd64)",
+  "installer": "Installationsprogramm",
+  "diskImage": "Datenträgerabbild",
+  "staticDownloadStatus": "Laden Sie die aktuelle stabile Version herunter. GitHub wird bevorzugt; bei Verbindungsfehlern wird automatisch unser offizieller Server verwendet.",
+  "latest": "Aktuelle stabile Version",
+  "checking": "Updates werden gesucht…",
+  "unavailable": "Updates konnten nicht geprüft werden. Über die Download-Schaltflächen erhalten Sie weiterhin die zuletzt auf unseren Server synchronisierte Version.",
+  "missing": "Für diese Plattform gibt es in dieser Version kein Installationspaket",
+  "published": "Veröffentlicht",
+  "releaseNotes": "Änderungen und alle Versionen",
+  "releasePage": "Version ansehen",
+  "installHelp": "Installationshilfe",
+  "windowsHelp": "Führen Sie Setup.exe aus und folgen Sie der Anleitung. Aktuelle Builds haben kein kommerzielles Codesignaturzertifikat, daher kann Windows einen Hinweis anzeigen. Prüfen Sie, ob die Datei aus der hier verlinkten offiziellen Veröffentlichung stammt.",
+  "macHelp": "Öffnen Sie die DMG-Datei und ziehen Sie PaperEnjoyer in „Programme“. Aktuelle Builds sind nicht von Apple notarisiert. Wenn macOS die App blockiert, prüfen und erlauben Sie sie unter Systemeinstellungen → Datenschutz & Sicherheit, ohne den systemweiten Schutz zu deaktivieren.",
+  "linuxHelp": "Unterstützt Ubuntu 22.04 / 24.04 / 26.04 LTS x64. Laden Sie die DEB-Datei herunter, beenden Sie die App und führen Sie im Download-Ordner sudo apt install ./PaperEnjoyer-<version>-Linux-amd64.deb aus. Ersetzen Sie <version> durch die heruntergeladene Versionsnummer. Bibliothek und Einstellungen bleiben bei Installation und Update erhalten.",
+  "faqTitle": "Fragen vor dem Start.",
+  "faqs": [
+    [
+      "Welche Systeme und Chips werden unterstützt?",
+      "Installationspakete gibt es für Windows x64, macOS Apple Silicon (Chips der M-Serie) und Ubuntu 22.04 / 24.04 / 26.04 LTS x64 (amd64). Für Intel Mac, natives Windows ARM und Linux ARM sind derzeit keine Builds verfügbar."
+    ],
+    [
+      "Muss ich KI einrichten?",
+      "Grundlegendes PDF-Lesen, Bibliotheksverwaltung und vorhandene Notizen benötigen keine KI-Generierung. PaperCore Free bietet integrierte KI; verfügbare Modelle und Limits werden in der App angezeigt. Sie können auch einen eigenen Modelldienst oder ein Agent-Konto verbinden. Deren Anbieter können separate Gebühren erheben."
+    ],
+    [
+      "Wo werden meine Artikel und Notizen gespeichert?",
+      "Die App führt eine lokale Bibliothek und bei aktivierter Kontosynchronisierung eine Cloud-Kopie. MinerU-Analyse und Cloud-KI-Lektüre laden benötigte Materialien auch dann hoch, wenn die Bibliothekssynchronisierung deaktiviert ist. Ältere Versionen können die Synchronisierung standardmäßig aktivieren: Prüfen Sie Ihre Einstellungen. Details finden Sie in der Datenschutzerklärung im Seitenfuß."
+    ],
+    [
+      "Kann ich mehrere Computer synchronisieren?",
+      "Ja. Ihr PaperEnjoyer-Konto synchronisiert unterstützte Bibliotheksinhalte und Einstellungen. Leseaufgaben mit PaperCore und benutzerdefinierten HTTP-Modellen laufen auf dem Server und können nach dem Schließen der App weiterlaufen. Agent-Lektüre mit Codex und DeepSeek/DSH wird auf Ihrem lokalen Gerät ausgeführt."
+    ],
+    [
+      "Wie aktualisiere ich die App?",
+      "Unter Windows suchen und laden Sie Updates in Einstellungen → Über & Updates und bestätigen den Neustart zur Installation. Unter macOS laden Sie die neue DMG-Datei, beenden die App und ersetzen sie in „Programme“. Unter Ubuntu laden Sie die neue DEB-Datei, beenden die App und aktualisieren mit sudo apt install. Die aktuelle stabile Version finden Sie jederzeit hier."
+    ]
+  ],
+  "footerLine": "Über das Lesen hinaus. Zum Verstehen.",
+  "releases": "Versionen",
+  "backTop": "Nach oben",
+  "notFoundTitle": "Diese Seite ist noch ungeschrieben.",
+  "notFoundText": "Zurück zur Startseite. Ihre nächste Entdeckung wartet.",
+  "home": "Zur Startseite",
+  "mainNavigation": "Hauptnavigation",
+  "pricing": "Preise",
+  "language": "Sprache",
+  "policyNavigation": "Preise und Richtlinien",
+  "policyEnglish": "Englisch",
+  "terms": "Nutzungsbedingungen",
+  "privacy": "Datenschutzerklärung",
+  "refund": "Erstattungsrichtlinie",
+  "actualInterface": "Echte App-Oberfläche",
+  "makeItClick": "Wenn es verständlich wird.",
+  "ideaQuestion": "Was ist die zentrale Idee dieser Methode?",
+  "thinkWithSource": "Mit dem Original weiterdenken.",
+  "backToPaper": "Zurück zum Artikel",
+  "footerMotto": "Für die Freude am Verstehen.",
+  "demoReset": "Zurücksetzen / erneut versuchen",
+  "demoOpen": "In neuem Tab öffnen",
+  "demoAlt": "Attention Is All You Need: PDF, vertiefende Notizen und ein Gespräch über Self-Attention",
+  "demoTagline": "IHRE FORSCHUNG, ZUSAMMEN"
+}

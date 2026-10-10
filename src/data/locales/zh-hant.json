@@ -1,0 +1,177 @@
+{
+  "lang": "zh-Hant",
+  "title": "PaperEnjoyer · 讀懂每一個想法",
+  "description": "從發現論文到深入理解。PaperEnjoyer 將論文資料庫、PDF 閱讀、段落精讀和 AI 對話帶到同一個桌面工作空間，支援 Windows、macOS 與 Linux（Ubuntu）。",
+  "skip": "跳至正文",
+  "nav": ["探索功能", "走進工作區", "常見問題"],
+  "download": "下載",
+  "menu": "開啟導覽",
+  "eyebrow": "為好奇心，留一個專注的空間",
+  "heroStart": "讀懂",
+  "heroAccent": "每一個想法。",
+  "heroText": "從發現一篇好論文，到真正理解它。\n讓原文、精讀筆記與 AI，陪你一起思考。",
+  "windowsDownload": "下載 Windows 版",
+  "macDownload": "下載 macOS 版",
+  "linuxDownload": "下載 Ubuntu 版",
+  "androidDownload": "下載 Android 版",
+  "androidDescription": "適用於 Android 10 以上版本",
+  "androidHelp": "下載 APK，允許目前的瀏覽器安裝後開啟檔案。更新時直接覆蓋安裝，保留資料庫與設定。請使用官方發行套件，並保持 Android System WebView 為最新版本。",
+  "platformLine": "Windows x64 · macOS Apple Silicon · Ubuntu x64",
+  "versionLabel": "最新穩定版",
+  "heroCaption": "你的論文、筆記與靈感，終於在同一個地方。",
+  "demo": "實際軟體介面 · 內容為示範範例",
+  "introEyebrow": "從好奇，到理解",
+  "introStart": "少一點來回切換。",
+  "introAccent": "多一點深入思考。",
+  "introText": "發現、閱讀、提問、整理。把閱讀論文時需要的一切，放回順手的位置。",
+  "story": [
+    {
+      "number": "01",
+      "icon": "search",
+      "label": "發現",
+      "title": "下一篇好論文，\n從這裡遇見。",
+      "text": "瀏覽 arXiv 與 OpenAlex，依領域、作者、期刊或會議探索。追蹤你的研究方向，找到值得閱讀的新論文。",
+      "tags": ["論文推薦", "分類探索", "追蹤與收藏"]
+    },
+    {
+      "number": "02",
+      "icon": "book",
+      "label": "讀懂",
+      "title": "原文與理解，\n在這裡相遇。",
+      "text": "PDF、段落譯文與精讀筆記並排呈現。在解說和原文之間來回定位，依照自己的節奏理解每個難點。",
+      "tags": ["段落精讀", "雙向定位", "沉浸閱讀"]
+    },
+    {
+      "number": "03",
+      "icon": "sparkles",
+      "label": "深入",
+      "title": "帶著原文，\n把問題問下去。",
+      "text": "讓 Agent 帶著目前的論文或多篇參考資料參與討論。追問方法、釐清思路，再從回答中的引用回到原文核對。",
+      "tags": ["論文脈絡", "多篇對話", "引用定位"]
+    }
+  ],
+  "showcaseEyebrow": "一個工作區，多種專注方式",
+  "showcaseTitle": "看看思考發生的地方。",
+  "showcaseText": "從寬闊的全局視野，到只屬於原文與筆記的沉浸時刻。",
+  "scenes": [
+    {
+      "id": "reading",
+      "label": "閱讀與精讀",
+      "title": "原文在左，理解在旁。",
+      "text": "資料庫、PDF、精讀與 Agent 同步協作，讓閱讀的線索保持連貫。",
+      "alt": "PaperEnjoyer 四欄閱讀介面，包含論文資料庫、NeRF 原文、簡體中文精讀與 Agent 範例對話"
+    },
+    {
+      "id": "discovery",
+      "label": "發現論文",
+      "title": "順著好奇心，繼續探索。",
+      "text": "從推薦與分類中發現論文，把值得閱讀的內容帶回自己的資料庫。",
+      "alt": "PaperEnjoyer 論文探索頁面，顯示研究論文推薦、摘要與收藏入口"
+    },
+    {
+      "id": "agent",
+      "label": "Agent 對話",
+      "title": "好問題，值得問得更深。",
+      "text": "讓論文成為對話的脈絡，在思考的當下追問、釐清與拓展。",
+      "alt": "PaperEnjoyer Agent 對話介面，顯示根據論文內容進行的範例問答"
+    },
+    {
+      "id": "immersive",
+      "label": "沉浸閱讀",
+      "title": "這一刻，只留下閱讀。",
+      "text": "收起暫時用不到的面板，專注於原文與精讀筆記。",
+      "alt": "PaperEnjoyer 沉浸模式，原文 PDF 與段落精讀並排顯示"
+    }
+  ],
+  "expand": "放大檢視介面",
+  "close": "關閉大圖",
+  "libraryEyebrow": "讓知識慢慢形成體系",
+  "libraryTitle": "讀過的，不只是讀過。",
+  "libraryText": "把每一次理解留在自己的資料庫裡。下次開啟，繼續思考。",
+  "utilities": [
+    {
+      "icon": "folder",
+      "title": "有條理地累積",
+      "text": "依研究方向整理論文，支援資料夾、搜尋與封存。讓資料庫隨著你的研究一起成長。"
+    },
+    {
+      "icon": "file",
+      "title": "把筆記帶走",
+      "text": "匯出 Markdown 精讀筆記、論文與相關資源，讓理解成為可以再次使用的材料。"
+    },
+    {
+      "icon": "sync",
+      "title": "換台裝置，接著讀",
+      "text": "透過 PaperEnjoyer 帳戶同步資料庫、筆記與支援的對話內容，在不同裝置之間延續閱讀。"
+    }
+  ],
+  "localTitle": "從本機開始。由你掌握。",
+  "localText": "資料庫會保留本機副本。開啟帳戶同步後，支援的內容會自動上傳；雲端解析和 AI 閱讀也需要傳送相關材料。請在設定中確認同步選項。",
+  "downloadEyebrow": "下一篇論文，現在開始",
+  "downloadTitle": "給好奇心，一個新起點。",
+  "downloadText": "下載 PaperEnjoyer，把下一次閱讀變成一次發現。",
+  "windowsDescription": "適用於 Windows x64",
+  "macDescription": "適用於 Apple Silicon Mac",
+  "linuxDescription": "適用於 Ubuntu LTS x64（amd64）",
+  "installer": "安裝程式",
+  "diskImage": "磁碟映像檔",
+  "staticDownloadStatus": "下載最新穩定版。優先連線至 GitHub，連線失敗時自動使用官方伺服器。",
+  "latest": "最新穩定版",
+  "checking": "正在檢查更新…",
+  "unavailable": "暫時無法檢查更新，下載按鈕仍可從官方伺服器取得最新已同步版本。",
+  "missing": "此版本尚未提供該平台的安裝程式",
+  "published": "發行日期",
+  "releaseNotes": "更新紀錄與所有版本",
+  "releasePage": "查看發行頁面",
+  "installHelp": "安裝說明",
+  "windowsHelp": "下載後執行 Setup.exe，依指示安裝。目前版本未使用商業程式碼簽署憑證，Windows 可能顯示提示；請確認檔案來自本頁連結的官方發行來源。",
+  "macHelp": "開啟 DMG，將 PaperEnjoyer 拖入「應用程式」。目前版本未經 Apple 公證；若系統阻擋開啟，請在「系統設定 → 隱私權與安全性」中確認並允許該應用程式，無須關閉系統的整體安全防護。",
+  "linuxHelp": "支援 Ubuntu 22.04 / 24.04 / 26.04 LTS x64。下載 DEB 後結束應用程式，在下載目錄執行 sudo apt install ./PaperEnjoyer-<version>-Linux-amd64.deb，將 <version> 替換為下載的版本號碼。安裝或升級會保留資料庫和設定。",
+  "faqTitle": "開始之前，你可能想知道。",
+  "faqs": [
+    [
+      "支援哪些系統和晶片？",
+      "目前提供 Windows x64 安裝程式、macOS Apple Silicon（M 系列晶片）DMG，以及 Ubuntu 22.04 / 24.04 / 26.04 LTS x64（amd64）DEB。尚未提供 Intel Mac、原生 Windows ARM 或 Linux ARM 安裝程式。"
+    ],
+    [
+      "一定要設定 AI 才能使用嗎？",
+      "基本 PDF 閱讀、資料管理和既有筆記不依賴 AI 生成。PaperCore Free 提供內建 AI 服務，可用模型與額度以軟體內顯示為準；也可以連接自己的模型服務或 Agent 帳戶，相關服務商可能另行收費。"
+    ],
+    [
+      "論文和筆記儲存在哪裡？",
+      "軟體在本機保留資料庫，開啟帳戶同步後還會儲存雲端副本。MinerU 解析和雲端 AI 閱讀會上傳工作所需材料，即使關閉資料庫同步也不例外。舊版可能預設開啟同步，請檢查設定；具體處理方式請見頁尾的隱私政策。"
+    ],
+    [
+      "可以在多台電腦之間同步嗎？",
+      "可以使用 PaperEnjoyer 帳戶同步支援的資料和偏好。PaperCore 與自訂 HTTP 模型的精讀工作由伺服器執行，關閉軟體後仍可繼續；Codex、DeepSeek/DSH 等 Agent 精讀由本機裝置執行。"
+    ],
+    [
+      "如何更新軟體？",
+      "Windows 可在軟體「設定 → 關於與更新」中檢查、下載並確認重新啟動安裝。macOS 下載新的 DMG，結束應用程式後替換「應用程式」中的舊版。Ubuntu 下載新的 DEB，結束應用程式後使用 sudo apt install 升級。也可以隨時從本頁下載最新穩定版。"
+    ]
+  ],
+  "footerLine": "讓理解，比閱讀多走一步。",
+  "releases": "版本發行",
+  "backTop": "回到頂端",
+  "notFoundTitle": "這一頁，還沒有寫下。",
+  "notFoundText": "回到首頁，繼續你的下一次發現。",
+  "home": "回到首頁",
+  "mainNavigation": "主導覽",
+  "pricing": "訂閱價格",
+  "language": "語言",
+  "policyNavigation": "價格與政策",
+  "policyEnglish": "英文",
+  "terms": "服務條款",
+  "privacy": "隱私政策",
+  "refund": "退款政策",
+  "actualInterface": "實際軟體介面",
+  "makeItClick": "讓理解發生。",
+  "ideaQuestion": "這個方法的關鍵想法是什麼？",
+  "thinkWithSource": "從原文，找到思路。",
+  "backToPaper": "回到原文",
+  "footerMotto": "為理解的樂趣而作。",
+  "demoReset": "重設 / 重試",
+  "demoOpen": "獨立開啟",
+  "demoAlt": "Attention Is All You Need：原文 PDF、精讀筆記與 Self-Attention 問答",
+  "demoTagline": "讓研究，在此相聚"
+}

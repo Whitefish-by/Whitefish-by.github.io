@@ -1,0 +1,177 @@
+{
+  "lang": "ko",
+  "title": "PaperEnjoyer · 모든 아이디어를 이해하다",
+  "description": "논문 발견부터 깊이 있는 이해까지. PaperEnjoyer는 논문 라이브러리, PDF 읽기, 정독 노트와 AI 대화를 하나의 데스크톱 작업 공간에 담았습니다. Windows, macOS, Linux(Ubuntu)를 지원합니다.",
+  "skip": "본문으로 건너뛰기",
+  "nav": ["기능 둘러보기", "작업 공간", "자주 묻는 질문"],
+  "download": "다운로드",
+  "menu": "탐색 메뉴 열기",
+  "eyebrow": "호기심을 위한 조용한 공간",
+  "heroStart": "이해하세요, ",
+  "heroAccent": "모든 아이디어를.",
+  "heroText": "좋은 논문을 찾는 것에서 제대로 이해하는 것으로.\n원문, 노트, AI와 함께 생각해 보세요.",
+  "windowsDownload": "Windows용 다운로드",
+  "macDownload": "macOS용 다운로드",
+  "linuxDownload": "Ubuntu용 다운로드",
+  "androidDownload": "Android용 다운로드",
+  "androidDescription": "Android 10 이상 지원",
+  "androidHelp": "APK를 다운로드하고 현재 브라우저의 설치 권한을 허용한 뒤 파일을 여세요. 기존 앱 위에 업데이트를 설치하면 라이브러리와 설정이 유지됩니다. 공식 배포 파일을 사용하고 Android System WebView를 최신 상태로 유지하세요.",
+  "platformLine": "Windows x64 · macOS Apple Silicon · Ubuntu x64",
+  "versionLabel": "최신 안정 버전",
+  "heroCaption": "논문, 노트, 다음 아이디어까지. 드디어 한곳에.",
+  "demo": "실제 앱 화면 · 내용은 데모용 예시입니다",
+  "introEyebrow": "호기심에서 이해로",
+  "introStart": "창 전환은 줄이고,",
+  "introAccent": "이해는 더 깊게.",
+  "introText": "발견하고, 읽고, 질문하고, 정리하세요. 논문을 생각하는 데 필요한 모든 것을 손이 닿는 곳에 모았습니다.",
+  "story": [
+    {
+      "number": "01",
+      "icon": "search",
+      "label": "발견",
+      "title": "다음에 읽을 좋은 논문을\n여기서 만나세요.",
+      "text": "arXiv와 OpenAlex를 분야, 저자, 학술지 또는 학회별로 탐색하세요. 연구 관심사를 팔로우하고 읽을 만한 논문을 찾아보세요.",
+      "tags": ["논문 추천", "분야별 탐색", "팔로우 및 저장"]
+    },
+    {
+      "number": "02",
+      "icon": "book",
+      "label": "이해",
+      "title": "원문 옆에서\n이해를 넓히세요.",
+      "text": "PDF와 문단 번역, 정독 노트를 나란히 읽으세요. 설명과 원문을 오가며 자신의 속도로 이해할 수 있습니다.",
+      "tags": ["정독 노트", "원문으로 이동", "집중 모드"]
+    },
+    {
+      "number": "03",
+      "icon": "sparkles",
+      "label": "심화",
+      "title": "논문을 바탕으로\n대화를 이어가세요.",
+      "text": "현재 논문이나 여러 참고 자료를 Agent에 전달하세요. 방법론을 살펴보고 생각을 정리하며, 답변의 인용을 따라 원문을 확인할 수 있습니다.",
+      "tags": ["논문 맥락", "여러 자료로 대화", "인용 출처 확인"]
+    }
+  ],
+  "showcaseEyebrow": "하나의 작업 공간, 생각할 여유",
+  "showcaseTitle": "아이디어가 자라는 곳을 만나보세요.",
+  "showcaseText": "전체를 한눈에 보는 화면부터 논문과 노트에만 집중하는 순간까지.",
+  "scenes": [
+    {
+      "id": "reading",
+      "label": "읽기와 이해",
+      "title": "원문 옆에, 이해를 위한 노트.",
+      "text": "라이브러리, PDF, 노트, Agent가 함께 작동해 읽기의 흐름을 이어줍니다.",
+      "alt": "논문 라이브러리, NeRF PDF, 중국어 노트와 Agent 대화 예시가 있는 실제 PaperEnjoyer 4패널 화면"
+    },
+    {
+      "id": "discovery",
+      "label": "논문 발견",
+      "title": "호기심이 이끄는 곳으로.",
+      "text": "추천과 연구 분야에서 논문을 탐색하고 관심 있는 자료를 라이브러리에 담으세요.",
+      "alt": "연구 논문 추천, 초록, 북마크가 표시된 PaperEnjoyer 논문 탐색 화면"
+    },
+    {
+      "id": "agent",
+      "label": "Agent에 질문",
+      "title": "좋은 질문을 더 깊이.",
+      "text": "논문의 맥락을 유지하며 후속 질문으로 생각을 명확히 하고 탐구를 이어가세요.",
+      "alt": "논문에 관한 대화 예시를 보여주는 PaperEnjoyer Agent 패널"
+    },
+    {
+      "id": "immersive",
+      "label": "집중 모드",
+      "title": "지금은, 논문에만 집중.",
+      "text": "사용하지 않는 패널을 접고 원문과 정독 노트에 집중하세요.",
+      "alt": "PDF와 정독 노트를 나란히 보여주는 PaperEnjoyer 집중 모드"
+    }
+  ],
+  "expand": "화면 크게 보기",
+  "close": "확대 이미지 닫기",
+  "libraryEyebrow": "이해한 것을 지식으로 쌓으세요",
+  "libraryTitle": "읽은 경험을 남기세요.",
+  "libraryText": "얻은 통찰을 자신의 라이브러리에 보관하고, 돌아와서 생각을 이어가세요.",
+  "utilities": [
+    {
+      "icon": "folder",
+      "title": "체계적으로 쌓이는 지식",
+      "text": "연구 주제에 따라 논문을 정리하세요. 폴더, 검색, 보관 기능으로 늘어나는 라이브러리를 관리할 수 있습니다."
+    },
+    {
+      "icon": "file",
+      "title": "노트를 원하는 곳으로",
+      "text": "Markdown 정독 노트, 논문과 관련 자료를 내보내 이해한 내용을 다시 사용할 수 있는 자료로 만드세요."
+    },
+    {
+      "icon": "sync",
+      "title": "다른 기기에서도 이어서",
+      "text": "PaperEnjoyer 계정으로 라이브러리, 노트와 지원되는 대화를 기기 간에 동기화하세요."
+    }
+  ],
+  "localTitle": "로컬에서 시작하고, 직접 선택하세요.",
+  "localText": "라이브러리는 로컬 사본을 유지합니다. 계정 동기화를 켜면 지원되는 콘텐츠가 자동으로 업로드되며, 클라우드 분석과 AI 읽기도 관련 자료를 전송합니다. 설정에서 동기화 선택을 확인하세요.",
+  "downloadEyebrow": "다음 논문은 여기서 시작하세요",
+  "downloadTitle": "호기심을 위한 새로운 공간.",
+  "downloadText": "PaperEnjoyer와 함께 다음 읽기를 새로운 발견으로 바꾸세요.",
+  "windowsDescription": "Windows x64용",
+  "macDescription": "Apple Silicon Mac용",
+  "linuxDescription": "Ubuntu LTS x64(amd64)용",
+  "installer": "설치 프로그램",
+  "diskImage": "디스크 이미지",
+  "staticDownloadStatus": "최신 안정 버전을 다운로드하세요. GitHub에 우선 연결하고, 연결 실패 시 공식 서버를 자동으로 사용합니다.",
+  "latest": "최신 안정 버전",
+  "checking": "업데이트 확인 중…",
+  "unavailable": "업데이트를 확인할 수 없습니다. 다운로드 버튼으로 공식 서버에 동기화된 최신 버전을 받을 수 있습니다.",
+  "missing": "이 버전에는 해당 플랫폼의 설치 파일이 없습니다",
+  "published": "출시일",
+  "releaseNotes": "변경 내역 및 모든 버전",
+  "releasePage": "배포 페이지 보기",
+  "installHelp": "설치 도움말",
+  "windowsHelp": "Setup.exe를 실행하고 안내에 따라 설치하세요. 현재 빌드에는 상용 코드 서명 인증서가 없어 Windows가 경고를 표시할 수 있습니다. 이 페이지에서 연결하는 공식 배포 파일인지 확인하세요.",
+  "macHelp": "DMG를 열고 PaperEnjoyer를 응용 프로그램 폴더로 드래그하세요. 현재 빌드는 Apple 공증을 받지 않았습니다. macOS가 실행을 차단하면 시스템 설정 → 개인정보 보호 및 보안에서 확인하고 허용하세요. 시스템 전체의 보안 보호를 끌 필요는 없습니다.",
+  "linuxHelp": "Ubuntu 22.04 / 24.04 / 26.04 LTS x64를 지원합니다. DEB를 다운로드하고 앱을 종료한 뒤 다운로드 폴더에서 sudo apt install ./PaperEnjoyer-<version>-Linux-amd64.deb를 실행하세요. <version>은 다운로드한 버전으로 바꿉니다. 설치나 업데이트 시 라이브러리와 설정은 유지됩니다.",
+  "faqTitle": "시작하기 전에 궁금한 점.",
+  "faqs": [
+    [
+      "어떤 운영체제와 칩을 지원하나요?",
+      "Windows x64, macOS Apple Silicon(M 시리즈), Ubuntu 22.04 / 24.04 / 26.04 LTS x64(amd64)용 설치 파일을 제공합니다. Intel Mac, 네이티브 Windows ARM, Linux ARM 빌드는 현재 제공하지 않습니다."
+    ],
+    [
+      "AI를 반드시 설정해야 하나요?",
+      "기본 PDF 읽기, 문헌 관리와 기존 노트 이용에는 AI 생성이 필요하지 않습니다. PaperCore Free의 내장 AI에서 이용 가능한 모델과 한도는 앱에 표시됩니다. 자신의 모델 서비스나 Agent 계정을 연결할 수도 있으며, 해당 제공업체가 별도 요금을 부과할 수 있습니다."
+    ],
+    [
+      "논문과 노트는 어디에 저장되나요?",
+      "앱은 로컬 라이브러리를 유지하고 계정 동기화를 켜면 클라우드 사본도 저장합니다. MinerU 분석과 클라우드 AI 읽기는 라이브러리 동기화를 꺼도 필요한 자료를 업로드합니다. 이전 버전에서는 동기화가 기본으로 켜져 있을 수 있으니 설정을 확인하세요. 자세한 내용은 하단의 개인정보 처리방침을 참고하세요."
+    ],
+    [
+      "여러 컴퓨터에서 동기화할 수 있나요?",
+      "네. PaperEnjoyer 계정으로 지원되는 라이브러리 콘텐츠와 설정을 동기화할 수 있습니다. PaperCore와 사용자 지정 HTTP 모델의 정독 작업은 서버에서 실행되어 앱을 닫아도 계속될 수 있습니다. Codex, DeepSeek/DSH 등의 Agent 정독은 로컬 기기에서 실행됩니다."
+    ],
+    [
+      "앱은 어떻게 업데이트하나요?",
+      "Windows에서는 설정 → 정보 및 업데이트에서 확인하고 다운로드한 뒤 재시작을 승인해 설치하세요. macOS에서는 새 DMG를 받고 앱을 종료한 후 응용 프로그램의 기존 앱을 교체하세요. Ubuntu에서는 새 DEB를 받고 앱을 종료한 후 sudo apt install로 업데이트하세요. 이 페이지에서도 항상 최신 안정 버전을 받을 수 있습니다."
+    ]
+  ],
+  "footerLine": "읽기를 넘어, 이해로.",
+  "releases": "배포 버전",
+  "backTop": "맨 위로",
+  "notFoundTitle": "아직 작성되지 않은 페이지입니다.",
+  "notFoundText": "홈으로 돌아가 다음 발견을 시작하세요.",
+  "home": "홈으로",
+  "mainNavigation": "주 탐색 메뉴",
+  "pricing": "요금제",
+  "language": "언어",
+  "policyNavigation": "요금제 및 정책",
+  "policyEnglish": "영문",
+  "terms": "서비스 이용약관",
+  "privacy": "개인정보 처리방침",
+  "refund": "환불 정책",
+  "actualInterface": "실제 앱 화면",
+  "makeItClick": "이해로 이어지는 순간.",
+  "ideaQuestion": "이 방법의 핵심 아이디어는 무엇인가요?",
+  "thinkWithSource": "원문을 바탕으로 생각하세요.",
+  "backToPaper": "원문으로 돌아가기",
+  "footerMotto": "이해하는 즐거움을 위해.",
+  "demoReset": "초기화 / 다시 시도",
+  "demoOpen": "새 탭에서 열기",
+  "demoAlt": "Attention Is All You Need: PDF, 정독 노트와 Self-Attention에 관한 대화",
+  "demoTagline": "연구를 한곳에"
+}

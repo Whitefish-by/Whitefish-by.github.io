@@ -16,8 +16,8 @@ test.beforeEach(async ({ page }) => {
 });
 
 for (const [locale, url] of [
-  ['zh', '/'],
-  ['en', '/en/'],
+  ['zh-Hans', '/zh-hans/'],
+  ['en', '/'],
 ]) {
   for (const width of [390, 768, 1440]) {
     test(`${locale} at ${width}px renders without overflow, broken images or runtime errors`, async ({
@@ -166,7 +166,9 @@ for (const status of [404, 429, 500])
     await page.route('**/downloads/latest.json*', (route) => route.fulfill({ status, body: '{}' }));
     await page.route('**/download/windows', (route) => route.fulfill({ status: 204 }));
     await page.goto('/');
-    await expect(page.locator('[data-release-status]')).toContainText('暂时无法检查更新');
+    await expect(page.locator('[data-release-status]')).toContainText(
+      'Unable to check for updates',
+    );
     await expect(page.locator('[data-download="windows"]').first()).toHaveAttribute(
       'href',
       '/download/windows',
@@ -194,15 +196,16 @@ test('mobile navigation, language switch, FAQ and reduced motion', async ({ page
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  await page.getByRole('button', { name: '打开导航' }).click();
+  await page.getByRole('button', { name: 'Open navigation' }).click();
   await expect(page.locator('#nav-links')).toBeVisible();
   await page.locator('#nav-links a[href="#faq"]').click();
   await expect(page.locator('#nav-links')).not.toBeVisible();
   await page.locator('.faq-list summary').first().click();
   await expect(page.locator('.faq-list details').first()).toHaveAttribute('open', '');
-  await page.locator('[data-language]').click();
-  await expect(page).toHaveURL(/\/en\/#faq$/);
-  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await page.locator('[data-language-switcher] summary').click();
+  await page.locator('[data-language][lang="zh-Hans"]').click();
+  await expect(page).toHaveURL(/\/zh-hans\/#faq$/);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'zh-Hans');
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe(
     'auto',
   );
@@ -221,7 +224,7 @@ test('without JavaScript the content, gallery and downloads remain available', a
     'href',
     '/download/windows',
   );
-  await expect(page.locator('[data-release-status]')).toContainText('最新正式版');
+  await expect(page.locator('[data-release-status]')).toContainText('latest stable release');
   await expect(page.locator('[data-download="linux"]')).toHaveCount(2);
   for (const link of await page.locator('[data-download="linux"]').all()) {
     await expect(link).toBeVisible();

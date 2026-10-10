@@ -28,6 +28,7 @@ jobs:
       - run: npm run check
       - run: npm test
       - run: python3 ops/test_sync.py
+      - run: python3 ops/test_receive.py
       - run: npm run build
       - run: npx playwright install --with-deps chromium webkit
       - run: npm run test:e2e
@@ -67,7 +68,17 @@ jobs:
           printf '%s\n' "$WEBSITE_SSH_KNOWN_HOSTS" > "$RUNNER_TEMP/known_hosts"
           tar -czf "$RUNNER_TEMP/site.tar.gz" -C dist .
           ssh -T -i "$RUNNER_TEMP/website_key" -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=20 -o ServerAliveInterval=30 -o ServerAliveCountMax=4 -o UserKnownHostsFile="$RUNNER_TEMP/known_hosts" paper-web@43.160.220.8 < "$RUNNER_TEMP/site.tar.gz"
-          for path in / /en/ /pricing /terms /privacy /refund /site-build.json; do
+          for path in / /pricing /terms /privacy /refund /site-build.json /sitemap.xml; do
             status=$(curl --fail --silent --show-error --connect-timeout 15 --max-time 60 --retry 3 --write-out '%{http_code}' --output /dev/null "https://paperenjoyer.com$path")
             test "$status" = 200
+          done
+          for locale in zh-hans zh-hant ja ko ru fr de; do
+            for suffix in / /pricing; do
+              status=$(curl --fail --silent --show-error --connect-timeout 15 --max-time 60 --retry 3 --write-out '%{http_code}' --output /dev/null "https://paperenjoyer.com/$locale$suffix")
+              test "$status" = 200
+            done
+          done
+          for path in /en /en/ /en/index.html; do
+            status=$(curl --silent --show-error --connect-timeout 15 --max-time 60 --write-out '%{http_code}' --output /dev/null "https://paperenjoyer.com$path")
+            test "$status" = 301
           done

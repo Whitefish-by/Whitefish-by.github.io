@@ -8,7 +8,7 @@
     "check": "astro check",
     "build": "astro build && node scripts/write-build-info.mjs",
     "preview": "astro preview --host 127.0.0.1",
-    "test": "node --test tests/release.test.mjs tests/snapshot.test.mjs",
+    "test": "node --test tests/release.test.mjs tests/snapshot.test.mjs tests/locales.test.mjs",
     "test:e2e": "playwright test",
     "capture:product": "node scripts/capture-product.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",

@@ -1,11 +1,11 @@
 ---
 import Icon from './Icon.astro';
-import type { Locale } from '../data/copy';
+import { copy, type Locale } from '../data/copy';
 interface Props {
   locale: Locale;
 }
 const { locale } = Astro.props;
-const zh = locale === 'zh';
+const t = copy[locale];
 ---
 
 <div class="interactive-product" data-product-demo>
@@ -16,15 +16,10 @@ const zh = locale === 'zh';
       <i></i>
     </span>
     <span class="window-title" aria-hidden="true">
-      PaperEnjoyer <span class="window-separator">/</span> YOUR RESEARCH, TOGETHER
+      PaperEnjoyer <span class="window-separator">/</span> {t.demoTagline}
     </span>
     <div class="demo-window-actions">
-      <button
-        type="button"
-        data-demo-reset
-        aria-label={zh ? '重置 / 重试' : 'Reset / retry'}
-        title={zh ? '重置 / 重试' : 'Reset / retry'}
-      >
+      <button type="button" data-demo-reset aria-label={t.demoReset} title={t.demoReset}>
         <Icon name="reset" size={14} />
       </button>
       <a
@@ -32,8 +27,8 @@ const zh = locale === 'zh';
         href="/demo/index.html"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={zh ? '独立打开' : 'Open in a new tab'}
-        title={zh ? '独立打开' : 'Open in a new tab'}
+        aria-label={t.demoOpen}
+        title={t.demoOpen}
       >
         <Icon name="expand" size={14} />
       </a>
@@ -45,11 +40,7 @@ const zh = locale === 'zh';
       src="/demo/poster.webp"
       width="1680"
       height="1011"
-      alt={
-        zh
-          ? 'Attention Is All You Need：原文 PDF、段落精读与 Self-Attention 问答'
-          : 'Attention Is All You Need: PDF, close reading notes and a Self-Attention conversation'
-      }
+      alt={t.demoAlt}
       fetchpriority="high"
     />
     <iframe

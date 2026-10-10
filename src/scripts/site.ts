@@ -6,9 +6,10 @@ import {
   type ReleaseInfo,
 } from '../lib/release.mjs';
 
+import type { Locale } from '../data/locales';
 document.documentElement.classList.add('is-enhanced');
 const data = JSON.parse(document.getElementById('site-data')!.textContent!) as {
-  locale: 'zh' | 'en';
+  locale: Locale;
   messages: {
     versionLabel: string;
     checking: string;
@@ -44,7 +45,7 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('click', (event) => {
   if (!(event.target as Element).closest('.nav')) closeMenu();
 });
-const mobileNavQuery = matchMedia('(max-width: 620px)');
+const mobileNavQuery = matchMedia('(max-width: 1100px)');
 mobileNavQuery.addEventListener('change', closeMenu);
 
 const tabs = all<HTMLAnchorElement>('[data-scene]');
@@ -82,10 +83,6 @@ function applyHash() {
 selectScene(tabs[0]);
 applyHash();
 window.addEventListener('hashchange', applyHash);
-for (const link of all<HTMLAnchorElement>('[data-language]'))
-  link.addEventListener('click', () => {
-    link.hash = location.hash;
-  });
 
 const dialog = document.querySelector<HTMLDialogElement>('#image-dialog')!;
 let lastTrigger: HTMLButtonElement | undefined;

@@ -1,0 +1,91 @@
+{
+  "title": "Tarifs",
+  "description": "Découvrez les futures formules Free, Lite et Pro de PaperEnjoyer, les packs de crédits et les règles d’abonnement mensuel.",
+  "heroStart": "Plus de place pour",
+  "heroAccent": "votre prochaine idée.",
+  "intro": "Lisez, comprenez et prolongez vos recherches.\nChoisissez l’espace et le quota d’IA adaptés à votre travail.",
+  "statusTitle": "Abonnements à venir.",
+  "statusText": "Les quotas, offres et fonctionnalités ci-dessous décrivent notre future offre d’abonnement. Ils ne constituent pas les avantages de l’application gratuite actuelle. Les formules payantes et les packs de crédits ne sont pas encore disponibles à l’achat.",
+  "plansLabel": "Futures formules mensuelles",
+  "month": "/ mois",
+  "monthlyCredits": "{credits} crédits par mois",
+  "storage": "{storage} Go de stockage cloud",
+  "credits": "{credits} crédits",
+  "plans": {
+    "Free": {
+      "kicker": "Pour commencer",
+      "description": "Pour lire et explorer occasionnellement.",
+      "billing": "Future formule gratuite",
+      "rollover": "Les crédits mensuels expirent à la fin de chaque période, sans report.",
+      "features": ["Packs de crédits disponibles séparément"]
+    },
+    "Lite": {
+      "kicker": "Une lecture régulière",
+      "description": "Pour vos recherches au quotidien.",
+      "billing": "Facturation mensuelle · premier mois éligible à {firstMonthPrice}",
+      "rollover": "Report jusqu’à {rolloverMonths} mois, avec un solde plafonné à {rolloverCap} crédits.",
+      "features": [
+        "Fonctions d’IA de base",
+        "Export d’articles",
+        "Packs de crédits disponibles séparément"
+      ]
+    },
+    "Pro": {
+      "kicker": "Pour approfondir vos recherches",
+      "description": "Pour des travaux plus exigeants.",
+      "billing": "Facturation mensuelle",
+      "rollover": "Report jusqu’à {rolloverMonths} mois, avec un solde plafonné à {rolloverCap} crédits.",
+      "features": [
+        "Modèles avancés et file de traitement plus rapide",
+        "Agent de recherche",
+        "Base de connaissances avancée",
+        "Packs de crédits disponibles séparément"
+      ]
+    }
+  },
+  "freeAllowance": "Quota gratuit prévu",
+  "comingSoon": "Bientôt disponible",
+  "taxes": "Les prix sont en dollars américains (USD). Lorsque les achats seront ouverts, les taxes applicables et le montant final seront affichés avant le paiement.",
+  "packsEyebrow": "UN PEU PLUS DE CAPACITÉ",
+  "packsTitle": "Des crédits quand il vous en faut.",
+  "packsText": "Des packs à achat unique pour toutes les formules. Les crédits achetés n’expirent pas et ne sont pas remis à zéro chaque mois.",
+  "oneTime": "Bientôt disponible · achat unique",
+  "rulesEyebrow": "LES RÈGLES, EN TOUTE CLARTÉ",
+  "rulesTitle": "Le fonctionnement des futures formules.",
+  "details": {
+    "welcome": {
+      "title": "Un cadeau pour les nouveaux lecteurs",
+      "first": "L’offre d’inscription prévue comprend {welcomeCredits} crédits offerts, valables {welcomeDays} jours à compter de l’inscription. Ils ne peuvent être ni transférés ni échangés contre de l’argent. Contrairement aux packs achetés, ce cadeau expire.",
+      "second": "Les nouveaux comptes éligibles pourront acheter leur premier mois de Lite à {firstMonthPrice} dans les {introDays} jours suivant l’inscription, une fois par compte. L’abonnement sera ensuite renouvelé à {litePrice} par mois, sauf résiliation."
+    },
+    "spending": {
+      "title": "Les crédits mensuels, puis les crédits achetés",
+      "first": "Les crédits d’abonnement sont utilisés en premier. Une fois ce quota épuisé, les crédits achetés prennent le relais. Le report Lite et Pro est limité à la fois par la durée de validité et par le plafond de solde indiqués ci-dessus ; l’excédent ne s’accumule pas.",
+      "second": "Les crédits mesurent l’utilisation des fonctions de PaperEnjoyer. Ce ne sont ni de l’argent, ni un placement, ni un solde transférable. Les fournisseurs des services que vous connectez vous-même peuvent facturer des frais distincts."
+    },
+    "renewal": {
+      "title": "Renouvellement et résiliation",
+      "first": "Les abonnements payants se renouvellent chaque mois selon le calendrier affiché à l’achat. Le quota mensuel est renouvelé au début de chaque période d’abonnement, pas nécessairement le premier jour du mois civil.",
+      "second": "Résiliez avant le renouvellement pour éviter le prochain prélèvement. Vos avantages payants restent disponibles jusqu’à la fin de la période ; les nouvelles allocations du forfait payant cessent ensuite. Les crédits achetés restent disponibles. Les demandes de remboursement sont traitées dans la politique ci-dessous."
+    },
+    "downgrade": {
+      "title": "Votre bibliothèque après un changement de formule",
+      "first": "Si vos données dépassent le plafond de votre nouvelle formule, les données existantes sont conservées. Les nouveaux envois sont limités jusqu’à ce que vous libériez assez d’espace ou passiez à une formule supérieure.",
+      "second": "Un changement d’abonnement ne fait pas expirer vos crédits achetés. La suppression de compte et les achats remboursés sont traités séparément selon les conditions d’utilisation et la politique de confidentialité ci-dessous."
+    }
+  },
+  "usageTitle": "Une idée de la consommation d’IA.",
+  "usageText": "Estimations prévisionnelles, et non tarifs fixes ou nombre garanti d’articles. La consommation varie selon les pages, les tokens, les images, le modèle choisi et la complexité de la tâche.",
+  "usageLabels": [
+    "Lecture approfondie d’un article standard",
+    "Lecture approfondie d’un article complexe",
+    "Questions sur un article",
+    "Résumé d’un article",
+    "Analyse de plusieurs articles"
+  ],
+  "startTitle": "Commencez à lire dès aujourd’hui.",
+  "startText": "L’application gratuite actuelle est déjà disponible. Ses modèles et limites d’utilisation sont indiqués dans l’application ; les quotas prévus ci-dessus ne sont pas encore en vigueur.",
+  "download": "Télécharger l’application gratuite actuelle",
+  "questions": "Des questions ?",
+  "contact": "Contactez-nous"
+}

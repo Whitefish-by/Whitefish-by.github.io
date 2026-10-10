@@ -24,7 +24,7 @@ for (const [path, title] of pages) {
       'href',
       `https://paperenjoyer.com${path}`,
     );
-    await expect(page.locator('link[hreflang]')).toHaveCount(0);
+    await expect(page.locator('link[hreflang]')).toHaveCount(path === '/pricing' ? 9 : 0);
     await expect(page.locator('meta[name="robots"][content="noindex"]')).toHaveCount(0);
     for (const width of [390, 768, 1440]) {
       await page.setViewportSize({ width, height: 1000 });
@@ -63,17 +63,20 @@ for (const [path, title] of pages) {
   });
 }
 
-for (const home of ['/', '/en/']) {
+for (const home of ['/', '/zh-hans/']) {
   test(`${home} links to all four pages`, async ({ page }) => {
     await page.route('**/downloads/latest.json*', (route) =>
       route.fulfill({ json: fixture('2.0.0') }),
     );
     await page.goto(home);
     for (const [path, title] of pages) {
-      const link = page.locator(`footer a[href="${path}"]`);
+      const destination = home === '/zh-hans/' && path === '/pricing' ? '/zh-hans/pricing' : path;
+      const link = page.locator(`footer a[href="${destination}"]`);
       await expect(link).toHaveCount(1);
       await link.click();
-      await expect(page).toHaveTitle(`${title} · PaperEnjoyer`);
+      await expect(page).toHaveTitle(
+        `${destination === '/zh-hans/pricing' ? '订阅价格' : title} · PaperEnjoyer`,
+      );
       await page.goBack();
     }
   });
@@ -94,7 +97,7 @@ test('planned entitlements cannot be mistaken for an active checkout', async ({ 
   ).toHaveCount(2);
   await expect(page.getByRole('button', { name: /buy|subscribe|checkout/i })).toHaveCount(0);
   await page.getByRole('link', { name: 'Download the current free app' }).click();
-  await expect(page).toHaveURL(/\/en\/#download$/);
+  await expect(page).toHaveURL(/\/#download$/);
   expect(paymentRequests).toEqual([]);
 });
 
