@@ -1,0 +1,226 @@
+---
+import Information from '../layouts/Information.astro';
+import { operator } from '../data/policies';
+const plans = [
+  {
+    name: 'Free',
+    price: '0',
+    kicker: 'A place to begin',
+    description: 'For occasional reading and exploration.',
+    billing: 'Planned free tier',
+    credits: '100',
+    storage: '1 GB',
+    rollover: 'Monthly credits expire each cycle; no rollover.',
+    features: ['Credit packs available separately'],
+  },
+  {
+    name: 'Lite',
+    price: '4.99',
+    kicker: 'Keep a steady reading habit',
+    description: 'For your everyday research routine.',
+    billing: 'Billed monthly · eligible first month $2.49',
+    credits: '1,200',
+    storage: '10 GB',
+    rollover: 'Carry credits for up to 2 months, capped at 2,400.',
+    features: ['Basic AI capabilities', 'Paper export', 'Credit packs available separately'],
+  },
+  {
+    name: 'Pro',
+    price: '19.99',
+    kicker: 'Room for deeper research',
+    description: 'For more demanding research workflows.',
+    billing: 'Billed monthly',
+    credits: '6,000',
+    storage: '50 GB',
+    rollover: 'Carry credits for up to 3 months, capped at 18,000.',
+    features: [
+      'Advanced models & faster task queue',
+      'Research Agent',
+      'Advanced knowledge base',
+      'Credit packs available separately',
+    ],
+  },
+];
+const packs = [
+  { name: 'Starter', price: '5', credits: '500' },
+  { name: 'Research', price: '10', credits: '1,200' },
+  { name: 'Scholar', price: '50', credits: '7,000' },
+];
+---
+
+<Information
+  title="Pricing"
+  description="Explore PaperEnjoyer’s upcoming Free, Lite and Pro plans, credit packs and monthly subscription rules."
+  path="/pricing"
+>
+  <div class="container">
+    <header class="information-intro pricing-intro">
+      <p class="eyebrow">PAPERENJOYER / PRICING</p>
+      <h1>
+        More room for
+        <br />
+        <span class="text-muted-green">your next idea.</span>
+      </h1>
+      <p class="information-description">
+        Read, understand and build on your papers.
+        <br />
+        Choose the space and AI allowance that fit your research.
+      </p>
+    </header>
+    <p class="pricing-note" id="plan-status">
+      <strong>Upcoming subscription plans.</strong> The allowances, offers and features below
+      describe our planned subscription release. They are not the entitlements of the current free
+      app. Paid plans and credit packs are coming soon.
+    </p>
+    <div class="pricing-grid" aria-label="Upcoming monthly plans" aria-describedby="plan-status">
+      {plans.map((plan) => (
+        <article class:list={['plan-card', plan.name === 'Lite' && 'featured']}>
+          <p class="plan-kicker">{plan.kicker}</p>
+          <h2>{plan.name}</h2>
+          <p class="plan-description">{plan.description}</p>
+          <p class="plan-price">
+            ${plan.price}
+            <span> / month</span>
+          </p>
+          <p class="plan-billing">{plan.billing}</p>
+          <ul class="plan-features">
+            <li>
+              <strong>{plan.credits} Credits</strong> each month
+            </li>
+            <li>
+              <strong>{plan.storage}</strong> cloud storage
+            </li>
+            <li>{plan.rollover}</li>
+            {plan.features.map((feature) => (
+              <li>{feature}</li>
+            ))}
+          </ul>
+          <p class="plan-availability">
+            {plan.name === 'Free' ? 'Planned free allowance' : 'Coming soon'}
+          </p>
+        </article>
+      ))}
+    </div>
+    <p class="pricing-note" style="margin-top: 20px">
+      Prices are in USD. Applicable taxes and the final total will be shown before payment when
+      checkout opens.
+    </p>
+
+    <section class="pricing-section" aria-labelledby="packs-heading">
+      <p class="eyebrow">A LITTLE EXTRA CAPACITY</p>
+      <h2 id="packs-heading">Credits when you need them.</h2>
+      <p>One-time packs for any plan. Purchased credits do not expire or reset each month.</p>
+      <div class="pack-grid">
+        {packs.map((pack) => (
+          <article class="pack-card">
+            <h3>{pack.name}</h3>
+            <p>
+              <strong>${pack.price}</strong> · {pack.credits} Credits
+            </p>
+            <small>Coming soon · one-time purchase</small>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="pricing-section" aria-labelledby="rules-heading">
+      <p class="eyebrow">THE DETAILS, UP FRONT</p>
+      <h2 id="rules-heading">How the planned plans work.</h2>
+      <div class="pricing-details" style="margin-top: 26px">
+        <article class="pricing-detail">
+          <h3>A welcome to new readers</h3>
+          <p>
+            The planned sign-up offer is 300 bonus Credits, valid for 30 days from registration.
+            They cannot be transferred or redeemed for cash. Unlike purchased credit packs, this
+            gift expires.
+          </p>
+          <p>
+            Eligible new accounts can purchase their first month of Lite for $2.49 within 30 days of
+            registration, once per account. It then renews at $4.99 per month unless cancelled.
+          </p>
+        </article>
+        <article class="pricing-detail">
+          <h3>Monthly credits, then purchased credits</h3>
+          <p>
+            Subscription credits are used first. Purchased credits cover usage after that allowance
+            is exhausted. Lite and Pro rollover is limited by both the age and the balance cap shown
+            above; excess does not accumulate.
+          </p>
+          <p>
+            Credits measure use of PaperEnjoyer features. They are not money, an investment or a
+            transferable balance. Separate providers may charge for services you connect yourself.
+          </p>
+        </article>
+        <article class="pricing-detail">
+          <h3>Renewal and cancellation</h3>
+          <p>
+            Paid subscriptions renew monthly on the billing schedule shown at purchase. The monthly
+            allowance refreshes at the start of each subscription period, not necessarily on the
+            first day of the calendar month.
+          </p>
+          <p>
+            Cancel before renewal to stop the next charge. Your current paid benefits last until the
+            period ends; new paid-plan allocations then stop. Purchased credits remain. See our{' '}
+            <a href="/refund">Refund Policy</a> for refund requests.
+          </p>
+        </article>
+        <article class="pricing-detail">
+          <h3>Your library after a downgrade</h3>
+          <p>
+            If stored data exceeds your new plan’s limit, existing data is retained. New uploads are
+            restricted until you free enough space or upgrade.
+          </p>
+          <p>
+            Changing a subscription does not make your purchased credits expire. Account deletion
+            and refunded purchases are handled separately under the{' '}
+            <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="pricing-section" aria-labelledby="usage-heading">
+      <h2 id="usage-heading">An idea of AI usage.</h2>
+      <p>
+        Planning estimates, not fixed quotes or a guaranteed number of papers. Usage varies with
+        page count, tokens, images, model choice and task complexity.
+      </p>
+      <dl class="usage-list">
+        <div>
+          <dt>Standard paper close reading</dt>
+          <dd>~50 Credits</dd>
+        </div>
+        <div>
+          <dt>Complex paper close reading</dt>
+          <dd>~100–200 Credits</dd>
+        </div>
+        <div>
+          <dt>Paper Q&amp;A</dt>
+          <dd>~5–20 Credits</dd>
+        </div>
+        <div>
+          <dt>Paper summary</dt>
+          <dd>~20–50 Credits</dd>
+        </div>
+        <div>
+          <dt>Multi-paper analysis</dt>
+          <dd>~100+ Credits</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="pricing-section pricing-bottom" aria-labelledby="start-heading">
+      <h2 id="start-heading">Start reading today.</h2>
+      <p>
+        The current free app is available now. Its available models and usage limits are shown in
+        the app; the upcoming allowances above have not launched.
+      </p>
+      <a class="button" href="/en/#download">
+        Download the current free app
+      </a>
+      <p style="margin-top: 22px">
+        Questions? <a href={`mailto:${operator.email}`}>Contact us</a>.
+      </p>
+    </section>
+  </div>
+</Information>

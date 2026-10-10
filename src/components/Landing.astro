@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Icon from './Icon.astro';
 import ProductDemo from './ProductDemo.astro';
+import PolicyLinks from './PolicyLinks.astro';
 import { copy, type Locale } from '../data/copy';
 import { RELEASES_URL, downloadFallback } from '../lib/release.mjs';
 interface Props {
@@ -88,6 +89,7 @@ const schema = {
         <a href="#features">{t.nav[0]}</a>
         <a href="#workspace">{t.nav[1]}</a>
         <a href="#faq">{t.nav[2]}</a>
+        <a href="/pricing">{locale === 'zh' ? '订阅价格' : 'Pricing'}</a>
       </div>
       <div class="nav-actions">
         <a
@@ -483,6 +485,7 @@ const schema = {
           </a>
         </div>
       </div>
+      <PolicyLinks locale={locale} />
       <div class="footer-bottom">
         <span>© {new Date().getUTCFullYear()} PaperEnjoyer</span>
         <span>Made for the joy of understanding.</span>

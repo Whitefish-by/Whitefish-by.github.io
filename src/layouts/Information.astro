@@ -1,0 +1,54 @@
+---
+import Base from './Base.astro';
+import PolicyLinks from '../components/PolicyLinks.astro';
+import '../styles/information.css';
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+}
+const { title, description, path } = Astro.props;
+---
+
+<Base
+  title={`${title} · PaperEnjoyer`}
+  description={description}
+  locale="en"
+  canonicalPath={path}
+  translatedHome={false}
+>
+  <a class="skip-link" href="#main">
+    Skip to content
+  </a>
+  <header class="site-header information-header">
+    <nav class="container information-nav" aria-label="Main navigation">
+      <a class="brand" href="/en/" aria-label="PaperEnjoyer home">
+        <img src="/favicon.svg" width="34" height="34" alt="" />
+        <span>PaperEnjoyer</span>
+      </a>
+      <div class="information-actions">
+        <a href="/pricing" aria-current={path === '/pricing' ? 'page' : undefined}>
+          Pricing
+        </a>
+        <a class="button button-small" href="/en/#download">
+          Download
+        </a>
+      </div>
+    </nav>
+  </header>
+  <main id="main" class="information-main" tabindex="-1">
+    <slot />
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <a class="brand" href="/en/">
+        PaperEnjoyer
+      </a>
+      <PolicyLinks current={path} />
+      <div class="footer-bottom">
+        <span>© {new Date().getUTCFullYear()} PaperEnjoyer</span>
+        <a href="#main">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+</Base>

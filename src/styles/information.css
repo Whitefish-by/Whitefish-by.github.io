@@ -1,0 +1,398 @@
+.information-header {
+  height: 76px;
+}
+.information-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  height: 100%;
+}
+.information-actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-size: 14px;
+}
+.information-actions > a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.information-actions > a[aria-current] {
+  color: var(--green-dark);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.information-main {
+  padding-bottom: 100px;
+}
+.information-main:focus {
+  outline: none;
+}
+.information-intro {
+  padding: 80px 0 48px;
+}
+.information-intro h1 {
+  font-size: clamp(40px, 5.4vw, 68px);
+}
+.information-description {
+  max-width: 680px;
+  font-size: 18px;
+  margin-top: 22px;
+}
+.policy-date {
+  margin-top: 24px;
+  font-size: 13px;
+}
+.policy-grid {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 760px);
+  justify-content: space-between;
+  gap: 56px;
+  align-items: start;
+}
+.policy-contents {
+  position: sticky;
+  top: 108px;
+  padding-bottom: 32px;
+}
+.policy-contents .eyebrow {
+  margin-bottom: 12px;
+}
+.policy-contents ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.policy-contents a {
+  display: block;
+  min-height: 44px;
+  padding: 9px 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.policy-contents a:hover {
+  color: var(--green-dark);
+}
+.policy-body {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.policy-body section {
+  padding-block: 30px;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 96px;
+}
+.policy-body h2 {
+  font-size: 25px;
+  letter-spacing: -0.025em;
+  margin-bottom: 18px;
+}
+.policy-body h3 {
+  font-size: 18px;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+.policy-body p + p,
+.policy-body ul + p,
+.policy-body ol + p {
+  margin-top: 16px;
+}
+.policy-body p,
+.policy-body li {
+  color: #48584f;
+}
+.policy-body ul,
+.policy-body ol {
+  padding-left: 23px;
+  margin-block: 16px;
+}
+.policy-body li + li {
+  margin-top: 10px;
+}
+.policy-body a,
+.pricing-note a,
+.pricing-details a,
+.pricing-bottom a {
+  color: var(--green-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.operator-contact {
+  display: grid;
+  gap: 7px;
+  padding: 22px;
+  margin-block: 22px;
+  background: var(--mint);
+  border-radius: 14px;
+  font-style: normal;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.policy-callout {
+  background: var(--mint);
+  border-left: 3px solid var(--green);
+  padding: 20px 24px;
+  border-radius: 0 14px 14px 0;
+  margin-bottom: 30px;
+}
+.pricing-intro {
+  text-align: center;
+  padding-bottom: 36px;
+}
+.pricing-intro .information-description {
+  margin-inline: auto;
+}
+.pricing-note {
+  max-width: 800px;
+  margin: 0 auto 36px;
+  text-align: center;
+  font-size: 14px;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+.plan-card {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.plan-card.featured {
+  border-color: var(--green);
+  box-shadow: 0 12px 40px #275d4d0b;
+}
+.plan-kicker {
+  color: var(--green-dark);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  min-height: 26px;
+}
+.plan-card h2 {
+  font-size: 30px;
+  margin-block: 7px;
+}
+.plan-description {
+  font-size: 14px;
+  min-height: 50px;
+}
+.plan-price {
+  color: var(--ink);
+  font-size: 44px;
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+  margin-top: 22px;
+  font-weight: 650;
+}
+.plan-price span {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+.plan-billing {
+  font-size: 12px;
+  margin-top: 8px;
+  min-height: 42px;
+}
+.plan-features {
+  list-style: none;
+  padding: 24px 0;
+  margin: 16px 0 0;
+  border-top: 1px solid var(--line);
+  flex: 1;
+  font-size: 14px;
+}
+.plan-features li {
+  padding-block: 8px;
+}
+.plan-features strong {
+  color: var(--green-dark);
+}
+.plan-availability {
+  text-align: center;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--mint);
+  color: var(--green-dark);
+  font-size: 14px;
+  font-weight: 600;
+}
+.pricing-section {
+  margin-top: 70px;
+}
+.pricing-section > h2 {
+  font-size: clamp(28px, 3vw, 38px);
+  margin-bottom: 12px;
+}
+.pack-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 25px;
+}
+.pack-card {
+  background: #f0f4ee;
+  border-radius: 16px;
+  padding: 26px;
+}
+.pack-card h3 {
+  font-size: 19px;
+}
+.pack-card p {
+  margin-top: 12px;
+}
+.pack-card strong {
+  color: var(--ink);
+  font-size: 26px;
+}
+.pack-card small {
+  display: block;
+  margin-top: 16px;
+  color: var(--green-dark);
+}
+.pricing-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.pricing-detail {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.pricing-detail h3 {
+  font-size: 21px;
+  margin-bottom: 16px;
+}
+.pricing-detail p {
+  font-size: 14px;
+}
+.pricing-detail p + p {
+  margin-top: 14px;
+}
+.usage-list {
+  margin: 18px 0 0;
+}
+.usage-list > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding-block: 12px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+.usage-list dd {
+  margin: 0;
+  white-space: nowrap;
+  color: var(--green-dark);
+}
+.pricing-bottom {
+  padding: 32px;
+  border-radius: var(--radius);
+  background: var(--mint);
+  text-align: center;
+}
+.pricing-bottom h2 {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+.pricing-bottom .button {
+  margin-top: 24px;
+  color: white;
+  text-decoration: none;
+}
+@media (max-width: 1000px) {
+  .policy-grid {
+    grid-template-columns: 190px minmax(0, 1fr);
+    gap: 30px;
+  }
+  .plan-card {
+    padding: 23px;
+  }
+}
+@media (max-width: 760px) {
+  .information-intro {
+    padding-top: 48px;
+  }
+  .policy-grid {
+    display: block;
+  }
+  .policy-contents {
+    position: static;
+  }
+  .policy-contents ol {
+    columns: 2;
+    column-gap: 24px;
+  }
+  .policy-contents li {
+    break-inside: avoid;
+  }
+  .pricing-grid,
+  .pack-grid,
+  .pricing-details {
+    grid-template-columns: 1fr;
+  }
+  .plan-card {
+    padding: 28px;
+  }
+  .plan-description,
+  .plan-billing {
+    min-height: 0;
+  }
+  .information-actions {
+    gap: 16px;
+  }
+  .information-actions > a {
+    font-size: 12px;
+  }
+}
+@media (max-width: 420px) {
+  .information-nav {
+    gap: 10px;
+  }
+  .information-nav .brand {
+    font-size: 16px;
+    gap: 7px;
+  }
+  .information-nav .brand img {
+    width: 25px;
+    height: 25px;
+  }
+  .information-actions {
+    gap: 10px;
+  }
+  .information-actions .button {
+    padding-inline: 10px;
+  }
+  .policy-contents ol {
+    columns: 1;
+  }
+}
+@media print {
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .policy-contents {
+    display: none;
+  }
+  .container {
+    width: 100%;
+  }
+  .policy-grid {
+    display: block;
+  }
+  .information-intro {
+    padding-top: 0;
+  }
+  .policy-body section {
+    break-inside: avoid;
+  }
+}

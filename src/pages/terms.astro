@@ -1,0 +1,205 @@
+---
+import Policy from '../layouts/Policy.astro';
+import OperatorContact from '../components/OperatorContact.astro';
+const sections: [string, string][] = [
+  ['operator', 'The service and operator'],
+  ['account', 'Eligibility and accounts'],
+  ['content', 'Your content and sharing'],
+  ['ai', 'AI and external services'],
+  ['billing', 'Subscriptions and credits'],
+  ['use', 'Acceptable use'],
+  ['availability', 'Changes and termination'],
+  ['responsibility', 'Responsibility and rights'],
+  ['law', 'Law, disputes and updates'],
+];
+---
+
+<Policy
+  title="Terms of Service"
+  description="The terms for using PaperEnjoyer’s website, accounts and online services."
+  path="/terms"
+  sections={sections}
+>
+  <section id="operator">
+    <h2>1. The service and operator</h2>
+    <p>
+      PaperEnjoyer helps you organize papers, read PDFs, generate AI-assisted explanations, ask
+      questions and synchronize a research library. These terms govern our website and online
+      services. “We”, “us” and “our” refer to the individual operator below, not to a company or
+      university.
+    </p>
+    <OperatorContact />
+    <p>
+      The university is a correspondence location, not the provider or sponsor of PaperEnjoyer. By
+      creating an account or using our online services, you agree to these terms. If you do not
+      agree, do not use those services. The <a href="/privacy">Privacy Policy</a> explains data
+      handling; the <a href="/refund">Refund Policy</a> addresses purchases.
+    </p>
+    <p>
+      Any separately supplied software or open-source component remains subject to its applicable
+      licence. These terms do not remove permissions granted by those licences.
+    </p>
+  </section>
+  <section id="account">
+    <h2>2. Eligibility and accounts</h2>
+    <p>
+      You must be at least 18 and legally able to enter into this agreement. If you act for an
+      organization, you must have authority to bind it. Provide accurate account information,
+      protect your sign-in credentials and notify us if you suspect unauthorized access.
+    </p>
+    <p>
+      You are responsible for activity you authorize through your account. Do not sell accounts,
+      share credentials to evade limits or create accounts to abuse introductory offers. Keep copies
+      of important research outside the service.
+    </p>
+  </section>
+  <section id="content">
+    <h2>3. Your content and sharing</h2>
+    <p>
+      You retain the rights you hold in uploaded papers, notes and other content. Only upload or
+      share material you are entitled to process in the ways the feature requires. Access to a paper
+      does not necessarily include permission to redistribute it or send it to an AI service.
+    </p>
+    <p>
+      You give us a non-exclusive permission to store, copy, process and transmit your content to
+      the extent needed to provide your requested features, secure the service and handle support.
+      This includes processing by relevant service providers as described in the Privacy Policy. It
+      is not a transfer of ownership.
+    </p>
+    <p>
+      Unedited, generated standard reading results may be submitted automatically for administrator
+      quality review and, if approved, reused for the same paper by other accounts. This feature is
+      distinct from your private annotations, edited notes and independent Agent conversations. See{' '}
+      <a href="/privacy#sharing">Standard readings and sharing</a> before processing confidential or
+      restricted material.
+    </p>
+    <p>
+      When you create a share link, you authorize access to the selected snapshot. Anyone who
+      obtains the link may be able to view it, and recipients may save or import copies. Revoking
+      the link cannot recall copies already obtained. You are responsible for the content and rights
+      included in the snapshot.
+    </p>
+    <p>
+      We do not promise that AI output is unique, protectable by copyright or free of third-party
+      rights. If you report an infringement, include the affected material, its location and a way
+      to contact you; we may restrict access while reviewing the report.
+    </p>
+  </section>
+  <section id="ai">
+    <h2>4. AI and external services</h2>
+    <p>
+      AI output can be incomplete, inaccurate or fabricated, including citations, translations and
+      equations. Verify results against the original paper. PaperEnjoyer provides research
+      assistance, not professional medical, legal or financial advice.
+    </p>
+    <p>
+      Cloud parsing and AI tasks send relevant materials to the services involved, including when
+      library synchronization is disabled. Server-based reading can continue after the app closes.
+      Local Agent execution can still communicate with the model provider you selected.
+    </p>
+    <p>
+      Services you connect with your own account or API key have their own terms, prices and data
+      practices. You are responsible for permission to use those services and their charges.
+      Features and model availability depend on the selected provider and your access.
+    </p>
+  </section>
+  <section id="billing">
+    <h2>5. Subscriptions and credits</h2>
+    <p>
+      The <a href="/pricing">Pricing page</a> currently describes upcoming plans. Coming-soon plans,
+      promotional credits and credit packs are not active entitlements of the current free app, and
+      no purchase can be completed on this website yet.
+    </p>
+    <p>
+      When paid checkout becomes available through Paddle, Paddle will be the reseller and merchant
+      of record for those transactions. Its{' '}
+      <a href="https://www.paddle.com/legal/buyer-terms">Buyer Terms</a> will govern the purchase
+      from Paddle; these terms will govern your use of PaperEnjoyer. The checkout will identify the
+      price, taxes, billing interval and applicable offer before you pay.
+    </p>
+    <p>
+      Monthly plans will renew until cancelled. Cancel through the Paddle receipt’s
+      subscription-management link or <a href="https://paddle.net/">Paddle support</a> before the
+      next renewal. Cancellation takes effect at the end of the paid period. Refund requests are
+      separate and follow our Refund Policy and applicable rights.
+    </p>
+    <p>
+      Monthly allocations, rollover limits, expiry and promotion eligibility are described on the
+      Pricing page. Monthly credits are spent before purchased credits. Purchased packs do not
+      expire through a monthly reset or cancellation. The 300-Credit registration gift is
+      promotional and expires after 30 days. Credits are service-use units, not cash, and cannot be
+      transferred or redeemed for money except where a purchase refund or applicable law requires a
+      remedy.
+    </p>
+    <p>
+      After a downgrade, data above the new storage limit is retained, but new uploads are
+      restricted until usage is within the limit or you upgrade. We will disclose material price or
+      entitlement changes before they apply, including any notice or consent required by law. They
+      will not retrospectively remove rights already acquired.
+    </p>
+  </section>
+  <section id="use">
+    <h2>6. Acceptable use</h2>
+    <p>
+      Do not use the service to infringe rights, distribute unlawful material, access another
+      person’s data without permission, spread malware, disrupt the service or bypass security,
+      usage limits or payment controls. Do not upload sensitive or confidential material unless you
+      have authority for the processing and disclosures involved.
+    </p>
+    <p>
+      We may apply proportionate limits to protect availability and investigate suspected abuse.
+      Restrictions will not be used to remove rights granted under an applicable software licence.
+    </p>
+  </section>
+  <section id="availability">
+    <h2>7. Changes, suspension and termination</h2>
+    <p>
+      Maintenance, provider failures and security incidents can interrupt service. We cannot promise
+      uninterrupted operation or any particular research outcome. We may change features or
+      discontinue a service, with reasonable advance notice where practicable and with the remedies
+      required for affected paid services.
+    </p>
+    <p>
+      We may restrict or suspend an account for material breach, fraud, a security threat or a legal
+      requirement. Where appropriate, we will explain the reason and allow a reasonable opportunity
+      to resolve it; urgent risks or legal restrictions may require immediate action.
+    </p>
+    <p>
+      You may stop using the service and request account deletion by email. Uninstalling the app
+      alone does not delete cloud data or cancel a subscription. We will explain deletion
+      consequences, outstanding billing and any necessary retention when handling your request. See
+      the Privacy Policy for retention and recipient copies.
+    </p>
+  </section>
+  <section id="responsibility">
+    <h2>8. Responsibility and protected rights</h2>
+    <p>
+      We are responsible for providing the service with the care required by applicable law. You are
+      responsible for your lawful use of content and for checking AI-assisted work before relying on
+      it.
+    </p>
+    <p>
+      Nothing here excludes liability that cannot lawfully be excluded, including for fraud,
+      deliberate misconduct or other protected claims. Nothing removes mandatory consumer
+      guarantees, data protection rights or remedies for a service that is defective or materially
+      different from its description. No blanket waiver of those rights is required to use
+      PaperEnjoyer.
+    </p>
+  </section>
+  <section id="law">
+    <h2>9. Law, disputes and updates</h2>
+    <p>
+      The laws of the People’s Republic of China govern our service agreement, subject to the
+      mandatory protections available in your place of residence. You retain any right to bring a
+      claim in a court available to you under applicable law. These terms do not impose mandatory
+      arbitration or an exclusive foreign court on consumers. Paddle’s transaction terms address
+      disputes with Paddle separately.
+    </p>
+    <p>
+      Contact us first if you would like help resolving a concern; doing so is not a condition of
+      exercising legal rights. We may update these terms as the service changes. We will date the
+      updated version and provide additional notice or obtain agreement where required. Changes
+      apply prospectively and do not remove existing purchase or statutory rights.
+    </p>
+  </section>
+</Policy>

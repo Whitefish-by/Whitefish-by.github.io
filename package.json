@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev --host 127.0.0.1",
     "check": "astro check",
-    "build": "astro build",
+    "build": "astro build && node scripts/write-build-info.mjs",
     "preview": "astro preview --host 127.0.0.1",
     "test": "node --test tests/release.test.mjs tests/snapshot.test.mjs",
     "test:e2e": "playwright test",

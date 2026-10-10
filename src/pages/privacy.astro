@@ -1,0 +1,331 @@
+---
+import Policy from '../layouts/Policy.astro';
+import OperatorContact from '../components/OperatorContact.astro';
+import { operator } from '../data/policies';
+const sections: [string, string][] = [
+  ['controller', 'Who handles your information'],
+  ['information', 'Information and purposes'],
+  ['processing', 'Local, cloud and AI processing'],
+  ['sharing', 'Standard readings and sharing'],
+  ['providers', 'Service providers and recipients'],
+  ['location', 'Where processing happens'],
+  ['retention', 'Retention and deletion'],
+  ['security', 'Security'],
+  ['rights', 'Your choices and rights'],
+  ['children', 'Children and policy updates'],
+];
+---
+
+<Policy
+  title="Privacy Policy"
+  description="How information moves through PaperEnjoyer, why we use it and the choices available to you."
+  path="/privacy"
+  sections={sections}
+>
+  <div class="policy-callout">
+    <p>
+      Your library has a local copy, but PaperEnjoyer also provides cloud services. Account sync,
+      cloud parsing, server-based AI reading and share links can send content off your device.
+      Turning off library sync does not turn off those other features.
+    </p>
+  </div>
+  <section id="controller">
+    <h2>1. Who handles your information</h2>
+    <p>
+      The individual below operates PaperEnjoyer and is responsible for the personal information
+      processed for our website and online services (the “controller”, where that term applies). Use
+      the same email for support, privacy requests and refund assistance.
+    </p>
+    <OperatorContact />
+    <p>
+      The university is a correspondence location only. This policy covers PaperEnjoyer’s handling
+      of information, not the separate practices of a publisher, model provider or other service you
+      use independently.
+    </p>
+  </section>
+  <section id="information">
+    <h2>2. Information we use and why</h2>
+    <ul>
+      <li>
+        <strong>Account and sign-in information:</strong> account identifiers, email address,
+        available profile details and authentication/session information. We use these to sign you
+        in, associate your devices and library, secure access and respond to requests.
+      </li>
+      <li>
+        <strong>Library and research content:</strong> PDFs, paper metadata, extracted text and
+        images, notes, annotations, selected conversation content, reading positions, folders and
+        supported preferences. The features you use determine which items are processed locally,
+        synchronized or sent for a task.
+      </li>
+      <li>
+        <strong>AI and parsing requests:</strong> selected papers or passages, questions,
+        instructions, relevant conversation context, generated results, model settings, task status
+        and usage measurements. These let us perform, resume and deliver the requested work and
+        enforce usage limits.
+      </li>
+      <li>
+        <strong>Technical records:</strong> IP address, request times, device or client information,
+        request routes, response status and diagnostic/security events. Hosting and network services
+        process these to deliver requests, investigate failures and prevent misuse.
+      </li>
+      <li>
+        <strong>Support correspondence:</strong> the address, message, attachments and other details
+        you send us. Please include only information necessary for the request.
+      </li>
+      <li>
+        <strong>Future purchases:</strong> when Paddle checkout opens, Paddle will collect payment
+        and billing details for its transactions. We may receive the account, order, subscription,
+        payment-status and tax/invoice information needed to provide entitlements and support. This
+        website does not currently collect payment-card details.
+      </li>
+    </ul>
+    <p>
+      Paper metadata may also come from public research sources such as arXiv and OpenAlex,
+      including authors, titles and abstracts. Shared material comes from the person who shares it.
+      Requests to these sources can expose network information and search terms to them.
+    </p>
+    <p>
+      Where a data-protection law requires a lawful basis, account and requested-feature processing
+      is necessary to provide the service under our agreement. Our legitimate interests include
+      securing and maintaining the service, diagnosing failures, responding to support and improving
+      the quality and reuse of standard reading results; these interests must be balanced against
+      your rights. We rely on consent where required for optional processing, and on legal
+      obligations where records must be retained or disclosed. Consent can be withdrawn without
+      affecting earlier lawful processing.
+    </p>
+    <p>
+      You need not supply research content to browse the website. An account identifier is needed
+      for account services, and cloud AI cannot complete a task without the relevant input. AI
+      answers and recommendations are assistive features; we do not use them to make decisions about
+      you with legal or similarly significant effects.
+    </p>
+  </section>
+  <section id="processing">
+    <h2>3. Local, cloud and AI processing</h2>
+    <h3>Local library and account synchronization</h3>
+    <p>
+      The app keeps a local library on your device. With account cloud sync enabled, supported
+      library content and preferences are uploaded and synchronized between your devices. Some
+      released versions enable automatic account sync by default; newer setup flows ask you to
+      choose. Review your sync setting before adding restricted material. Disabling sync stops
+      future automatic synchronization; it does not itself erase existing cloud copies.
+    </p>
+    <h3>Cloud parsing and reading tasks</h3>
+    <p>
+      Cloud parsing can upload PDFs to MinerU. PaperCore and custom HTTP/API (“bring your own key”
+      or BYOK) close-reading tasks upload the materials needed to our server for execution, even
+      with library sync disabled. Relevant content can then be sent to parsing, model and
+      text-grouping providers. These jobs can continue while the app is closed, with results
+      retained for later delivery.
+    </p>
+    <p>
+      For these server-based BYOK reading jobs, the credential you supply is held in server process
+      memory, not intentionally written to the job database, files or application logs. A restart
+      requires the client to provide it again. This describes that execution path; it does not mean
+      your device or chosen provider never stores credentials or request data.
+    </p>
+    <h3>Local Agents and other connected services</h3>
+    <p>
+      Codex and DeepSeek/DSH Agent execution is managed locally. Those tools can still send prompts
+      and selected files to their providers, and authorized tools may access additional resources.
+      Provider account settings, retention and any model-training controls are governed by the
+      provider you select. This policy does not promise identical data practices across external
+      providers.
+    </p>
+    <h3>Website requests and cookies</h3>
+    <p>
+      The interactive demo contains example content, not your research library. Your browser may
+      cache website assets. Download checks may contact GitHub and our release mirror. We do not
+      embed advertising trackers or marketing analytics scripts in these pages. Our hosting and
+      Cloudflare network/security services can process request records and diagnostics and may use
+      necessary security cookies.
+    </p>
+  </section>
+  <section id="sharing">
+    <h2>4. Standard readings and share links</h2>
+    <p>
+      Unedited, automatically generated standard reading results may be submitted to a shared
+      collection for administrator quality review. Approved results can be reused by other accounts
+      reading the same paper. An internal account association is retained with a submission, so this
+      process should not be treated as fully anonymous. Private annotations, user-edited notes and
+      independent Agent conversations are not the intended contents of that standard-reading
+      collection.
+    </p>
+    <p>
+      This review and reuse is separate from deliberately creating a share link. Do not assume that
+      all generated standard reading content is restricted to your account. Contact us to object to
+      processing based on legitimate interests or to request review or removal of material
+      containing personal or restricted information.
+    </p>
+    <p>
+      A share link exposes the selected fixed snapshot to people who obtain the link. The default
+      expiry is 30 days; other available choices include 7 days or no expiry. You can revoke a link.
+      Expiry or revocation stops further access through that link, but cannot erase downloads,
+      imported copies or screenshots held by recipients.
+    </p>
+    <p>
+      Identical stored files may be deduplicated across accounts. Removing an item from your account
+      therefore does not necessarily remove a binary that another account lawfully retains. This
+      storage mechanism does not give other users access to your private account records.
+    </p>
+  </section>
+  <section id="providers">
+    <h2>5. Service providers and other recipients</h2>
+    <p>Only providers relevant to the feature or request are involved. The current service uses:</p>
+    <ul>
+      <li>
+        <strong>Tencent Cloud:</strong> server hosting and COS object storage for service data and
+        files.
+      </li>
+      <li>
+        <strong>Cloudflare:</strong> DNS, content delivery, network diagnostics and security for
+        website/service traffic.
+      </li>
+      <li>
+        <strong>Our Logto-based sign-in service and Aliyun Direct Mail:</strong> authentication,
+        account records and sign-in emails.
+      </li>
+      <li>
+        <strong>MinerU:</strong> cloud document parsing when that parser is used.
+      </li>
+      <li>
+        <strong>Alibaba Cloud DashScope / Qwen and TypeSafe:</strong> configured PaperCore model
+        inference and text grouping for reading tasks.
+      </li>
+      <li>
+        <strong>Providers you select:</strong> your custom model endpoint, OpenAI/Codex,
+        DeepSeek/DSH or other connected services, according to the task and your configuration.
+      </li>
+      <li>
+        <strong>GitHub:</strong> software releases and download delivery when accessed.
+      </li>
+      <li>
+        <strong>Paddle, once checkout is available:</strong> payment, tax, billing, fraud prevention
+        and transaction support as merchant of record, under its own{' '}
+        <a href="https://www.paddle.com/legal/privacy">Privacy Policy</a>.
+      </li>
+    </ul>
+    <p>
+      Authorized administrators may access information needed for support, security and
+      standard-reading review. Share recipients receive the content you expose. We may also disclose
+      information when legally required or necessary to protect people, investigate abuse or
+      establish and defend legal claims, subject to applicable law. We do not sell personal
+      information or use it for cross-context advertising.
+    </p>
+  </section>
+  <section id="location">
+    <h2>6. Where processing happens</h2>
+    <p>
+      The operator is based in Wuhan, China. Our current application hosting and COS storage are in
+      Singapore. The configured DashScope endpoint processes requests in mainland China. Cloudflare
+      and other external providers can process data in additional countries according to their
+      infrastructure and your selected service.
+    </p>
+    <p>
+      Using these cloud features therefore involves processing outside your country, potentially
+      under different data-protection laws. We do not offer an EU-only or UK-only storage option.
+      Contact us for information about a particular processing route or the transfer arrangements
+      applicable to it before sending data subject to location restrictions. This notice does not
+      itself constitute consent to every transfer or replace any safeguards required by applicable
+      law.
+    </p>
+  </section>
+  <section id="retention">
+    <h2>7. Retention and deletion</h2>
+    <ul>
+      <li>
+        <strong>Local files:</strong> remain on your device until you remove them. Uninstalling may
+        leave the chosen library folder in place.
+      </li>
+      <li>
+        <strong>Account and synchronized data:</strong> kept to maintain the account and library
+        until deletion is requested or the data is otherwise removed under the service’s operation.
+        Version history, shared files and copies referenced by other accounts can have separate
+        lifetimes.
+      </li>
+      <li>
+        <strong>Server reading jobs:</strong> completed job materials and results are normally
+        scheduled for cleanup after a 30-day retention window. Copies delivered to your library,
+        synchronized to your account or accepted into the shared collection are separate records and
+        do not expire under that job timer.
+      </li>
+      <li>
+        <strong>Temporary parsing jobs:</strong> temporary server-side MinerU task records and
+        materials are normally scheduled for cleanup after the configured 24-hour expiry. This is
+        not a promise that every upstream provider or library copy is erased within 24 hours.
+      </li>
+      <li>
+        <strong>Shares:</strong> access follows the selected expiry or revocation; saved recipient
+        copies are outside our direct control.
+      </li>
+      <li>
+        <strong>Security logs, support records and backups:</strong> retention depends on incident
+        investigation, resolving support requests, recovery needs and applicable recordkeeping or
+        claim requirements. There is currently no single automatic deletion period covering all
+        backups. Live-record deletion does not immediately erase every historical backup.
+      </li>
+      <li>
+        <strong>Transaction records:</strong> if purchases become available, billing and tax records
+        may need to outlast an account under applicable law and Paddle’s separate retention
+        practices.
+      </li>
+    </ul>
+    <p>
+      Email us for account or cloud-data deletion. We will verify the request proportionately,
+      explain any necessary exceptions and handle it within the period required by applicable law.
+      We may need information sufficient to identify your account; do not send passwords, API keys
+      or full payment-card details.
+    </p>
+  </section>
+  <section id="security">
+    <h2>8. Security</h2>
+    <p>
+      We use HTTPS, access controls and encryption for supported server-stored data. Server-side
+      encryption is not end-to-end encryption: our service holds the keys required to process that
+      data, and authorized processing or administration can access it. No storage or transmission
+      system can guarantee absolute security.
+    </p>
+    <p>
+      Protect your device, sign-in email and provider credentials. Limit what you upload to what a
+      task needs. If you suspect exposure of account data or a credential, contact us promptly and
+      revoke the affected credential with its provider.
+    </p>
+  </section>
+  <section id="rights">
+    <h2>9. Your choices and rights</h2>
+    <p>
+      You can change sync settings, choose whether to run a cloud task, choose an external provider,
+      delete local content and revoke share links. These controls affect different processing paths;
+      disabling one does not remove data already processed through another.
+    </p>
+    <p>
+      Depending on applicable law, you may request access, correction, erasure, a portable copy or
+      restriction of your personal information. You may withdraw consent where we rely on it.{' '}
+      <strong>
+        You may object to processing based on legitimate interests, including standard-reading
+        quality and reuse processing.
+      </strong>{' '}
+      Contact <a href={`mailto:${operator.email}`}>{operator.email}</a> and describe the account and
+      request.
+    </p>
+    <p>
+      You may complain to your local data-protection authority, including the{' '}
+      <a href="https://ico.org.uk/make-a-complaint/">UK Information Commissioner’s Office</a> where
+      applicable. Contacting us first is optional. We do not require you to waive these rights or
+      accept marketing to obtain support.
+    </p>
+  </section>
+  <section id="children">
+    <h2>10. Children and policy updates</h2>
+    <p>
+      PaperEnjoyer is intended for adults aged 18 and over. We do not knowingly offer accounts to
+      children. If you believe a child’s information was provided, contact us so we can review and
+      address it.
+    </p>
+    <p>
+      We will update the date on this page when practices change and provide additional notice or
+      seek consent where required. A policy update does not retrospectively authorize a new use of
+      information where a separate legal basis or permission is needed.
+    </p>
+  </section>
+</Policy>

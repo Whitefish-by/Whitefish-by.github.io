@@ -24,7 +24,9 @@ try:
             if total > 1024 ** 3:
                 raise ValueError("Website exceeds 1 GiB")
             archive.extract(member, release, filter="data")
-    if not (release / "index.html").is_file() or not (release / "en/index.html").is_file():
+    required = ("index.html", "en/index.html", "pricing/index.html", "terms/index.html",
+                "privacy/index.html", "refund/index.html", "site-build.json")
+    if not all((release / name).is_file() for name in required):
         raise ValueError("Incomplete website build")
     link = root / ("current-" + uuid.uuid4().hex)
     link.symlink_to(Path("releases") / release.name)

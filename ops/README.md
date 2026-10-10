@@ -10,6 +10,8 @@
 
 正常发布：推送官网 `main`，等待 **Check and publish website** 成功。手工发布时先执行官网检查、测试和构建，然后：
 
+定价和政策页面使用 `/pricing`、`/terms`、`/privacy`、`/refund`，由本目录 Nginx 配置提供无尾斜杠规范地址。更新配置时先保存备份并执行 `nginx -t`。内容依据、待核实的运营事项和发布检查见 [policies-maintenance.md](policies-maintenance.md)。`/site-build.json` 标识当前构建的源码提交及工作区是否包含未提交修改。
+
 ```sh
 tar -czf site.tar.gz -C dist .
 ssh -T -i /path/to/website_key -o StrictHostKeyChecking=yes paper-web@43.160.220.8 < site.tar.gz

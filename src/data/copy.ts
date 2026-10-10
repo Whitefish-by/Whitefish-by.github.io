@@ -106,12 +106,12 @@ export const copy = {
       {
         icon: 'sync',
         title: '换台设备，接着读',
-        text: '通过专用 GitHub 私有仓库同步资料库与对话，在 Windows、macOS 和 Ubuntu 之间衔接阅读。',
+        text: '通过 PaperEnjoyer 账户同步资料库、笔记与支持的对话内容，在不同设备之间衔接阅读。',
       },
     ],
     localTitle: '从本地开始。由你掌握。',
     localText:
-      '资料库存放在你选择的本地位置。基础阅读无需配置模型；云端解析、AI 与同步服务按需连接。',
+      '资料库保留在你选择的本地位置。账户同步开启后会自动上传支持的内容；云端解析和 AI 阅读也需要发送相关材料。请在设置中确认同步选择。',
     downloadEyebrow: '下一篇论文，现在开始',
     downloadTitle: '给好奇心，一个新起点。',
     downloadText: '下载 PaperEnjoyer，把下一次阅读变成一次发现。',
@@ -143,15 +143,15 @@ export const copy = {
       ],
       [
         '一定要配置 AI 才能使用吗？',
-        '不需要。导入 PDF、管理资料、阅读原文、浏览已有笔记与导出均可独立使用。生成新的精读、翻译和 AI 对话需要配置对应的模型服务或账号，服务费用由相应供应商收取。',
+        '基础 PDF 阅读、资料管理和已有笔记不依赖 AI 生成。PaperCore Free 提供内置 AI 服务，可用模型和额度以软件内显示为准；也可以连接自己的模型服务或 Agent 账号，相应服务商可能另行收费。',
       ],
       [
         '论文和笔记保存在哪里？',
-        '默认保存在你选择的本地资料库。使用 MinerU 云端解析时会上传 PDF；使用 AI 功能时，相关论文内容会按任务需要发送给所选服务。你可以按需决定是否使用这些功能。',
+        '软件在本地保留资料库，账户同步开启后还会保存云端副本。MinerU 解析和云端 AI 阅读会上传任务所需材料，即使关闭资料库同步也不例外。旧版可能默认开启同步，请检查设置；具体处理方式见页脚的隐私政策。',
       ],
       [
         '可以在多台电脑之间同步吗？',
-        '可以通过专用 GitHub 私有仓库同步资料库与对话。用户配置通过同一局域网内的双端确认同步，精读任务仍由原设备继续执行。',
+        '可以使用 PaperEnjoyer 账户同步支持的资料和偏好。PaperCore 与自定义 HTTP 模型的精读任务由服务器执行，关闭软件后仍可继续；Codex、DeepSeek/DSH 等 Agent 精读由本地设备执行。',
       ],
       [
         '如何更新软件？',
@@ -273,12 +273,12 @@ export const copy = {
       {
         icon: 'sync',
         title: 'Another device. The same thread.',
-        text: 'Sync your library and conversations through a dedicated private GitHub repository, across Windows, macOS and Ubuntu.',
+        text: 'Use your PaperEnjoyer account to sync your library, notes and supported conversations between devices.',
       },
     ],
     localTitle: 'Start local. Stay in control.',
     localText:
-      'Your library lives in a local folder you choose. Read without a model setup, and connect cloud parsing, AI or sync when you need them.',
+      'Your library keeps a local copy. Enabled account sync automatically uploads supported content; cloud parsing and AI reading also send relevant materials. Review your sync choices in settings.',
     downloadEyebrow: 'Your next paper starts here',
     downloadTitle: 'A new home for your curiosity.',
     downloadText: 'Get PaperEnjoyer. Make your next reading a discovery.',
@@ -312,15 +312,15 @@ export const copy = {
       ],
       [
         'Do I need AI to use PaperEnjoyer?',
-        'No. Import PDFs, organize your library, read papers, browse existing notes and export without configuring a model. New AI notes, translations and conversations require a supported account or model service. Any service fees are charged by the respective provider.',
+        'Basic PDF reading, library management and existing notes do not depend on AI generation. PaperCore Free provides built-in AI; available models and limits are shown in the app. You can also connect your own model service or Agent account, which may carry separate provider charges.',
       ],
       [
         'Where are my papers and notes stored?',
-        'In the local library folder you choose. Using MinerU cloud parsing uploads the PDF; AI features send the relevant content to your selected service as needed for the task. You choose whether to use these features.',
+        'The app keeps a local library and, with account sync enabled, a cloud copy. MinerU parsing and cloud AI reading upload required materials even when library sync is off. Earlier versions may enable sync by default, so review settings. The Privacy Policy linked below explains the data flows.',
       ],
       [
         'Can I sync between computers?',
-        'Yes. A dedicated private GitHub repository syncs your library and conversations. User settings can be transferred with confirmation on both devices on the same local network. Close-reading tasks continue on the device that started them.',
+        'Yes. Your PaperEnjoyer account syncs supported library content and preferences. PaperCore and custom HTTP-model reading tasks run on the server and can continue after the app closes. Codex and DeepSeek/DSH Agent reading is managed on your local device.',
       ],
       [
         'How do I update the app?',

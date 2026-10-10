@@ -1,0 +1,41 @@
+---
+import Information from './Information.astro';
+import { policyDate, policyDateLabel } from '../data/policies';
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  sections: [string, string][];
+}
+const { title, description, path, sections } = Astro.props;
+---
+
+<Information title={title} description={description} path={path}>
+  <div class="container">
+    <header class="information-intro policy-intro">
+      <p class="eyebrow">PAPERENJOYER / POLICIES</p>
+      <h1>{title}</h1>
+      <p class="information-description">{description}</p>
+      <p class="policy-date">
+        Effective and last updated: <time datetime={policyDate}>{policyDateLabel}</time>
+      </p>
+    </header>
+    <div class="policy-grid">
+      <aside class="policy-contents">
+        <nav aria-label="On this page">
+          <p class="eyebrow">ON THIS PAGE</p>
+          <ol>
+            {sections.map(([id, label]) => (
+              <li>
+                <a href={`#${id}`}>{label}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </aside>
+      <article class="policy-body">
+        <slot />
+      </article>
+    </div>
+  </div>
+</Information>

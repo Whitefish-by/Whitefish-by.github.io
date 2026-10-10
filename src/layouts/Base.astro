@@ -6,9 +6,18 @@ interface Props {
   description: string;
   locale: Locale;
   noindex?: boolean;
+  canonicalPath?: string;
+  translatedHome?: boolean;
 }
-const { title, description, locale, noindex = false } = Astro.props;
-const canonical = new URL(locale === 'en' ? '/en/' : '/', Astro.site);
+const {
+  title,
+  description,
+  locale,
+  noindex = false,
+  canonicalPath,
+  translatedHome = true,
+} = Astro.props;
+const canonical = new URL(canonicalPath ?? (locale === 'en' ? '/en/' : '/'), Astro.site);
 ---
 
 <!doctype html>
@@ -23,9 +32,13 @@ const canonical = new URL(locale === 'en' ? '/en/' : '/', Astro.site);
     ) : (
       <>
         <link rel="canonical" href={canonical} />
-        <link rel="alternate" hreflang="zh-CN" href="https://paperenjoyer.com/" />
-        <link rel="alternate" hreflang="en" href="https://paperenjoyer.com/en/" />
-        <link rel="alternate" hreflang="x-default" href="https://paperenjoyer.com/" />
+        {translatedHome && (
+          <>
+            <link rel="alternate" hreflang="zh-CN" href="https://paperenjoyer.com/" />
+            <link rel="alternate" hreflang="en" href="https://paperenjoyer.com/en/" />
+            <link rel="alternate" hreflang="x-default" href="https://paperenjoyer.com/" />
+          </>
+        )}
       </>
     )}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

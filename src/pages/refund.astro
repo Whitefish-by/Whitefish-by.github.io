@@ -1,0 +1,104 @@
+---
+import Policy from '../layouts/Policy.astro';
+import OperatorContact from '../components/OperatorContact.astro';
+import { operator } from '../data/policies';
+const sections: [string, string][] = [
+  ['scope', 'Scope'],
+  ['eligibility', 'Refund eligibility'],
+  ['request', 'Requesting help'],
+  ['cancel', 'Cancelling a subscription'],
+  ['credits', 'Credits and refunded access'],
+  ['changes', 'Policy changes'],
+];
+---
+
+<Policy
+  title="Refund Policy"
+  description="How purchase refunds, subscription cancellation and credit adjustments will be handled."
+  path="/refund"
+  sections={sections}
+>
+  <section id="scope">
+    <h2>1. Scope</h2>
+    <p>
+      Paid PaperEnjoyer plans and credit packs are coming soon. This policy describes future
+      purchases completed through Paddle. It does not create a purchase or charge for downloading
+      the current free app.
+    </p>
+    <p>
+      Paddle will be the merchant of record. Its{' '}
+      <a href="https://www.paddle.com/legal/refund-policy">Refund Policy</a> and{' '}
+      <a href="https://www.paddle.com/legal/buyer-terms">Buyer Terms</a> govern transaction refunds,
+      subject to your mandatory rights. PaperEnjoyer offers no additional unconditional money-back
+      guarantee.
+    </p>
+  </section>
+  <section id="eligibility">
+    <h2>2. Refund eligibility</h2>
+    <p>
+      Refunds depend on applicable law and Paddle’s policy. A discretionary request within 14 days
+      is not a guaranteed refund. Regional withdrawal rights and remedies for defective or
+      misdescribed products remain available. See Paddle’s policy for the rules and deadlines
+      applicable to your location and transaction.
+    </p>
+    <p>
+      Using an AI feature does not, by itself, establish a valid waiver of statutory rights. Any
+      exception depends on the legal requirements, including consent where required.
+    </p>
+  </section>
+  <section id="request">
+    <h2>3. Requesting help</h2>
+    <p>
+      For a Paddle order, use <a href="https://paddle.net/">Paddle’s buyer support</a> or the
+      support link in your receipt. Paddle handles the payment refund. You can also email us for
+      help identifying an order or resolving a product problem.
+    </p>
+    <p>
+      Include the purchasing email, order reference if available, purchase date and a brief
+      description of the issue. For a technical problem, an app version and a redacted screenshot
+      can help. Do not send passwords, API keys, complete card numbers or confidential papers.
+    </p>
+    <p>
+      For missing entitlements, duplicate charges or a failed task, contact{' '}
+      <a href={`mailto:${operator.email}`}>{operator.email}</a>. A support investigation does not
+      require you to give up a legal remedy or let a statutory deadline expire.
+    </p>
+    <OperatorContact />
+  </section>
+  <section id="cancel">
+    <h2>4. Cancelling a subscription</h2>
+    <p>
+      When subscriptions launch, use the management link in your Paddle receipt or contact Paddle to
+      cancel before renewal. Your paid benefits continue through the current period; cancellation
+      stops future renewals. Cancellation and a refund request are different actions.
+    </p>
+    <p>
+      Uninstalling PaperEnjoyer does not cancel billing. Contact us if you cannot locate your
+      receipt or need assistance.
+    </p>
+  </section>
+  <section id="credits">
+    <h2>5. Credits and refunded access</h2>
+    <p>
+      Credits measure use of PaperEnjoyer’s software. The planned registration gift has no purchase
+      price to refund. Purchased packs do not expire through monthly resets or ordinary subscription
+      cancellation, but they remain subject to any refund or reversal of their purchase.
+    </p>
+    <p>
+      A correction to an incorrectly charged task allowance is an account credit adjustment,
+      separate from a payment refund. We will investigate usage discrepancies rather than promise
+      that every unsuccessful task qualifies for the same remedy.
+    </p>
+    <p>
+      If a purchase is refunded, access or credits attributable to that purchase may be withdrawn. A
+      cash-redemption restriction does not override an applicable purchase-refund right.
+    </p>
+  </section>
+  <section id="changes">
+    <h2>6. Policy changes</h2>
+    <p>
+      We will date future changes on this page. Changes do not retroactively reduce rights attached
+      to an earlier transaction. Keep your receipt and the purchase terms for reference.
+    </p>
+  </section>
+</Policy>
